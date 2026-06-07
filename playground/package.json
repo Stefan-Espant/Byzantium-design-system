@@ -7,7 +7,6 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "vercel-build": "sh ../vercel-build.sh",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
