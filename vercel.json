@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @byzantium/core build && pnpm --filter playground generate && rm -rf playground/dist && cp -R playground/.output/public playground/dist",
-  "outputDirectory": "playground/dist",
+  "buildCommand": "sh ./vercel-build.sh",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null
 }
