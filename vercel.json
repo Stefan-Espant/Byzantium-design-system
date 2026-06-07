@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @byzantium/core build && pnpm --filter playground generate",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": "playground/.output/public",
+  "buildCommand": "cd .. && pnpm --filter @byzantium/core build && pnpm --filter playground generate",
+  "installCommand": "cd .. && pnpm install --frozen-lockfile",
+  "outputDirectory": ".output/public",
   "framework": null
 }
