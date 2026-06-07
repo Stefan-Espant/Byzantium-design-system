@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byzantium
 
 > A structured, accessible design system built on semantic tokens,
@@ -32,3 +33,7 @@ pnpm dev
 ## License
 
 MIT
+=======
+# Byzantium-design-system
+The foundation. Built to endure.
+>>>>>>> 29fb9131919aba948c26290926721d69c2573c72
