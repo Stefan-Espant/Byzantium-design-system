@@ -6,6 +6,12 @@ export { useAnnouncer } from './composables/useAnnouncer'
 export { useFocusTrap }  from './composables/useFocusTrap'
 export { useToast }      from './composables/useToast'
 export { useTheme }      from './composables/useTheme'
+export { useLocale, defaultLocale, englishLocale } from './composables/useLocale'
+export type { ByzLocale } from './composables/useLocale'
+
+// Meta
+export { componentStatus, getStatus } from './meta'
+export type { ComponentStatus } from './meta'
 
 // ── Primitives ────────────────────────────────────────────────
 export { default as ByzButton }   from './components/primitives/ByzButton'
@@ -23,7 +29,10 @@ export { default as ByzSelect }   from './components/primitives/ByzSelect'
 export { default as ByzTooltip }  from './components/primitives/ByzTooltip'
 export { default as ByzTag }      from './components/primitives/ByzTag'
 export { default as ByzLink }     from './components/primitives/ByzLink'
-export { default as ByzAnnouncer } from './components/primitives/ByzAnnouncer'
+export { default as ByzAnnouncer }        from './components/primitives/ByzAnnouncer'
+export { default as ByzSearchInput }      from './components/primitives/ByzSearchInput'
+export { default as ByzFileUpload }       from './components/primitives/ByzFileUpload'
+export { default as ByzNotificationBell } from './components/primitives/ByzNotificationBell'
 
 // ── Composites ────────────────────────────────────────────────
 export { default as ByzAlert }          from './components/composites/ByzAlert'
@@ -39,7 +48,12 @@ export { default as ByzTable }          from './components/composites/ByzTable'
 export { default as ByzPagination }     from './components/composites/ByzPagination'
 export { default as ByzStepper }        from './components/composites/ByzStepper'
 export { default as ByzPopover }        from './components/composites/ByzPopover'
-export { default as ByzDrawer }         from './components/composites/ByzDrawer'
+export { default as ByzDrawer }          from './components/composites/ByzDrawer'
+export { default as ByzCombobox }        from './components/composites/ByzCombobox'
+export { default as ByzDatePicker }      from './components/composites/ByzDatePicker'
+export { default as ByzCommandPalette }  from './components/composites/ByzCommandPalette'
+export { default as ByzFormField }       from './components/composites/ByzFormField'
+export { useForm }                       from './composables/useForm'
 
 // ── Patterns ──────────────────────────────────────────────────
 export { default as ByzHero }        from './components/patterns/ByzHero'

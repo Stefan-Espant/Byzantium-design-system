@@ -50,7 +50,7 @@
   // Typography
   --byz-font-sans:     "Syne", system-ui, sans-serif;
   --byz-font-serif:    "Cormorant Garamond", "Lora", Georgia, serif;
-  --byz-font-mono:     "Fira Code", monospace;
+  --byz-font-mono:     "Source Code Pro", monospace;
   --byz-text-xs:       clamp(0.75rem,  0.7rem   + 0.25vw, 0.875rem);
   --byz-text-sm:       clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
   --byz-text-base:     clamp(1rem,     0.95rem  + 0.25vw, 1.125rem);
@@ -77,13 +77,13 @@
 
   // Z-index scale
   --byz-z-base:     0;
-  --byz-z-raised:   10;
+  --byz-z-raised:   330;
   --byz-z-dropdown: 1000;
   --byz-z-sticky:   1020;
   --byz-z-overlay:  1030;
   --byz-z-modal:    1100;
   --byz-z-toast:    1200;
-  --byz-z-tooltip:  1300;
+  --byz-z-tooltip:  1453;
 
   // Shadows
   --byz-shadow-sm:   0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);

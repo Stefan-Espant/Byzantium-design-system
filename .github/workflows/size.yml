@@ -1,0 +1,69 @@
+name: Bundle Size
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bundle-size:
+    name: Report Bundle Size
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build @byzantium/core
+        run: pnpm build
+
+      - name: Report bundle sizes
+        run: |
+          DIST_DIR="packages/byzantium/dist"
+
+          echo "## Bundle Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Built from commit \`${{ github.sha }}\` on branch \`${{ github.head_ref }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -d "$DIST_DIR" ]; then
+            echo "### dist/ directory" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+            echo "| ---- | ---- |" >> $GITHUB_STEP_SUMMARY
+            find "$DIST_DIR" -type f | sort | while read file; do
+              SIZE=$(du -sh "$file" | cut -f1)
+              echo "| \`${file#packages/byzantium/}\` | $SIZE |" >> $GITHUB_STEP_SUMMARY
+            done
+            echo "" >> $GITHUB_STEP_SUMMARY
+            TOTAL=$(du -sh "$DIST_DIR" | cut -f1)
+            echo "**Total dist/ size: $TOTAL**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "> dist/ directory not found after build." >> $GITHUB_STEP_SUMMARY
+          fi

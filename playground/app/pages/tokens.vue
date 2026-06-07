@@ -84,7 +84,7 @@ const zIndexTokens = [
   { name: 'z-overlay',  value: 1030 },
   { name: 'z-modal',    value: 1100 },
   { name: 'z-toast',    value: 1200 },
-  { name: 'z-tooltip',  value: 1300 },
+  { name: 'z-tooltip',  value: 1453 },
 ]
 
 // Scale bar max width in px for spacing visualisation (space-24 = 6rem = max)

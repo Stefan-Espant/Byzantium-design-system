@@ -4,7 +4,6 @@ import {
   ByzButton, ByzBadge, ByzBreadcrumb,
   useTheme,
 } from '@byzantium/core'
-import { ByzSidebarItem } from '@byzantium/core'
 
 const { theme, toggle } = useTheme()
 
@@ -124,10 +123,12 @@ const sidebarCollapsed = ref(false)
                   <span class="pt-sidebar-brand">Byzantium</span>
                 </template>
 
-                <ByzSidebarItem href="#" label="Dashboard" icon="⊞" :active="true" />
-                <ByzSidebarItem href="#" label="Componenten" icon="◧" />
-                <ByzSidebarItem href="#" label="Patronen" icon="⬡" />
-                <ByzSidebarItem href="#" label="Instellingen" icon="⚙" />
+                <nav class="pt-sidebar-nav">
+                  <a href="#" class="pt-sidebar-item pt-sidebar-item--active">⊞ Dashboard</a>
+                  <a href="#" class="pt-sidebar-item">◧ Componenten</a>
+                  <a href="#" class="pt-sidebar-item">⬡ Patronen</a>
+                  <a href="#" class="pt-sidebar-item">⚙ Instellingen</a>
+                </nav>
 
                 <template #footer>
                   <span class="pt-sidebar-user">Stefan van der Kort</span>
@@ -144,10 +145,12 @@ const sidebarCollapsed = ref(false)
                 <template #header>
                   <span class="pt-sidebar-brand">Byzantium</span>
                 </template>
-                <ByzSidebarItem href="#" label="Dashboard" icon="⊞" :active="true" />
-                <ByzSidebarItem href="#" label="Componenten" icon="◧" />
-                <ByzSidebarItem href="#" label="Patronen" icon="⬡" />
-                <ByzSidebarItem href="#" label="Instellingen" icon="⚙" />
+                <nav class="pt-sidebar-nav">
+                  <a href="#" class="pt-sidebar-item pt-sidebar-item--active">⊞ Dashboard</a>
+                  <a href="#" class="pt-sidebar-item">◧ Componenten</a>
+                  <a href="#" class="pt-sidebar-item">⬡ Patronen</a>
+                  <a href="#" class="pt-sidebar-item">⚙ Instellingen</a>
+                </nav>
                 <template #footer>
                   <span class="pt-sidebar-user">Stefan van der Kort</span>
                 </template>
@@ -321,5 +324,27 @@ const sidebarCollapsed = ref(false)
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pt-sidebar-nav {
+  display: flex; flex-direction: column; gap: 2px; padding: var(--byz-space-2);
+}
+
+.pt-sidebar-item {
+  display: flex; align-items: center; gap: var(--byz-space-3);
+  padding: var(--byz-space-2) var(--byz-space-3);
+  border-radius: 4px; text-decoration: none;
+  font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
+  transition: background var(--byz-duration-fast) var(--byz-ease-default),
+              color var(--byz-duration-fast) var(--byz-ease-default);
+
+  &:hover { background: rgba(255,255,255,0.05); color: var(--byz-color-text-secondary); }
+
+  &--active {
+    background: rgba(192,16,48,0.12);
+    color: var(--byz-color-accent);
+    border-left: 2px solid var(--byz-color-accent);
+    padding-left: calc(var(--byz-space-3) - 2px);
+  }
 }
 </style>
