@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useTheme, useLocale } from '@byzantium/core'
+import { useTheme } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle }                        = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { theme, toggle } = useTheme()
+const { p } = usePlaygroundLocale()
 
 const releases = [
   {
@@ -90,19 +91,17 @@ const typeColors: Record<string, string> = {
       <nav class="cl-header__inner">
         <a href="/" class="cl-header__brand">Byzantium</a>
         <span class="cl-header__title">Changelog</span>
-        <button class="cl-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="cl-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <LanguageSelector />
+        <button class="cl-header__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
-        <a href="/" class="cl-header__back">← Terug</a>
+        <a href="/" class="cl-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
 
     <main class="cl-main">
-      <h1 class="cl-title">Changelog</h1>
-      <p class="cl-subtitle">Alle wijzigingen per versie, nieuwste eerst.</p>
+      <h1 class="cl-title">{{ p('changelogTitle') }}</h1>
+      <p class="cl-subtitle">{{ p('changelogSub') }}</p>
 
       <div class="cl-timeline">
         <article

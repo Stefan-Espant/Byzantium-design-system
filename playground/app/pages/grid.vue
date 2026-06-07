@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ByzGrid, ByzCol, useTheme, useLocale } from '@byzantium/core'
+import { ByzGrid, ByzCol, useTheme } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle }             = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { theme, toggle } = useTheme()
+const { p } = usePlaygroundLocale()
 
 const activeVariant = ref<4 | 8 | 12 | 16 | 24>(12)
 const activeGap     = ref<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md')
@@ -41,14 +42,12 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
     <header class="gd-header">
       <nav class="gd-header__inner">
         <a href="/" class="gd-header__brand">Byzantium</a>
-        <span class="gd-header__title">Grid systeem</span>
-        <button class="gd-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="gd-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <span class="gd-header__title">{{ p('gridPageTitle') }}</span>
+        <LanguageSelector />
+        <button class="gd-header__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
-        <a href="/" class="gd-header__back">← Terug</a>
+        <a href="/" class="gd-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
 
@@ -56,8 +55,8 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
 
       <!-- ── Intro ──────────────────────────────────────────────────────────── -->
       <section class="gd-section gd-section--intro">
-        <h1 class="gd-hero-title">Grid systeem</h1>
-        <p class="gd-hero-sub">Byzantium biedt vijf grid-varianten. Kies op basis van de densiteit die je layout vraagt.</p>
+        <h1 class="gd-hero-title">{{ p('gridPageTitle') }}</h1>
+        <p class="gd-hero-sub">{{ p('gridSub') }}</p>
 
         <div class="gd-variants-table">
           <div class="gd-variants-table__row gd-variants-table__row--header">

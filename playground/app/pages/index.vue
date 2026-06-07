@@ -7,11 +7,12 @@ import {
   ByzBadge,
   ByzProgress,
   ByzFooter,
+  useTheme,
 } from '@byzantium/core'
-import { useTheme, useLocale } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle }                  = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { theme, toggle } = useTheme()
+const { p } = usePlaygroundLocale()
 const inputValue  = ref('')
 const showAlert   = ref(true)
 const pkgManager  = ref<'pnpm' | 'npm' | 'yarn'>('pnpm')
@@ -33,15 +34,13 @@ const installCmd: Record<string, string> = {
         <span class="bp-nav__brand">Byzantium</span>
         <ul class="bp-nav__links" role="list">
           <li><a href="/tokens">Tokens</a></li>
-          <li><a href="/components">Components</a></li>
-          <li><a href="/patterns">Patronen</a></li>
-          <li><a href="/grid">Grid</a></li>
-          <li><a href="/changelog">Changelog</a></li>
+          <li><a href="/components">{{ p('navComponents') }}</a></li>
+          <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
+          <li><a href="/grid">{{ p('navGrid') }}</a></li>
+          <li><a href="/changelog">{{ p('navChangelog') }}</a></li>
         </ul>
-        <button class="bp-nav__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="bp-nav__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <LanguageSelector />
+        <button class="bp-nav__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
         <ByzButton variant="ghost" size="sm">GitHub</ByzButton>
@@ -51,19 +50,15 @@ const installCmd: Record<string, string> = {
     <!-- ── HERO ─────────────────────────────────── -->
     <section class="bp-hero" aria-labelledby="hero-title">
       <div class="bp-hero__glow" aria-hidden="true" />
-      <div class="bp-hero__eyebrow">Design System · v0.1.0</div>
-      <h1 id="hero-title" class="bp-hero__title">
-        Built to<br><em>endure.</em>
-      </h1>
-      <p class="bp-hero__subtitle">
-        Toegankelijk van nature. Één bron van waarheid<br>voor alles wat visueel is.
-      </p>
+      <div class="bp-hero__eyebrow">{{ p('heroEyebrow') }}</div>
+      <h1 id="hero-title" class="bp-hero__title">{{ p('heroTitle') }}</h1>
+      <p class="bp-hero__subtitle">{{ p('heroSubtitle') }}</p>
       <div class="bp-hero__actions">
         <ByzButton variant="primary" size="lg" @click="$el.querySelector('#install')?.scrollIntoView({behavior:'smooth'})">
-          Aan de slag
+          {{ p('heroCtaStart') }}
         </ByzButton>
         <ByzButton variant="ghost" size="lg" onclick="location.href='/components'">
-          Bekijk componenten
+          {{ p('heroCtaView') }}
         </ByzButton>
       </div>
       <div class="bp-hero__divider" aria-hidden="true" />
@@ -73,27 +68,27 @@ const installCmd: Record<string, string> = {
     <div class="bp-stats" role="list">
       <div class="bp-stats__item" role="listitem">
         <span class="bp-stats__value">36</span>
-        <span class="bp-stats__label">Componenten</span>
+        <span class="bp-stats__label">{{ p('statComponents') }}</span>
       </div>
       <div class="bp-stats__item" role="listitem">
         <span class="bp-stats__value">60+</span>
-        <span class="bp-stats__label">Design tokens</span>
+        <span class="bp-stats__label">{{ p('statTokens') }}</span>
       </div>
       <div class="bp-stats__item" role="listitem">
         <span class="bp-stats__value">4</span>
-        <span class="bp-stats__label">Composables</span>
+        <span class="bp-stats__label">{{ p('statComposables') }}</span>
       </div>
       <div class="bp-stats__item" role="listitem">
         <span class="bp-stats__value">A11Y</span>
-        <span class="bp-stats__label">Accessibility first</span>
+        <span class="bp-stats__label">{{ p('statA11y') }}</span>
       </div>
     </div>
 
     <!-- ── INSTALL ───────────────────────────────── -->
     <section id="install" class="bp-section">
       <div class="bp-section__header">
-        <div class="bp-section__eyebrow">Installatie</div>
-        <h2 class="bp-section__title">Aan de slag in<br><em>twee stappen.</em></h2>
+        <div class="bp-section__eyebrow">{{ p('eyebrowInstall') }}</div>
+        <h2 class="bp-section__title">{{ p('installTitle') }}</h2>
       </div>
 
       <div class="bp-install">
@@ -102,8 +97,8 @@ const installCmd: Record<string, string> = {
         <div class="bp-install__step">
           <div class="bp-install__step-num">01</div>
           <div class="bp-install__step-body">
-            <h3 class="bp-install__step-title">Pakket installeren</h3>
-            <p class="bp-install__step-desc">Voeg <code>@byzantium/core</code> toe aan je project.</p>
+            <h3 class="bp-install__step-title">{{ p('step1Title') }}</h3>
+            <p class="bp-install__step-desc">{{ p('step1Desc') }}</p>
 
             <div class="bp-code-block">
               <div class="bp-code-block__tabs">
@@ -125,8 +120,8 @@ const installCmd: Record<string, string> = {
         <div class="bp-install__step">
           <div class="bp-install__step-num">02</div>
           <div class="bp-install__step-body">
-            <h3 class="bp-install__step-title">Importeer en gebruik</h3>
-            <p class="bp-install__step-desc">Importeer componenten en stijlen in je Vue-bestand.</p>
+            <h3 class="bp-install__step-title">{{ p('step2Title') }}</h3>
+            <p class="bp-install__step-desc">{{ p('step2Desc') }}</p>
 
             <div class="bp-code-block">
               <div class="bp-code-block__tabs">
@@ -162,39 +157,39 @@ const installCmd: Record<string, string> = {
     <section class="bp-section bp-section--alt">
       <div class="bp-section__inner">
         <div class="bp-section__header">
-          <div class="bp-section__eyebrow">Architectuur</div>
-          <h2 class="bp-section__title">Drie lagen,<br>één <em>systeem.</em></h2>
+          <div class="bp-section__eyebrow">{{ p('eyebrowArch') }}</div>
+          <h2 class="bp-section__title">{{ p('archTitle') }}</h2>
         </div>
 
         <div class="bp-tiers">
           <ByzCard class="bp-tier" elevated>
-            <div class="bp-tier__badge">Primitives</div>
+            <div class="bp-tier__badge">{{ p('primTitle') }}</div>
             <div class="bp-tier__count">16</div>
-            <p class="bp-tier__desc">Enkelvoudige bouwstenen zonder afhankelijkheden. Elk component heeft één duidelijk doel.</p>
+            <p class="bp-tier__desc">{{ p('primDesc') }}</p>
             <ul class="bp-tier__list">
               <li>ByzButton</li><li>ByzInput</li><li>ByzSelect</li>
               <li>ByzCheckbox</li><li>ByzRadio</li><li>ByzSwitch</li>
               <li>ByzBadge</li><li>ByzAvatar</li><li>ByzTag</li>
-              <li class="bp-tier__more">+ 7 meer →</li>
+              <li class="bp-tier__more">+ 7 {{ p('moreLabel') }}</li>
             </ul>
           </ByzCard>
 
           <ByzCard class="bp-tier bp-tier--featured" elevated>
-            <div class="bp-tier__badge bp-tier__badge--accent">Composites</div>
+            <div class="bp-tier__badge bp-tier__badge--accent">{{ p('compTitle') }}</div>
             <div class="bp-tier__count">14</div>
-            <p class="bp-tier__desc">Combinaties van primitives met eigen logica en toegankelijkheid ingebakken.</p>
+            <p class="bp-tier__desc">{{ p('compDesc') }}</p>
             <ul class="bp-tier__list">
               <li>ByzModal</li><li>ByzDrawer</li><li>ByzTabs</li>
               <li>ByzAccordion</li><li>ByzTable</li><li>ByzStepper</li>
               <li>ByzDropdown</li><li>ByzToast</li><li>ByzPopover</li>
-              <li class="bp-tier__more">+ 5 meer →</li>
+              <li class="bp-tier__more">+ 5 {{ p('moreLabel') }}</li>
             </ul>
           </ByzCard>
 
           <ByzCard class="bp-tier" elevated>
-            <div class="bp-tier__badge">Patronen</div>
+            <div class="bp-tier__badge">{{ p('patTitle') }}</div>
             <div class="bp-tier__count">6</div>
-            <p class="bp-tier__desc">Volledige paginasecties die kant-en-klaar inzetbaar zijn in elke applicatie.</p>
+            <p class="bp-tier__desc">{{ p('patDesc') }}</p>
             <ul class="bp-tier__list">
               <li>ByzHero</li><li>ByzNavbar</li><li>ByzFooter</li>
               <li>ByzSidebar</li><li>ByzPageHeader</li><li>ByzEmptyState</li>
@@ -207,40 +202,40 @@ const installCmd: Record<string, string> = {
     <!-- ── FEATURES ───────────────────────────────── -->
     <section class="bp-section">
       <div class="bp-section__header">
-        <div class="bp-section__eyebrow">Kenmerken</div>
-        <h2 class="bp-section__title">Gebouwd voor<br><em>de lange termijn.</em></h2>
+        <div class="bp-section__eyebrow">{{ p('eyebrowFeatures') }}</div>
+        <h2 class="bp-section__title">{{ p('featuresTitle') }}</h2>
       </div>
 
       <div class="bp-features">
         <div class="bp-feature">
           <div class="bp-feature__icon">◈</div>
-          <h3 class="bp-feature__title">Semantische tokens</h3>
-          <p class="bp-feature__desc">60+ design tokens als CSS custom properties — <code>--byz-*</code> variabelen voor kleur, spacing, typografie, motion, schaduwen en z-index.</p>
+          <h3 class="bp-feature__title">{{ p('feat1Title') }}</h3>
+          <p class="bp-feature__desc">{{ p('feat1Desc') }}</p>
         </div>
         <div class="bp-feature">
           <div class="bp-feature__icon">♿</div>
           <h3 class="bp-feature__title">Accessibility first</h3>
-          <p class="bp-feature__desc">ARIA-patronen, toetsenbordnavigatie, focus trap, live region announcer en minimale touch targets van 44px ingebakken in elk component.</p>
+          <p class="bp-feature__desc">{{ p('feat2Desc') }}</p>
         </div>
         <div class="bp-feature">
           <div class="bp-feature__icon">🌙</div>
           <h3 class="bp-feature__title">Dark &amp; light mode</h3>
-          <p class="bp-feature__desc">Imperial Dark als standaard. Schakel naar licht via <code>useTheme()</code>. Voorkeur wordt opgeslagen in localStorage en detecteert systeemvoorkeur.</p>
+          <p class="bp-feature__desc">{{ p('feat3Desc') }}</p>
         </div>
         <div class="bp-feature">
           <div class="bp-feature__icon">⬡</div>
           <h3 class="bp-feature__title">TypeScript native</h3>
-          <p class="bp-feature__desc">Volledige TypeScript-ondersteuning met strict mode. Typed props, emits en composables. Automatisch gegenereerde <code>.d.ts</code> declaraties.</p>
+          <p class="bp-feature__desc">{{ p('feat4Desc') }}</p>
         </div>
         <div class="bp-feature">
           <div class="bp-feature__icon">⚡</div>
           <h3 class="bp-feature__title">Vue 3 &amp; Vite</h3>
-          <p class="bp-feature__desc">Composition API, <code>&lt;script setup&gt;</code>, Teleport en Transition — alle moderne Vue-primitieven. Gebouwd met Vite voor snelle HMR.</p>
+          <p class="bp-feature__desc">{{ p('feat5Desc') }}</p>
         </div>
         <div class="bp-feature">
           <div class="bp-feature__icon">↻</div>
           <h3 class="bp-feature__title">Prefers-reduced-motion</h3>
-          <p class="bp-feature__desc">Alle animaties respecteren <code>prefers-reduced-motion</code> via CSS media queries. Geen JavaScript-detectie nodig.</p>
+          <p class="bp-feature__desc">{{ p('feat6Desc') }}</p>
         </div>
       </div>
     </section>
@@ -249,8 +244,8 @@ const installCmd: Record<string, string> = {
     <section class="bp-section bp-section--alt">
       <div class="bp-section__inner">
         <div class="bp-section__header">
-          <div class="bp-section__eyebrow">Componenten</div>
-          <h2 class="bp-section__title">Klaar om te<br><em>gebruiken.</em></h2>
+          <div class="bp-section__eyebrow">{{ p('navComponents') }}</div>
+          <h2 class="bp-section__title">{{ p('readyTitle') }}</h2>
         </div>
 
         <div class="bp-preview-grid">
@@ -263,7 +258,7 @@ const installCmd: Record<string, string> = {
             </div>
             <div class="bp-preview-cell__row" style="margin-top:var(--byz-space-2)">
               <ByzButton variant="danger" size="sm">Danger</ByzButton>
-              <ByzButton variant="primary" size="sm" :loading="true">Laden</ByzButton>
+              <ByzButton variant="primary" size="sm" :loading="true">{{ p('loadingLabel') }}</ByzButton>
             </div>
           </ByzCard>
 
@@ -271,9 +266,9 @@ const installCmd: Record<string, string> = {
             <div class="bp-preview-cell__label">Input</div>
             <ByzInput
               v-model="inputValue"
-              label="E-mailadres"
+              :label="p('emailLabel')"
               placeholder="stefan@byzantium.dev"
-              hint="Gebruik een geldig e-mailadres"
+              :hint="p('emailHint')"
             />
           </ByzCard>
 
@@ -284,7 +279,7 @@ const installCmd: Record<string, string> = {
               <ByzBadge variant="success">Success</ByzBadge>
               <ByzBadge variant="error">Error</ByzBadge>
             </div>
-            <ByzProgress :value="72" label="Voortgang" :show-value="true" size="sm" />
+            <ByzProgress :value="72" :label="p('progressLabel')" :show-value="true" size="sm" />
           </ByzCard>
 
           <ByzCard class="bp-preview-cell" elevated>
@@ -296,15 +291,15 @@ const installCmd: Record<string, string> = {
               dismissible
               @dismiss="showAlert = false"
             >
-              Byzantium is klaar om te gebruiken.
+              {{ p('alertText') }}
             </ByzAlert>
-            <ByzAlert v-else type="success">Goed bezig!</ByzAlert>
+            <ByzAlert v-else type="success">{{ p('alertSuccess') }}</ByzAlert>
           </ByzCard>
         </div>
 
         <div class="bp-cta">
           <a href="/components">
-            <ByzButton variant="secondary" size="lg">Bekijk alle 36 componenten →</ByzButton>
+            <ByzButton variant="secondary" size="lg">{{ p('ctaViewAll') }}</ByzButton>
           </a>
         </div>
       </div>
@@ -317,7 +312,7 @@ const installCmd: Record<string, string> = {
         { label: 'GitHub',    href: '#' },
         { label: 'Changelog', href: '#' },
         { label: 'Tokens',    href: '/tokens' },
-        { label: 'Licentie',  href: '#' },
+        { label: p('footerLicense'), href: '#' },
       ]"
       copyright="MIT · v0.1.0"
     />

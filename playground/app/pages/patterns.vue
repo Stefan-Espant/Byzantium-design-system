@@ -2,11 +2,12 @@
 import {
   ByzHero, ByzNavbar, ByzFooter, ByzSidebar, ByzPageHeader, ByzEmptyState,
   ByzButton, ByzBadge, ByzBreadcrumb,
-  useTheme, useLocale,
+  useTheme,
 } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { theme, toggle } = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { p } = usePlaygroundLocale()
 
 // Sidebar open state
 const sidebarOpen = ref(true)
@@ -21,13 +22,11 @@ const sidebarCollapsed = ref(false)
       <nav class="pt-header__inner">
         <a href="/" class="pt-header__brand">Byzantium</a>
         <span class="pt-header__title">Patronen</span>
-        <button class="pt-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="pt-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <LanguageSelector />
+        <button class="pt-header__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
-        <a href="/" class="pt-header__back">← Terug</a>
+        <a href="/" class="pt-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
 

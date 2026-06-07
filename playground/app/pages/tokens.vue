@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useTheme, useLocale } from '@byzantium/core'
+import { useTheme } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { theme, toggle } = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { p } = usePlaygroundLocale()
 
 // Motion demo state — each key holds whether the indicator is in the "active" position
 const motionActive = ref<Record<string, boolean>>({})
@@ -102,14 +103,12 @@ function barWidth(rem: number): string {
     <header class="cp-header">
       <nav class="cp-header__inner">
         <a href="/" class="cp-header__brand">Byzantium</a>
-        <span class="cp-header__title">Design tokens</span>
-        <button class="cp-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="cp-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <span class="cp-header__title">{{ p('tokensPageTitle') }}</span>
+        <LanguageSelector />
+        <button class="cp-header__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
-        <a href="/" class="cp-header__back">← Terug</a>
+        <a href="/" class="cp-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
 
@@ -117,10 +116,10 @@ function barWidth(rem: number): string {
 
       <!-- 1. KLEUR -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Kleur</h2>
+        <h2 class="cp-section__title">{{ p('colorSection') }}</h2>
 
         <div class="cp-group">
-          <h3 class="cp-group__title">Brand schaal</h3>
+          <h3 class="cp-group__title">{{ p('brandScale') }}</h3>
           <div class="tk-swatches">
             <div v-for="c in brandColors" :key="c.name" class="tk-swatch">
               <div class="tk-swatch__color" :style="{ background: c.hex }" />
@@ -131,7 +130,7 @@ function barWidth(rem: number): string {
         </div>
 
         <div class="cp-group">
-          <h3 class="cp-group__title">Semantisch</h3>
+          <h3 class="cp-group__title">{{ p('semantic') }}</h3>
           <div class="tk-swatches">
             <div v-for="c in semanticColors" :key="c.name" class="tk-swatch">
               <div class="tk-swatch__color" :style="{ background: c.hex }" />
@@ -144,7 +143,7 @@ function barWidth(rem: number): string {
 
       <!-- 2. SPACING -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Spacing</h2>
+        <h2 class="cp-section__title">{{ p('spacingSection') }}</h2>
         <div class="tk-spacing-list">
           <div v-for="s in spacingTokens" :key="s.name" class="tk-spacing-row">
             <span class="tk-spacing-label">{{ s.name }}</span>
@@ -158,10 +157,10 @@ function barWidth(rem: number): string {
 
       <!-- 3. TYPOGRAFIE -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Typografie</h2>
+        <h2 class="cp-section__title">{{ p('typoSection') }}</h2>
 
         <div class="cp-group">
-          <h3 class="cp-group__title">Tekstgroottes</h3>
+          <h3 class="cp-group__title">{{ p('fontSizes') }}</h3>
           <div class="tk-type-list">
             <div v-for="t in textSizes" :key="t.name" class="tk-type-row">
               <span
@@ -177,7 +176,7 @@ function barWidth(rem: number): string {
         </div>
 
         <div class="cp-group">
-          <h3 class="cp-group__title">Lettertypen</h3>
+          <h3 class="cp-group__title">{{ p('fontFamilies') }}</h3>
           <div class="tk-font-families">
             <div class="tk-font-row">
               <span class="tk-font-sample tk-font-sample--serif">Cormorant Garamond</span>
@@ -197,7 +196,7 @@ function barWidth(rem: number): string {
 
       <!-- 4. MOTION -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Motion</h2>
+        <h2 class="cp-section__title">{{ p('motionSection') }}</h2>
 
         <div class="cp-group">
           <h3 class="cp-group__title">Durations</h3>
@@ -231,7 +230,7 @@ function barWidth(rem: number): string {
 
       <!-- 5. SCHADUWEN -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Schaduwen</h2>
+        <h2 class="cp-section__title">{{ p('shadowSection') }}</h2>
         <div class="tk-shadow-grid">
           <div v-for="s in shadowTokens" :key="s.name" class="tk-shadow-card" :style="{ boxShadow: s.css }">
             <span class="tk-shadow-label">{{ s.name }}</span>
@@ -241,7 +240,7 @@ function barWidth(rem: number): string {
 
       <!-- 6. Z-INDEX -->
       <section class="cp-section">
-        <h2 class="cp-section__title">Z-index</h2>
+        <h2 class="cp-section__title">{{ p('zindexSection') }}</h2>
         <div class="tk-zindex-table">
           <div class="tk-zindex-header">
             <span>Token</span>

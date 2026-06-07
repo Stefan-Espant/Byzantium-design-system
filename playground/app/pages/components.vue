@@ -7,11 +7,12 @@ import {
   ByzAccordion, ByzDropdown, ByzTable, ByzPagination,
   ByzStepper, ByzPopover, ByzDrawer,
   ByzPageHeader, ByzEmptyState, ByzFooter,
-  useToast, useTheme, useLocale,
+  useToast, useTheme,
 } from '@byzantium/core'
+import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle }                        = useTheme()
-const { currentKey: lang, setLocale } = useLocale()
+const { theme, toggle } = useTheme()
+const { p } = usePlaygroundLocale()
 const { add: addToast }                        = useToast()
 
 // Form state
@@ -105,14 +106,12 @@ const drawerOpen = ref(false)
     <header class="cp-header">
       <nav class="cp-header__inner">
         <a href="/" class="cp-header__brand">Byzantium</a>
-        <span class="cp-header__title">Component bibliotheek</span>
-        <button class="cp-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
-          {{ lang === 'nl' ? 'EN' : 'NL' }}
-        </button>
-        <button class="cp-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
+        <span class="cp-header__title">{{ p('componentsPageTitle') }}</span>
+        <LanguageSelector />
+        <button class="cp-header__toggle" :aria-label="p('lightMode')" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>
-        <a href="/" class="cp-header__back">← Terug</a>
+        <a href="/" class="cp-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
 
