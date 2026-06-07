@@ -1,5 +1,5 @@
 {
-  "buildCommand": "sh ./vercel-build.sh",
+  "buildCommand": "if [ -f ./vercel-build.sh ]; then sh ./vercel-build.sh; elif [ -f ../vercel-build.sh ]; then sh ../vercel-build.sh; else echo 'vercel-build.sh not found from current root' >&2; exit 127; fi",
   "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null
