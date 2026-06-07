@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @byzantium/core build && pnpm --filter playground generate && mkdir -p playground/.output && mv .output/public playground/.output/public",
+  "buildCommand": "pnpm --filter @byzantium/core build && pnpm --filter playground generate",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": "playground/.output/public",
   "framework": null
