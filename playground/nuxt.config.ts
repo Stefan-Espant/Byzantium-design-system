@@ -6,13 +6,9 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-nitro: {
-  preset: 'static',
-  output: {
-    dir: 'dist',
-    publicDir: 'dist/public'
-  }
-},
+  nitro: {
+    preset: 'static'
+  },
 
   css: [
     fileURLToPath(new URL('../packages/byzantium/src/styles/index.scss', import.meta.url))
