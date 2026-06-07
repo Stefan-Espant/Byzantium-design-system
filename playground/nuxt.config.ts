@@ -1,6 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineNuxtConfig({
+  rootDir: fileURLToPath(new URL('.', import.meta.url)),
+
   compatibilityDate: '2024-11-01',
   future: {
     compatibilityVersion: 4
@@ -14,14 +16,16 @@ export default defineNuxtConfig({
     }
   },
 
-  buildDir: '.nuxt',
+  buildDir: fileURLToPath(new URL('./.nuxt', import.meta.url)),
 
   css: [
     fileURLToPath(new URL('../packages/byzantium/src/styles/index.scss', import.meta.url))
   ],
+
   alias: {
     '@byzantium/core': fileURLToPath(new URL('../packages/byzantium/src', import.meta.url))
   },
+
   vite: {
     css: {
       preprocessorOptions: {
