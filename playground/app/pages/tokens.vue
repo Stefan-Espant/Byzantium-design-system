@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useTheme } from '@byzantium/core'
+import { useTheme, useLocale } from '@byzantium/core'
 
 const { theme, toggle } = useTheme()
+const { currentKey: lang, setLocale } = useLocale()
 
 // Motion demo state — each key holds whether the indicator is in the "active" position
 const motionActive = ref<Record<string, boolean>>({})
@@ -102,6 +103,9 @@ function barWidth(rem: number): string {
       <nav class="cp-header__inner">
         <a href="/" class="cp-header__brand">Byzantium</a>
         <span class="cp-header__title">Design tokens</span>
+        <button class="cp-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="setLocale(lang === 'nl' ? 'en' : 'nl')">
+          {{ lang === 'nl' ? 'EN' : 'NL' }}
+        </button>
         <button class="cp-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>

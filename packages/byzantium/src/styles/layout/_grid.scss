@@ -1,0 +1,93 @@
+// ── Byzantium Grid Utilities ────────────────────────────────────────────────
+//
+// Usage:
+//   class="byz-grid byz-grid--12 byz-gap-md"
+//   class="byz-col-span-6 byz-col-span-md-4"
+//
+// Variants: 4 | 8 | 12 | 16 | 24 columns
+
+$grid-breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+);
+
+$grid-col-counts: (4, 8, 12, 16, 24);
+$max-span: 24;
+
+$gap-scale: (
+  'none': 0,
+  'xs':   var(--byz-space-2, 0.5rem),
+  'sm':   var(--byz-space-3, 0.75rem),
+  'md':   var(--byz-space-4, 1rem),
+  'lg':   var(--byz-space-6, 1.5rem),
+  'xl':   var(--byz-space-8, 2rem),
+);
+
+// Base grid container
+.byz-grid {
+  display: grid;
+  width: 100%;
+}
+
+// Column count variants
+@each $cols in $grid-col-counts {
+  .byz-grid--#{$cols} {
+    grid-template-columns: repeat(#{$cols}, minmax(0, 1fr));
+  }
+}
+
+// Gap utilities (both axes)
+@each $name, $value in $gap-scale {
+  .byz-gap-#{$name} {
+    gap: #{$value};
+  }
+  .byz-gap-x-#{$name} {
+    column-gap: #{$value};
+  }
+  .byz-gap-y-#{$name} {
+    row-gap: #{$value};
+  }
+}
+
+// Auto-fill responsive grids (no JS needed)
+.byz-grid--auto-sm  { grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr)); }
+.byz-grid--auto-md  { grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+.byz-grid--auto-lg  { grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); }
+
+// Dense packing
+.byz-grid--dense { grid-auto-flow: dense; }
+
+// ── Column span utilities ────────────────────────────────────────────────────
+
+// Base (mobile-first)
+@for $i from 1 through $max-span {
+  .byz-col-span-#{$i} { grid-column: span #{$i} / span #{$i}; }
+}
+.byz-col-span-full { grid-column: 1 / -1; }
+.byz-col-span-auto { grid-column: auto; }
+
+// Responsive overrides
+@each $bp, $width in $grid-breakpoints {
+  @media (min-width: #{$width}) {
+    @for $i from 1 through $max-span {
+      .byz-col-span-#{$bp}-#{$i} { grid-column: span #{$i} / span #{$i}; }
+    }
+    .byz-col-span-#{$bp}-full { grid-column: 1 / -1; }
+    .byz-col-span-#{$bp}-auto { grid-column: auto; }
+  }
+}
+
+// ── Column start utilities ───────────────────────────────────────────────────
+
+@for $i from 1 through $max-span {
+  .byz-col-start-#{$i} { grid-column-start: #{$i}; }
+}
+.byz-col-start-auto { grid-column-start: auto; }
+
+// ── Row span utilities ───────────────────────────────────────────────────────
+
+@for $i from 1 through 6 {
+  .byz-row-span-#{$i} { grid-row: span #{$i} / span #{$i}; }
+}

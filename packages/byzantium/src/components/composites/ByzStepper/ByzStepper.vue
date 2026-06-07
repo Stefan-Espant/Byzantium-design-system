@@ -1,321 +1,275 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
+import { computed } from 'vue'
+import { useLocale } from '../../../composables/useLocale'
 
-  defineOptions({ name: 'ByzStepper' })
+defineOptions({ name: 'ByzStepper' })
 
-  interface Step {
-    id: string
-    label: string
-    description?: string
-  }
+export type StepStatus = 'completed' | 'active' | 'pending' | 'error'
 
-  interface Props {
-    steps: Step[]
-    modelValue: string
-    completedSteps?: string[]
-    orientation?: 'horizontal' | 'vertical'
-  }
+export interface ByzStep {
+  label:        string
+  description?: string
+  status?:      StepStatus
+}
 
-  const props = withDefaults(defineProps<Props>(), {
-    completedSteps: () => [],
-    orientation: 'horizontal'
-  })
+interface Props {
+  steps:      ByzStep[]
+  modelValue: number
+  linear?:    boolean
+  vertical?:  boolean
+}
 
-  const emit = defineEmits<{ 'update:modelValue': [id: string] }>()
+const props = withDefaults(defineProps<Props>(), {
+  linear:   true,
+  vertical: false,
+})
 
-  function stepState(id: string): 'completed' | 'active' | 'upcoming' {
-    if (props.completedSteps.includes(id)) return 'completed'
-    if (id === props.modelValue) return 'active'
-    return 'upcoming'
-  }
+const emit = defineEmits<{
+  'update:modelValue': [step: number]
+  complete: []
+}>()
 
-  function stepNumber(index: number): number {
-    return index + 1
-  }
+const { t } = useLocale()
 
-  function isConnectorCompleted(index: number): boolean {
-    // The connector after step[index] is "completed" when step[index] is completed
-    const id = props.steps[index]?.id
-    return id ? props.completedSteps.includes(id) : false
-  }
+const isFirst = computed(() => props.modelValue === 0)
+const isLast  = computed(() => props.modelValue === props.steps.length - 1)
 
-  function selectStep(id: string) {
-    emit('update:modelValue', id)
-  }
+function stepStatus(index: number): StepStatus {
+  if (props.steps[index].status) return props.steps[index].status!
+  if (index < props.modelValue)   return 'completed'
+  if (index === props.modelValue) return 'active'
+  return 'pending'
+}
 
-  const isVertical = computed(() => props.orientation === 'vertical')
+function goTo(index: number) {
+  if (props.linear && index > props.modelValue + 1) return
+  emit('update:modelValue', index)
+}
+
+function next() {
+  if (isLast.value) { emit('complete'); return }
+  emit('update:modelValue', props.modelValue + 1)
+}
+
+function prev() {
+  if (!isFirst.value) emit('update:modelValue', props.modelValue - 1)
+}
 </script>
 
 <template>
-  <div
-    class="byz-stepper"
-    :class="[
-      `byz-stepper--${orientation}`,
-    ]"
-    :aria-label="'Progress steps'"
-  >
-    <template v-for="(step, index) in steps" :key="step.id">
-      <!-- Step item -->
+  <div class="byz-stepper" :class="{ 'byz-stepper--vertical': vertical }">
+
+    <div class="byz-stepper__track" role="list">
       <div
-        class="byz-stepper__item"
-        :class="[`byz-stepper__item--${stepState(step.id)}`]"
-        :aria-current="step.id === modelValue ? 'step' : undefined"
+        v-for="(step, i) in steps"
+        :key="i"
+        class="byz-stepper__step"
+        :class="`byz-stepper__step--${stepStatus(i)}`"
+        role="listitem"
       >
-        <!-- Circle + label wrapper -->
         <button
-          class="byz-stepper__trigger"
-          :aria-label="`Step ${stepNumber(index)}: ${step.label}`"
-          @click="selectStep(step.id)"
+          class="byz-stepper__node"
+          :aria-label="`${t('step')} ${i + 1} ${t('of')} ${steps.length}: ${step.label}`"
+          :aria-current="i === modelValue ? 'step' : undefined"
+          :disabled="linear && i > modelValue + 1"
+          @click="goTo(i)"
         >
-          <!-- Circle -->
-          <span
-            class="byz-stepper__circle"
-            :class="[`byz-stepper__circle--${stepState(step.id)}`]"
-            aria-hidden="true"
-          >
-            <template v-if="stepState(step.id) === 'completed'">
-              <svg
-                class="byz-stepper__check"
-                viewBox="0 0 12 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 5l3.5 3.5L11 1"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </template>
-            <template v-else>
-              <span class="byz-stepper__number">{{ stepNumber(index) }}</span>
-            </template>
-          </span>
-
-          <!-- Label block -->
-          <span class="byz-stepper__label-block">
-            <span class="byz-stepper__label">{{ step.label }}</span>
-            <span
-              v-if="step.description && step.id === modelValue"
-              class="byz-stepper__description"
-            >
-              {{ step.description }}
-            </span>
-          </span>
+          <svg v-if="stepStatus(i) === 'completed'" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7l4 4 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg v-else-if="stepStatus(i) === 'error'" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M7 4v4M7 10h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span v-else aria-hidden="true">{{ i + 1 }}</span>
         </button>
-      </div>
 
-      <!-- Connector line (not after last step) -->
-      <div
-        v-if="index < steps.length - 1"
-        class="byz-stepper__connector"
-        :class="[
-          isConnectorCompleted(index)
-            ? 'byz-stepper__connector--completed'
-            : 'byz-stepper__connector--upcoming'
-        ]"
-        aria-hidden="true"
-      />
-    </template>
+        <div class="byz-stepper__label">
+          <span class="byz-stepper__label-title">{{ step.label }}</span>
+          <span v-if="step.description" class="byz-stepper__label-desc">{{ step.description }}</span>
+        </div>
+
+        <div v-if="i < steps.length - 1" class="byz-stepper__connector" aria-hidden="true" />
+      </div>
+    </div>
+
+    <div class="byz-stepper__content">
+      <slot :step="modelValue" :step-data="steps[modelValue]" />
+    </div>
+
+    <div class="byz-stepper__actions">
+      <slot name="actions" :prev="prev" :next="next" :is-first="isFirst" :is-last="isLast">
+        <button class="byz-stepper__btn byz-stepper__btn--prev" :disabled="isFirst" @click="prev">
+          ← {{ t('previous') }}
+        </button>
+        <span class="byz-stepper__progress">
+          {{ t('step') }} {{ modelValue + 1 }} {{ t('of') }} {{ steps.length }}
+        </span>
+        <button class="byz-stepper__btn byz-stepper__btn--next" @click="next">
+          {{ isLast ? t('confirm') : t('next') }} →
+        </button>
+      </slot>
+    </div>
+
   </div>
 </template>
 
 <style lang="scss" scoped>
 .byz-stepper {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.5rem;
 
-  // ── Horizontal layout ──────────────────────────────────────────────────────
-  &--horizontal {
-    flex-direction: row;
-    align-items: center;
-
-    .byz-stepper__item {
-      flex-shrink: 0;
-    }
-
-    .byz-stepper__trigger {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .byz-stepper__label-block {
-      align-items: center;
-    }
-
-    .byz-stepper__connector {
-      flex: 1;
-      height: 2px;
-      min-width: var(--byz-space-6);
-      margin: 0 var(--byz-space-2);
-      // vertically center the line with the circles
-      align-self: flex-start;
-      margin-top: 15px; // half of 32px circle - 1px (half line height)
-    }
-  }
-
-  // ── Vertical layout ────────────────────────────────────────────────────────
-  &--vertical {
-    flex-direction: column;
-    align-items: stretch;
-
-    .byz-stepper__item {
-      position: relative;
-    }
-
-    .byz-stepper__trigger {
-      flex-direction: row;
-      align-items: flex-start;
-      text-align: left;
-    }
-
-    .byz-stepper__label-block {
-      align-items: flex-start;
-      padding-top: var(--byz-space-1);
-    }
-
-    .byz-stepper__connector {
-      width: 2px;
-      min-height: var(--byz-space-6);
-      margin: var(--byz-space-1) 0;
-      // align connector under the circle center (circle is 32px, left margin on trigger = 0)
-      margin-left: 15px; // half of 32px circle - 1px (half line width)
-    }
-  }
-
-  // ── Step item ──────────────────────────────────────────────────────────────
-  &__item {
+  &__track {
     display: flex;
+    align-items: flex-start;
+    position: relative;
   }
 
-  // ── Trigger (clickable area) ───────────────────────────────────────────────
-  &__trigger {
-    display: inline-flex;
-    gap: var(--byz-space-3);
-    background: none;
-    border: none;
+  &__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    gap: 0.5rem;
+  }
+
+  &__node {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid var(--byz-color-border);
+    background: var(--byz-color-surface);
+    color: var(--byz-color-text-muted);
+    font-family: var(--byz-font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
     cursor: pointer;
-    padding: 0;
-    font-family: var(--byz-font-sans);
-    text-decoration: none;
-
-    &:focus-visible {
-      outline: 2px solid var(--byz-color-accent);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-  }
-
-  // ── Circle ─────────────────────────────────────────────────────────────────
-  &__circle {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 1;
     flex-shrink: 0;
-    transition:
-      background var(--byz-duration-normal) var(--byz-ease-default),
-      border-color var(--byz-duration-normal) var(--byz-ease-default);
-
-    &--completed,
-    &--active {
-      background: linear-gradient(135deg, var(--byz-brand-500), var(--byz-brand-400));
-      border: none;
-      color: #fff;
-    }
-
-    &--upcoming {
-      background: transparent;
-      border: 2px solid var(--byz-color-border);
-      color: var(--byz-color-text-muted);
-    }
+    &:disabled { cursor: not-allowed; opacity: 0.5; }
   }
 
-  // ── Check icon ─────────────────────────────────────────────────────────────
-  &__check {
-    width: 12px;
-    height: 10px;
+  &__step--active &__node {
+    border-color: var(--byz-brand-500);
+    background: var(--byz-brand-500);
+    color: #fff;
+    box-shadow: 0 0 0 4px rgba(192, 16, 48, 0.2);
+  }
+
+  &__step--completed &__node {
+    border-color: var(--byz-brand-500);
+    background: var(--byz-brand-500);
     color: #fff;
   }
 
-  // ── Step number ────────────────────────────────────────────────────────────
-  &__number {
-    font-family: var(--byz-font-sans);
-    font-size: var(--byz-text-xs);
-    font-weight: var(--byz-font-semibold);
-    line-height: 1;
+  &__step--error &__node {
+    border-color: var(--byz-color-error, #dc2626);
+    background: var(--byz-color-error, #dc2626);
+    color: #fff;
   }
 
-  // ── Label block ────────────────────────────────────────────────────────────
-  &__label-block {
+  &__connector {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--byz-color-border);
+    z-index: 0;
+
+    .byz-stepper__step--completed & {
+      background: linear-gradient(90deg, var(--byz-brand-500), var(--byz-color-border));
+    }
+  }
+
+  &__label {
     display: flex;
     flex-direction: column;
-    gap: var(--byz-space-1);
+    align-items: center;
+    text-align: center;
+    gap: 0.125rem;
   }
 
-  // ── Label ──────────────────────────────────────────────────────────────────
-  &__label {
-    font-family: var(--byz-font-sans);
-    font-size: var(--byz-text-sm);
-    line-height: 1;
-    transition: color var(--byz-duration-normal) var(--byz-ease-default);
+  &__label-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--byz-color-text);
+    white-space: nowrap;
+    .byz-stepper__step--pending & { color: var(--byz-color-text-muted); }
+  }
 
-    .byz-stepper__item--completed & {
-      color: var(--byz-color-text-secondary);
-      font-weight: var(--byz-font-medium);
-    }
+  &__label-desc {
+    font-size: 0.7rem;
+    color: var(--byz-color-text-muted);
+  }
 
-    .byz-stepper__item--active & {
-      color: var(--byz-color-text-primary);
-      font-weight: var(--byz-font-bold);
-    }
+  &__content {
+    background: var(--byz-color-surface);
+    border: 1px solid var(--byz-color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    min-height: 8rem;
+  }
 
-    .byz-stepper__item--upcoming & {
-      color: var(--byz-color-text-muted);
-      font-weight: var(--byz-font-medium);
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__progress {
+    font-size: 0.8rem;
+    color: var(--byz-color-text-muted);
+    font-family: var(--byz-font-mono);
+  }
+
+  &__btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--byz-color-border);
+    background: var(--byz-color-surface-raised);
+    color: var(--byz-color-text);
+
+    &:hover:not(:disabled) { border-color: var(--byz-brand-500); color: var(--byz-brand-500); }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    &--next {
+      background: var(--byz-brand-500);
+      border-color: var(--byz-brand-500);
+      color: #fff;
+      &:hover:not(:disabled) { background: var(--byz-brand-600, #9a0020); color: #fff; }
     }
   }
 
-  // ── Description ────────────────────────────────────────────────────────────
-  &__description {
-    font-family: var(--byz-font-sans);
-    font-size: var(--byz-text-xs);
-    color: var(--byz-color-text-secondary);
-    font-weight: var(--byz-font-medium);
-    line-height: 1.4;
+  // ── Vertical ─────────────────────────────────────────────────────────────
+  &--vertical &__track { flex-direction: column; }
+
+  &--vertical &__step {
+    flex-direction: row;
+    align-items: flex-start;
+    flex: none;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
   }
 
-  // ── Connector ──────────────────────────────────────────────────────────────
-  &__connector {
-    border-radius: 1px;
-    transition: background var(--byz-duration-normal) var(--byz-ease-default);
+  &--vertical &__label { align-items: flex-start; text-align: left; }
 
-    &--completed {
-      background: linear-gradient(
-        var(--_connector-direction, 90deg),
-        var(--byz-brand-500),
-        var(--byz-brand-400)
-      );
-    }
-
-    &--upcoming {
-      background: var(--byz-color-border);
-    }
-  }
-
-  // Set gradient direction per orientation
-  &--vertical .byz-stepper__connector {
-    --_connector-direction: 180deg;
-  }
-
-  &--horizontal .byz-stepper__connector {
-    --_connector-direction: 90deg;
+  &--vertical &__connector {
+    top: 2rem;
+    left: 1rem;
+    width: 2px;
+    height: calc(100% - 1rem);
   }
 }
 </style>

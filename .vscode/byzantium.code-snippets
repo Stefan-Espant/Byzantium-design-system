@@ -1,0 +1,194 @@
+{
+  "ByzButton": {
+    "prefix": "byz-button",
+    "scope": "vue,html",
+    "description": "Byzantium Button component",
+    "body": [
+      "<ByzButton variant=\"${1|primary,secondary,ghost,danger|}\" size=\"${2|md,sm,lg|}\"${3: :disabled=\"${4:false}\"}>",
+      "\t$0",
+      "</ByzButton>"
+    ]
+  },
+  "ByzInput": {
+    "prefix": "byz-input",
+    "scope": "vue,html",
+    "description": "Byzantium Input component",
+    "body": [
+      "<ByzInput",
+      "\tv-model=\"${1:value}\"",
+      "\tlabel=\"${2:Label}\"",
+      "\ttype=\"${3|text,email,password,number,search|}\"",
+      "\t:placeholder=\"${4:placeholder}\"",
+      "/>"
+    ]
+  },
+  "ByzGrid": {
+    "prefix": "byz-grid",
+    "scope": "vue,html",
+    "description": "Byzantium 12-column Grid",
+    "body": [
+      "<ByzGrid :cols=\"12\" gap=\"${1|md,sm,lg,xl,xs,none|}\">",
+      "\t<ByzCol :span=\"${2:6}\">$0</ByzCol>",
+      "\t<ByzCol :span=\"${3:6}\"></ByzCol>",
+      "</ByzGrid>"
+    ]
+  },
+  "ByzCol": {
+    "prefix": "byz-col",
+    "scope": "vue,html",
+    "description": "Byzantium Grid Column",
+    "body": [
+      "<ByzCol :span=\"${1:{ default: 12, md: 6, lg: 4 }}\">",
+      "\t$0",
+      "</ByzCol>"
+    ]
+  },
+  "ByzCard": {
+    "prefix": "byz-card",
+    "scope": "vue,html",
+    "description": "Byzantium Card component",
+    "body": [
+      "<ByzCard${1: variant=\"${2|default,elevated,outlined|}\"}>",
+      "\t<template #header>$3</template>",
+      "\t$0",
+      "</ByzCard>"
+    ]
+  },
+  "ByzModal": {
+    "prefix": "byz-modal",
+    "scope": "vue,html",
+    "description": "Byzantium Modal",
+    "body": [
+      "<ByzModal v-model=\"${1:open}\" title=\"${2:Titel}\">",
+      "\t$0",
+      "\t<template #footer>",
+      "\t\t<ByzButton variant=\"ghost\" @click=\"${1} = false\">Annuleren</ByzButton>",
+      "\t\t<ByzButton variant=\"primary\">Bevestigen</ByzButton>",
+      "\t</template>",
+      "</ByzModal>"
+    ]
+  },
+  "ByzDrawer": {
+    "prefix": "byz-drawer",
+    "scope": "vue,html",
+    "description": "Byzantium Drawer (side panel)",
+    "body": [
+      "<ByzDrawer v-model=\"${1:open}\" title=\"${2:Titel}\" side=\"${3|right,left,bottom,top|}\">",
+      "\t$0",
+      "</ByzDrawer>"
+    ]
+  },
+  "ByzStepper": {
+    "prefix": "byz-stepper",
+    "scope": "vue,html",
+    "description": "Byzantium Stepper wizard",
+    "body": [
+      "<ByzStepper v-model=\"${1:step}\" :steps=\"${2:steps}\">",
+      "\t<template #default=\"{ step }\">",
+      "\t\t$0",
+      "\t</template>",
+      "</ByzStepper>"
+    ]
+  },
+  "ByzDataTable": {
+    "prefix": "byz-datatable",
+    "scope": "vue,html",
+    "description": "Byzantium DataTable",
+    "body": [
+      "<ByzDataTable",
+      "\t:columns=\"${1:columns}\"",
+      "\t:rows=\"${2:rows}\"",
+      "\t:page-size=\"${3:10}\"",
+      "\t:searchable=\"${4:true}\"",
+      "\t@row-click=\"${5:onRowClick}\"",
+      "/>"
+    ]
+  },
+  "ByzAlert": {
+    "prefix": "byz-alert",
+    "scope": "vue,html",
+    "description": "Byzantium Alert",
+    "body": [
+      "<ByzAlert variant=\"${1|info,success,warning,error|}\" title=\"${2:Titel}\">",
+      "\t$0",
+      "</ByzAlert>"
+    ]
+  },
+  "ByzTabs": {
+    "prefix": "byz-tabs",
+    "scope": "vue,html",
+    "description": "Byzantium Tabs",
+    "body": [
+      "<ByzTabs :tabs=\"${1:tabs}\" v-model=\"${2:activeTab}\">",
+      "\t<template #tab-${3:key}>",
+      "\t\t$0",
+      "\t</template>",
+      "</ByzTabs>"
+    ]
+  },
+  "ByzColorPicker": {
+    "prefix": "byz-colorpicker",
+    "scope": "vue,html",
+    "description": "Byzantium ColorPicker",
+    "body": [
+      "<ByzColorPicker v-model=\"${1:color}\" />"
+    ]
+  },
+  "ByzRichText": {
+    "prefix": "byz-richtext",
+    "scope": "vue,html",
+    "description": "Byzantium RichText editor",
+    "body": [
+      "<ByzRichText v-model=\"${1:html}\" placeholder=\"${2:Begin met typen…}\" />"
+    ]
+  },
+  "useLocale": {
+    "prefix": "byz-use-locale",
+    "scope": "vue,typescript",
+    "description": "Import and use Byzantium locale composable",
+    "body": [
+      "const { t, currentKey, setLocale, formatDate, formatNumber } = useLocale()"
+    ]
+  },
+  "useTheme": {
+    "prefix": "byz-use-theme",
+    "scope": "vue,typescript",
+    "description": "Import and use Byzantium theme composable",
+    "body": [
+      "const { theme, toggle, init } = useTheme()"
+    ]
+  },
+  "useBreakpoint": {
+    "prefix": "byz-use-breakpoint",
+    "scope": "vue,typescript",
+    "description": "Import and use Byzantium breakpoint composable",
+    "body": [
+      "const { current, isMobile, isTablet, isDesktop, gte } = useBreakpoint()"
+    ]
+  },
+  "useClipboard": {
+    "prefix": "byz-use-clipboard",
+    "scope": "vue,typescript",
+    "description": "Import and use Byzantium clipboard composable",
+    "body": [
+      "const { copy, copied } = useClipboard()"
+    ]
+  },
+  "ByzScriptSetup": {
+    "prefix": "byz-setup",
+    "scope": "vue",
+    "description": "Byzantium Vue script setup boilerplate",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "import { ${1:ByzButton} } from '@byzantium/core'",
+      "$0",
+      "</script>",
+      "",
+      "<template>",
+      "\t<div>",
+      "\t\t",
+      "\t</div>",
+      "</template>"
+    ]
+  }
+}

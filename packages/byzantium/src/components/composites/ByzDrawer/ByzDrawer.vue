@@ -1,81 +1,104 @@
 <script setup lang="ts">
-  import { watch, onUnmounted } from 'vue'
-  import { useFocusTrap } from '../../../composables/useFocusTrap'
+import { computed, watch, ref, nextTick } from 'vue'
+import { useFocusTrap }   from '../../../composables/useFocusTrap'
+import { useScrollLock }  from '../../../composables/useScrollLock'
+import { useLocale }      from '../../../composables/useLocale'
 
-  defineOptions({ name: 'ByzDrawer' })
+defineOptions({ name: 'ByzDrawer' })
 
-  interface Props {
-    open: boolean
-    placement?: 'left' | 'right' | 'bottom'
-    width?: string
-    height?: string
-    title?: string
-    closeLabel?: string
-  }
+export type DrawerSide = 'left' | 'right' | 'top' | 'bottom'
 
-  const props = withDefaults(defineProps<Props>(), {
-    placement: 'right',
-    width: '400px',
-    height: '50vh',
-    closeLabel: 'Sluiten'
-  })
+interface Props {
+  modelValue: boolean
+  side?:       DrawerSide
+  size?:       string
+  title?:      string
+  closeLabel?: string
+  persistent?: boolean
+}
 
-  const emit = defineEmits<{ close: [] }>()
-  const { trap, release } = useFocusTrap()
-  let drawerEl: HTMLElement | null = null
+const props = withDefaults(defineProps<Props>(), {
+  side:       'right',
+  size:       '24rem',
+  persistent: false,
+})
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'Escape') emit('close')
-  }
+const emit = defineEmits<{
+  'update:modelValue': [value: boolean]
+  close: []
+}>()
 
-  watch(() => props.open, (val) => {
-    if (val && drawerEl) {
-      trap(drawerEl)
-      document.addEventListener('keydown', handleKeydown)
-    } else {
-      release()
-      document.removeEventListener('keydown', handleKeydown)
-    }
-  })
+const { t } = useLocale()
+const resolvedCloseLabel = computed(() => props.closeLabel ?? t('closeDrawer'))
 
-  onUnmounted(() => {
+const drawerRef          = ref<HTMLDivElement | null>(null)
+const { trap, release }  = useFocusTrap()
+const { locked }         = useScrollLock()
+
+watch(() => props.modelValue, async (val) => {
+  locked.value = val
+  if (val) {
+    await nextTick()
+    if (drawerRef.value) trap(drawerRef.value)
+  } else {
     release()
-    document.removeEventListener('keydown', handleKeydown)
-  })
+  }
+})
+
+function close() {
+  if (props.persistent) return
+  emit('update:modelValue', false)
+  emit('close')
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') close()
+}
+
+const sizeStyle = computed(() => {
+  if (props.side === 'left' || props.side === 'right') {
+    return { width: props.size, maxWidth: '100vw' }
+  }
+  return { height: props.size, maxHeight: '100vh' }
+})
 </script>
 
 <template>
   <Teleport to="body">
-    <Transition name="byz-drawer-overlay">
+    <Transition name="byz-drawer-fade">
       <div
-        v-if="open"
-        class="byz-drawer-overlay"
-        @click.self="emit('close')"
+        v-if="modelValue"
+        class="byz-drawer-backdrop"
+        aria-hidden="true"
+        @click="close"
       />
     </Transition>
 
-    <Transition :name="`byz-drawer-${placement}`">
+    <Transition :name="`byz-drawer-slide-${side}`">
       <div
-        v-if="open"
-        ref="drawerEl"
-        :class="['byz-drawer', `byz-drawer--${placement}`]"
-        :style="
-          placement === 'bottom'
-            ? { height }
-            : { width }
-        "
+        v-if="modelValue"
+        ref="drawerRef"
+        class="byz-drawer"
+        :class="`byz-drawer--${side}`"
+        :style="sizeStyle"
         role="dialog"
-        :aria-label="title"
         aria-modal="true"
+        :aria-label="title"
+        @keydown="onKeydown"
       >
-        <div class="byz-drawer__header">
-          <h2 v-if="title" class="byz-drawer__title">{{ title }}</h2>
+        <div v-if="title || $slots.header" class="byz-drawer__header">
+          <slot name="header">
+            <h2 class="byz-drawer__title">{{ title }}</h2>
+          </slot>
           <button
             class="byz-drawer__close"
-            :aria-label="closeLabel"
-            type="button"
-            @click="emit('close')"
-          >✕</button>
+            :aria-label="resolvedCloseLabel"
+            @click="close"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
 
         <div class="byz-drawer__body">
@@ -91,133 +114,95 @@
 </template>
 
 <style lang="scss" scoped>
-.byz-drawer-overlay {
+.byz-drawer-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: var(--byz-z-modal);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: var(--byz-z-overlay, 200);
 }
 
 .byz-drawer {
   position: fixed;
+  z-index: calc(var(--byz-z-overlay, 200) + 1);
   background: var(--byz-color-surface);
-  z-index: calc(var(--byz-z-modal) + 1);
+  border-color: var(--byz-color-border);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--byz-shadow-lg);
+  overflow: hidden;
 
-  &--right {
-    top: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  &--left {
-    top: 0;
-    left: 0;
-    bottom: 0;
-  }
-
-  &--bottom {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-  }
+  &--right  { top: 0; right: 0; bottom: 0; border-left:   1px solid; }
+  &--left   { top: 0; left: 0;  bottom: 0; border-right:  1px solid; }
+  &--bottom { left: 0; right: 0; bottom: 0; border-top:    1px solid; }
+  &--top    { left: 0; right: 0; top: 0;    border-bottom: 1px solid; }
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--byz-space-6);
+    padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--byz-color-border);
     flex-shrink: 0;
   }
 
   &__title {
     font-family: var(--byz-font-serif);
-    font-weight: var(--byz-font-bold);
-    font-size: var(--byz-text-xl);
-    color: var(--byz-color-text-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--byz-color-heading);
     margin: 0;
   }
 
   &__close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--byz-color-text-secondary);
-    font-size: 1rem;
-    border-radius: 4px;
-    transition: color var(--byz-duration-fast) var(--byz-ease-default);
-
-    &:hover {
-      color: var(--byz-color-text-primary);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--byz-color-focus);
-      outline-offset: 2px;
-    }
+    width: 2rem;
+    height: 2rem;
+    background: var(--byz-color-surface-raised);
+    border: 1px solid var(--byz-color-border);
+    border-radius: 0.375rem;
+    color: var(--byz-color-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    &:hover { background: var(--byz-color-surface-hover); color: var(--byz-color-text); }
   }
 
   &__body {
     flex: 1;
     overflow-y: auto;
-    padding: var(--byz-space-6);
+    padding: 1.5rem;
   }
 
   &__footer {
-    flex-shrink: 0;
-    padding: var(--byz-space-6);
+    padding: 1rem 1.5rem;
     border-top: 1px solid var(--byz-color-border);
+    flex-shrink: 0;
   }
 }
 
-// Overlay transitions
-.byz-drawer-overlay-enter-active,
-.byz-drawer-overlay-leave-active {
-  transition: opacity var(--byz-duration-normal) var(--byz-ease-default);
-}
-.byz-drawer-overlay-enter-from,
-.byz-drawer-overlay-leave-to {
-  opacity: 0;
-}
+.byz-drawer-fade-enter-active,
+.byz-drawer-fade-leave-active { transition: opacity 0.2s ease; }
+.byz-drawer-fade-enter-from,
+.byz-drawer-fade-leave-to     { opacity: 0; }
 
-// Right drawer transitions
-.byz-drawer-right-enter-active,
-.byz-drawer-right-leave-active {
-  transition: transform var(--byz-duration-normal) var(--byz-ease-default);
-}
-.byz-drawer-right-enter-from,
-.byz-drawer-right-leave-to {
-  transform: translateX(100%);
-}
+.byz-drawer-slide-right-enter-active,
+.byz-drawer-slide-right-leave-active { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.byz-drawer-slide-right-enter-from,
+.byz-drawer-slide-right-leave-to     { transform: translateX(100%); }
 
-// Left drawer transitions
-.byz-drawer-left-enter-active,
-.byz-drawer-left-leave-active {
-  transition: transform var(--byz-duration-normal) var(--byz-ease-default);
-}
-.byz-drawer-left-enter-from,
-.byz-drawer-left-leave-to {
-  transform: translateX(-100%);
-}
+.byz-drawer-slide-left-enter-active,
+.byz-drawer-slide-left-leave-active { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.byz-drawer-slide-left-enter-from,
+.byz-drawer-slide-left-leave-to     { transform: translateX(-100%); }
 
-// Bottom drawer transitions
-.byz-drawer-bottom-enter-active,
-.byz-drawer-bottom-leave-active {
-  transition: transform var(--byz-duration-normal) var(--byz-ease-default);
-}
-.byz-drawer-bottom-enter-from,
-.byz-drawer-bottom-leave-to {
-  transform: translateY(100%);
-}
+.byz-drawer-slide-bottom-enter-active,
+.byz-drawer-slide-bottom-leave-active { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.byz-drawer-slide-bottom-enter-from,
+.byz-drawer-slide-bottom-leave-to     { transform: translateY(100%); }
+
+.byz-drawer-slide-top-enter-active,
+.byz-drawer-slide-top-leave-active { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.byz-drawer-slide-top-enter-from,
+.byz-drawer-slide-top-leave-to     { transform: translateY(-100%); }
 </style>

@@ -2,16 +2,27 @@
 export * from './tokens'
 
 // Composables
-export { useAnnouncer } from './composables/useAnnouncer'
-export { useFocusTrap }  from './composables/useFocusTrap'
-export { useToast }      from './composables/useToast'
-export { useTheme }      from './composables/useTheme'
-export { useLocale, defaultLocale, englishLocale } from './composables/useLocale'
-export type { ByzLocale } from './composables/useLocale'
+export { useAnnouncer }   from './composables/useAnnouncer'
+export { useFocusTrap }   from './composables/useFocusTrap'
+export { useToast }       from './composables/useToast'
+export { useTheme }       from './composables/useTheme'
+export { useBreakpoint }  from './composables/useBreakpoint'
+export { useScrollLock }  from './composables/useScrollLock'
+export { useClipboard }   from './composables/useClipboard'
+export { useIntersection } from './composables/useIntersection'
+export { useForm }        from './composables/useForm'
+export {
+  useLocale,
+  defaultLocale, englishLocale, germanLocale, frenchLocale,
+  spanishLocale, italianLocale, portugueseLocale,
+  localeLabels, localeNames,
+} from './composables/useLocale'
+export type { ByzLocale, LocaleKey } from './composables/useLocale'
+export type { Breakpoint } from './composables/useBreakpoint'
 
 // Meta
 export { componentStatus, getStatus } from './meta'
-export type { ComponentStatus } from './meta'
+export type { ComponentStatus }       from './meta'
 
 // ── Primitives ────────────────────────────────────────────────
 export { default as ByzButton }   from './components/primitives/ByzButton'
@@ -33,6 +44,9 @@ export { default as ByzAnnouncer }        from './components/primitives/ByzAnnou
 export { default as ByzSearchInput }      from './components/primitives/ByzSearchInput'
 export { default as ByzFileUpload }       from './components/primitives/ByzFileUpload'
 export { default as ByzNotificationBell } from './components/primitives/ByzNotificationBell'
+export { default as ByzGrid }             from './components/primitives/ByzGrid'
+export { default as ByzCol }              from './components/primitives/ByzCol'
+export type { GridCols, GridGap }         from './components/primitives/ByzGrid'
 
 // ── Composites ────────────────────────────────────────────────
 export { default as ByzAlert }          from './components/composites/ByzAlert'
@@ -52,8 +66,11 @@ export { default as ByzDrawer }          from './components/composites/ByzDrawer
 export { default as ByzCombobox }        from './components/composites/ByzCombobox'
 export { default as ByzDatePicker }      from './components/composites/ByzDatePicker'
 export { default as ByzCommandPalette }  from './components/composites/ByzCommandPalette'
-export { default as ByzFormField }       from './components/composites/ByzFormField'
-export { useForm }                       from './composables/useForm'
+export { default as ByzFormField }   from './components/composites/ByzFormField'
+export { default as ByzDataTable }   from './components/composites/ByzDataTable'
+export { default as ByzColorPicker } from './components/composites/ByzColorPicker'
+export { default as ByzRichText }    from './components/composites/ByzRichText'
+export type { ByzStep, StepStatus }  from './components/composites/ByzStepper'
 
 // ── Patterns ──────────────────────────────────────────────────
 export { default as ByzHero }        from './components/patterns/ByzHero'
