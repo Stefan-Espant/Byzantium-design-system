@@ -7,7 +7,7 @@
     "build": "pnpm --filter @byzantium/core build",
     "test": "vitest run",
     "lint": "eslint .",
-    "typecheck": "vue-tsc --noEmit",
+    "typecheck": "pnpm --filter @byzantium/core typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish"
