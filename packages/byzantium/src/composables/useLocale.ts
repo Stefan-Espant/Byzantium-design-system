@@ -1,4 +1,6 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+export type LocaleKey = 'nl' | 'en'
 
 export interface ByzLocale {
   close:          string
@@ -57,16 +59,39 @@ export const englishLocale: ByzLocale = {
   cancel:         'Cancel',
 }
 
-const locale = ref<ByzLocale>({ ...defaultLocale })
+const locales: Record<LocaleKey, ByzLocale> = {
+  nl: defaultLocale,
+  en: englishLocale,
+}
+
+const activeKey = ref<LocaleKey>('nl')
+const locale    = ref<ByzLocale>({ ...defaultLocale })
 
 export function useLocale() {
-  function setLocale(newLocale: Partial<ByzLocale>) {
-    locale.value = { ...defaultLocale, ...newLocale }
+  const currentKey = computed(() => activeKey.value)
+
+  function setLocale(keyOrLocale: LocaleKey | Partial<ByzLocale>) {
+    if (typeof keyOrLocale === 'string') {
+      activeKey.value  = keyOrLocale
+      locale.value     = { ...locales[keyOrLocale] }
+      localStorage.setItem('byz-locale', keyOrLocale)
+    } else {
+      locale.value = { ...defaultLocale, ...keyOrLocale }
+    }
+  }
+
+  function toggle() {
+    setLocale(activeKey.value === 'nl' ? 'en' : 'nl')
+  }
+
+  function init() {
+    const stored = localStorage.getItem('byz-locale') as LocaleKey | null
+    if (stored && locales[stored]) setLocale(stored)
   }
 
   function t(key: keyof ByzLocale): string {
     return locale.value[key]
   }
 
-  return { locale, setLocale, t }
+  return { locale, currentKey, setLocale, toggle, init, t }
 }

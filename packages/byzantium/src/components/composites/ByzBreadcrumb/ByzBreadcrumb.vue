@@ -1,5 +1,9 @@
 <script setup lang="ts">
+  import { useLocale } from '../../../composables/useLocale'
+
   defineOptions({ name: 'ByzBreadcrumb' })
+
+  const { t } = useLocale()
 
   interface BreadcrumbItem {
     label: string
@@ -17,7 +21,7 @@
 </script>
 
 <template>
-  <nav aria-label="Broodkruimel" class="byz-breadcrumb">
+  <nav :aria-label="t('breadcrumbNav')" class="byz-breadcrumb">
     <ol class="byz-breadcrumb__list">
       <li
         v-for="(item, index) in items"

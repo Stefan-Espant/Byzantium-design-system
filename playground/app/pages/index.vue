@@ -8,9 +8,10 @@ import {
   ByzProgress,
   ByzFooter,
 } from '@byzantium/core'
-import { useTheme } from '@byzantium/core'
+import { useTheme, useLocale } from '@byzantium/core'
 
-const { theme, toggle } = useTheme()
+const { theme, toggle }                  = useTheme()
+const { currentKey: lang, toggle: toggleLang } = useLocale()
 const inputValue  = ref('')
 const showAlert   = ref(true)
 const pkgManager  = ref<'pnpm' | 'npm' | 'yarn'>('pnpm')
@@ -35,6 +36,9 @@ const installCmd: Record<string, string> = {
           <li><a href="/components">Components</a></li>
           <li><a href="/patterns">Patronen</a></li>
         </ul>
+        <button class="bp-nav__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="toggleLang">
+          {{ lang === 'nl' ? 'EN' : 'NL' }}
+        </button>
         <button class="bp-nav__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>

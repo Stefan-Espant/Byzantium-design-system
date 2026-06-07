@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { useLocale } from '../../../composables/useLocale'
+
   defineOptions({ name: 'ByzAlert' })
 
   interface Props {
@@ -13,6 +15,7 @@
   })
 
   const emit = defineEmits<{ dismiss: [] }>()
+  const { t } = useLocale()
 </script>
 
 <template>
@@ -28,7 +31,7 @@
     <button
       v-if="dismissible"
       class="byz-alert__dismiss"
-      aria-label="Sluiten"
+      :aria-label="t('close')"
       @click="emit('dismiss')"
     >
       ✕

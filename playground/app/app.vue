@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useTheme } from '@byzantium/core'
+import { useTheme, useLocale } from '@byzantium/core'
 
-const { init } = useTheme()
-onMounted(() => init())
+const { init: initTheme }  = useTheme()
+const { init: initLocale } = useLocale()
+onMounted(() => { initTheme(); initLocale() })
 </script>
 
 <template>

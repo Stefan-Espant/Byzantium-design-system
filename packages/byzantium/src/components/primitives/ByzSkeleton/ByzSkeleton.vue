@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import { computed } from 'vue'
+  import { useLocale } from '../../../composables/useLocale'
 
   defineOptions({ name: 'ByzSkeleton' })
+
+  const { t } = useLocale()
 
   interface Props {
     width?: string
@@ -30,7 +33,7 @@
   <span
     class="byz-skeleton-wrapper"
     role="status"
-    aria-label="Laden..."
+    :aria-label="t('loading')"
     aria-busy="true"
   >
     <span

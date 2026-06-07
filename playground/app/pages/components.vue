@@ -7,11 +7,12 @@ import {
   ByzAccordion, ByzDropdown, ByzTable, ByzPagination,
   ByzStepper, ByzPopover, ByzDrawer,
   ByzPageHeader, ByzEmptyState, ByzFooter,
-  useToast, useTheme,
+  useToast, useTheme, useLocale,
 } from '@byzantium/core'
 
-const { theme, toggle } = useTheme()
-const { add: addToast } = useToast()
+const { theme, toggle }                        = useTheme()
+const { currentKey: lang, toggle: toggleLang } = useLocale()
+const { add: addToast }                        = useToast()
 
 // Form state
 const checkboxVal  = ref(true)
@@ -105,6 +106,9 @@ const drawerOpen = ref(false)
       <nav class="cp-header__inner">
         <a href="/" class="cp-header__brand">Byzantium</a>
         <span class="cp-header__title">Component bibliotheek</span>
+        <button class="cp-header__toggle" :aria-label="lang === 'nl' ? 'Switch to English' : 'Naar Nederlands'" @click="toggleLang">
+          {{ lang === 'nl' ? 'EN' : 'NL' }}
+        </button>
         <button class="cp-header__toggle" :aria-label="theme === 'dark' ? 'Licht' : 'Donker'" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}
         </button>

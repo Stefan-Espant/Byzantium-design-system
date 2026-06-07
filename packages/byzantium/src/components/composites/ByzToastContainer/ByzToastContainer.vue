@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import { useToast } from '../../../composables/useToast'
+  import { useLocale } from '../../../composables/useLocale'
 
   defineOptions({ name: 'ByzToastContainer' })
+
+  const { t } = useLocale()
 
   const { toasts, remove } = useToast()
 
@@ -27,7 +30,7 @@
           <span class="byz-toast__message">{{ toast.message }}</span>
           <button
             class="byz-toast__close"
-            aria-label="Sluiten"
+            :aria-label="t('close')"
             @click="remove(toast.id)"
           >×</button>
           <div

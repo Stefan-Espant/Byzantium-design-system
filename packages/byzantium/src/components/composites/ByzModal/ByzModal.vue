@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { onMounted, onUnmounted, watch } from 'vue'
+  import { onUnmounted, watch, computed } from 'vue'
   import { useFocusTrap } from '../../../composables/useFocusTrap'
+  import { useLocale } from '../../../composables/useLocale'
 
   defineOptions({ name: 'ByzModal' })
 
@@ -10,9 +11,10 @@
     closeLabel?: string
   }
 
-  const props = withDefaults(defineProps<Props>(), {
-    closeLabel: 'Sluiten'
-  })
+  const props = withDefaults(defineProps<Props>(), {})
+
+  const { t } = useLocale()
+  const resolvedCloseLabel = computed(() => props.closeLabel ?? t('close'))
 
   const emit = defineEmits<{ close: [] }>()
   const { trap, release } = useFocusTrap()
@@ -53,7 +55,7 @@
             <h2 class="byz-modal__title">{{ title }}</h2>
             <button
               class="byz-modal__close"
-              :aria-label="closeLabel"
+              :aria-label="resolvedCloseLabel"
               @click="emit('close')"
             >✕</button>
           </div>
