@@ -139,11 +139,11 @@ const installCmd: Record<string, string> = {
               </div>
               <div class="bp-code-block__body">
                 <pre><code><span class="ct-tag">&lt;ByzButton</span> <span class="ct-attr">variant</span>=<span class="ct-string">"primary"</span><span class="ct-tag">&gt;</span>
-  Aan de slag
+  {{ p('codeStep') }}
 <span class="ct-tag">&lt;/ByzButton&gt;</span>
 
 <span class="ct-tag">&lt;ByzCard</span> <span class="ct-attr">padding</span>=<span class="ct-string">"md"</span> <span class="ct-attr">:elevated</span>=<span class="ct-string">"true"</span><span class="ct-tag">&gt;</span>
-  Inhoud van de card
+  {{ p('codeCard') }}
 <span class="ct-tag">&lt;/ByzCard&gt;</span></code></pre>
               </div>
             </div>
@@ -522,11 +522,15 @@ const installCmd: Record<string, string> = {
   }
 }
 
-// Syntax colors
+// Syntax colors — theme-aware
 .ct-keyword { color: #e84050; }
-.ct-string   { color: #ffd6d6; }
+.ct-string   { color: #b84060; }
 .ct-tag      { color: #e84050; }
-.ct-attr     { color: rgba(255,255,255,0.7); }
+.ct-attr     { color: var(--byz-color-text-secondary); }
+
+:global([data-theme="light"]) {
+  .ct-string { color: #a0103a; }
+}
 
 /* ── TIERS ────────────────────────── */
 .bp-tiers {
