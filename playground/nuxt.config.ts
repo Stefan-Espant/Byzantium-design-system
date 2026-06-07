@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4
   },
+
+  // Voeg dit toe:
+  nitro: {
+    preset: 'static'
+  },
+
   css: [
     fileURLToPath(new URL('../packages/byzantium/src/styles/index.scss', import.meta.url))
   ],
