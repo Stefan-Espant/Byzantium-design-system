@@ -5,6 +5,7 @@
     "dev": "pnpm --filter playground dev",
     "docs": "pnpm --filter docs dev",
     "build": "pnpm --filter @byzantium/core build",
+    "vercel-build": "sh ./vercel-build.sh",
     "test": "vitest run",
     "lint": "eslint .",
     "typecheck": "pnpm --filter @byzantium/core typecheck",

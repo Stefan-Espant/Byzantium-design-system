@@ -1,5 +1,5 @@
 {
-  "buildCommand": "START=\"$PWD\"; ROOT=\"$PWD\"; while [ ! -f \"$ROOT/pnpm-workspace.yaml\" ] && [ \"$ROOT\" != \"/\" ]; do ROOT=$(dirname \"$ROOT\"); done; if [ ! -f \"$ROOT/pnpm-workspace.yaml\" ]; then echo 'pnpm-workspace.yaml not found from current root' >&2; exit 127; fi; cd \"$ROOT\"; pnpm --filter @byzantium/core build; NUXT_IGNORE_LOCK=1 pnpm --filter playground generate; rm -rf \"$START/dist\"; cp -R \"$ROOT/playground/.output/public\" \"$START/dist\"",
+  "buildCommand": "pnpm run vercel-build",
   "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null
