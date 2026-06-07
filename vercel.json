@@ -1,6 +1,5 @@
 {
   "buildCommand": "pnpm --filter @byzantium/core build && NUXT_IGNORE_LOCK=1 pnpm --filter playground generate",
-  "outputDirectory": "playground/.vercel/output/static",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null
 }
