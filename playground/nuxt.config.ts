@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     preset: 'static'
   },
 
+  // Forceer de build output naar de playground map
+  buildDir: '.nuxt',
+
   css: [
     fileURLToPath(new URL('../packages/byzantium/src/styles/index.scss', import.meta.url))
   ],
