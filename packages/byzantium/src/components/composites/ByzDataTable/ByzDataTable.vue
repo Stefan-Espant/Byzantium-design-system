@@ -1,19 +1,11 @@
 <script setup lang="ts" generic="T extends Record<string, unknown>">
 import { ref, computed } from 'vue'
 import { useLocale } from '../../../composables/useLocale'
+import type { ByzColumn } from './ByzDataTable.types'
 
 defineOptions({ name: 'ByzDataTable' })
 
-export interface ByzColumn<Row = Record<string, unknown>> {
-  key:        string
-  label:      string
-  sortable?:  boolean
-  width?:     string
-  align?:     'left' | 'center' | 'right'
-  format?:    (value: unknown, row: Row) => string
-}
-
-interface Props {
+const props = withDefaults(defineProps<{
   columns:       ByzColumn<T>[]
   rows:          T[]
   rowKey?:       string
@@ -21,9 +13,7 @@ interface Props {
   searchable?:   boolean
   striped?:      boolean
   stickyHeader?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), {
+}>(), {
   rowKey:       'id',
   pageSize:     10,
   searchable:   false,

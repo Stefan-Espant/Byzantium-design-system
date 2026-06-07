@@ -68,6 +68,7 @@ export { default as ByzDatePicker }      from './components/composites/ByzDatePi
 export { default as ByzCommandPalette }  from './components/composites/ByzCommandPalette'
 export { default as ByzFormField }   from './components/composites/ByzFormField'
 export { default as ByzDataTable }   from './components/composites/ByzDataTable'
+export type { ByzColumn }            from './components/composites/ByzDataTable/ByzDataTable.types'
 export { default as ByzColorPicker } from './components/composites/ByzColorPicker'
 export { default as ByzRichText }    from './components/composites/ByzRichText'
 export type { ByzStep, StepStatus }  from './components/composites/ByzStepper'
