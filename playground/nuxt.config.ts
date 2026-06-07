@@ -7,10 +7,13 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'static'
+    preset: 'static',
+    output: {
+      dir: fileURLToPath(new URL('./.output', import.meta.url)),
+      publicDir: fileURLToPath(new URL('./.output/public', import.meta.url))
+    }
   },
 
-  // Forceer de build output naar de playground map
   buildDir: '.nuxt',
 
   css: [
