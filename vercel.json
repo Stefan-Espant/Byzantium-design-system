@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @byzantium/core build && NUXT_IGNORE_LOCK=1 pnpm --filter playground generate",
   "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": "playground/.output/public",
+  "outputDirectory": ".output/public",
   "framework": null
 }
