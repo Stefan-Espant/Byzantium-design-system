@@ -1,0 +1,13 @@
+export const motion = {
+  'duration-instant': '0ms',
+  'duration-fast':    '100ms',
+  'duration-normal':  '200ms',
+  'duration-slow':    '300ms',
+  'duration-slower':  '500ms',
+  'ease-default':     'cubic-bezier(0.4, 0, 0.2, 1)',
+  'ease-in':          'cubic-bezier(0.4, 0, 1, 1)',
+  'ease-out':         'cubic-bezier(0, 0, 0.2, 1)',
+  'ease-bounce':      'cubic-bezier(0.34, 1.56, 0.64, 1)',
+} as const
+
+export type MotionToken = keyof typeof motion

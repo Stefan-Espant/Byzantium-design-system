@@ -1,0 +1,9 @@
+.byz-focus-ring {
+  outline: 2px solid var(--byz-color-focus);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--byz-color-focus);
+  outline-offset: 2px;
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+.nuxt
+.output
+.cache
+*.local
+.DS_Store
+
+.superpowers/
+.worktrees/
+docs/superpowers/
+.claude
+
+.env
