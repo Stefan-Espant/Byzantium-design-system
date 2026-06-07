@@ -3,13 +3,30 @@
   "version": "0.1.0",
   "description": "Byzantium design system — tokens, components and patterns",
   "type": "module",
+  "main": "./dist/byzantium.umd.cjs",
+  "module": "./dist/byzantium.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/byzantium.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/byzantium.umd.cjs"
+      }
+    },
     "./styles": "./src/styles/index.scss"
   },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
   "scripts": {
-    "build": "vite build",
-    "test": "vitest"
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist",
+    "test": "vitest",
+    "typecheck": "vue-tsc --noEmit"
   },
   "peerDependencies": {
     "vue": "^3.5.0"
@@ -18,8 +35,11 @@
     "vue": "^3.5.0",
     "vite": "^6.0.0",
     "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/test-utils": "^2.4.0",
     "sass": "^1.80.0",
     "typescript": "^5.7.0",
-    "vitest": "^2.1.0"
+    "vitest": "^2.1.0",
+    "vue-tsc": "^2.1.0",
+    "jsdom": "^25.0.0"
   }
 }

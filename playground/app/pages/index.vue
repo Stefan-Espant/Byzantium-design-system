@@ -20,9 +20,9 @@ const showAlert  = ref(true)
       <nav class="byz-nav__inner" aria-label="Hoofdnavigatie">
         <span class="byz-nav__brand">Byzantium</span>
         <ul class="byz-nav__links" role="list">
-          <li><a href="#tokens">Tokens</a></li>
+          <li><a href="/tokens">Tokens</a></li>
           <li><a href="/components">Components</a></li>
-          <li><a href="#patterns">Patronen</a></li>
+          <li><a href="/patterns">Patronen</a></li>
         </ul>
         <button class="byz-nav__theme-toggle" :aria-label="theme === 'dark' ? 'Schakel naar licht' : 'Schakel naar donker'" @click="toggle">
           {{ theme === 'dark' ? '☀' : '☾' }}

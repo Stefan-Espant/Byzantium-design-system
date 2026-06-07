@@ -34,7 +34,7 @@
     :type="type"
     :disabled="disabled || loading"
     :aria-disabled="disabled || loading"
-    :aria-busy="loading"
+    :aria-busy="loading || undefined"
     :aria-label="ariaLabel"
     :class="[
       'byz-button',
