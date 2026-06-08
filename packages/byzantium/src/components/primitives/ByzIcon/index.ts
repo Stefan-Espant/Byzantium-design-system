@@ -1,1 +1,6 @@
 export { default } from './ByzIcon.vue'
+export { default as ByzIconSprite } from './ByzIconSprite.vue'
+export { byzIconAliases, byzIconNames, resolveByzIconName } from './icons'
+export { byzCoreIconGroups, byzCoreIconNames } from './core-icons'
+export type { ByzCoreIconGroup } from './core-icons'
+export type { ByzIconName } from './icons'

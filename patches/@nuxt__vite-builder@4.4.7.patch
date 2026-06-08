@@ -1,0 +1,15 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 0a6baa1a2aa78532553a4af6108d7f84130ee64a..b0bbb18893cb6dfb871f7f632d492adc8e0d4891 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -492,6 +492,10 @@ function listenAndRestrict(server, socketPath) {
+ 			try {
+ 				fs.chmodSync(socketPath, 384);
+ 			} catch (error) {
++				if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") {
++					console.warn("[nuxt] Skipping vite-node socket chmod because the socket path disappeared before permissions could be updated.");
++					return;
++				}
+ 				console.error("[nuxt] Failed to restrict vite-node socket permissions; closing.", error);
+ 				server.close();
+ 				try {

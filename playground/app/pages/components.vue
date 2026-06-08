@@ -7,7 +7,7 @@ import {
   ByzAccordion, ByzDropdown, ByzTable, ByzPagination,
   ByzStepper, ByzPopover, ByzDrawer,
   ByzPageHeader, ByzEmptyState, ByzFooter,
-  useToast, useTheme,
+  byzCoreIconGroups, byzIconNames, useToast, useTheme,
 } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
@@ -15,6 +15,10 @@ const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
 const menuOpen = ref(false)
 const { add: addToast }                        = useToast()
+const iconNames = byzIconNames.slice(0, 24)
+const quietHeritageCore = byzCoreIconGroups
+const quietHeritageFeatureIcons = ['shield', 'briefcase-business', 'book-open'] as const
+const quietHeritageContactIcons = ['mail', 'phone', 'calendar-days'] as const
 
 // Form state
 const checkboxVal  = ref(true)
@@ -85,14 +89,13 @@ const tags = ref(['Vue 3', 'TypeScript', 'Nuxt 4', 'Vite'])
 function removeTag(label: string) { tags.value = tags.value.filter(t => t !== label) }
 
 // Stepper
-const stepperActive = ref('design')
-const stepperCompleted = ref(['research'])
+const stepperActive = ref(1)
 const stepperSteps = [
-  { id: 'research', label: 'Onderzoek',   description: 'Context en vereisten' },
-  { id: 'design',   label: 'Ontwerp',     description: 'Wireframes en mockups' },
-  { id: 'build',    label: 'Bouwen',      description: 'Implementatie' },
-  { id: 'review',   label: 'Review',      description: 'Testen en feedback' },
-  { id: 'ship',     label: 'Lanceren',    description: 'Deploy naar productie' },
+  { label: 'Onderzoek', description: 'Context en vereisten' },
+  { label: 'Ontwerp',   description: 'Wireframes en mockups' },
+  { label: 'Bouwen',    description: 'Implementatie' },
+  { label: 'Review',    description: 'Testen en feedback' },
+  { label: 'Lanceren',  description: 'Deploy naar productie' },
 ]
 
 // Drawer
@@ -109,6 +112,7 @@ const drawerOpen = ref(false)
         <a href="/" class="cp-header__brand">Byzantium</a>
         <span class="cp-header__title">{{ p('componentsPageTitle') }}</span>
         <div class="cp-header__controls">
+          <a href="/icons" class="cp-header__back">Icons</a>
           <LanguageSelector />
           <button class="cp-header__toggle" :aria-label="p('lightMode')" @click="toggle">
             {{ theme === 'dark' ? '☀' : '☾' }}
@@ -129,6 +133,7 @@ const drawerOpen = ref(false)
       <nav class="mobile-nav-links">
         <a href="/" @click="menuOpen = false">{{ p('navBack') }}</a>
         <a href="/tokens" @click="menuOpen = false">Tokens</a>
+        <a href="/icons" @click="menuOpen = false">Icons</a>
         <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
         <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
         <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
@@ -145,6 +150,113 @@ const drawerOpen = ref(false)
     </ByzDrawer>
 
     <main class="cp-main">
+
+      <!-- ByzIcon -->
+      <section class="cp-section">
+        <h2 class="cp-section__title">ByzIcon</h2>
+        <div class="cp-group">
+          <div class="cp-row" style="margin-bottom: 1rem;">
+            <a href="/icons" class="cp-link-card">Open volledige iconbibliotheek</a>
+          </div>
+          <div class="cp-icon-grid">
+            <div v-for="iconName in iconNames" :key="iconName" class="cp-icon-card">
+              <ByzIcon :name="iconName" size="lg" :aria-label="iconName" />
+              <code>{{ iconName }}</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cp-section">
+        <h2 class="cp-section__title">Quiet Heritage In Context</h2>
+        <div class="cp-heritage">
+          <article class="cp-heritage__hero">
+            <div class="cp-heritage__eyebrow">Byzantium icon direction</div>
+            <h3>Calm luxury applied to real interface moments.</h3>
+            <p>
+              Deze voorbeelden gebruiken de geselecteerde kerniconen in echte UI-composities:
+              service, status, navigatie en premium calls to action.
+            </p>
+            <div class="cp-heritage__badges">
+              <ByzBadge variant="success">Quiet heritage</ByzBadge>
+              <ByzBadge>{{ quietHeritageCore.length }} groepen</ByzBadge>
+              <ByzBadge variant="info">27 kerniconen</ByzBadge>
+            </div>
+          </article>
+
+          <div class="cp-heritage__grid">
+            <ByzCard padding="md" class="cp-heritage-card">
+              <div class="cp-heritage-card__header">
+                <span class="cp-heritage-card__icon"><ByzIcon name="shield" aria-label="Shield" /></span>
+                <div>
+                  <div class="cp-heritage-card__label">Trust marker</div>
+                  <h3>Private client portal</h3>
+                </div>
+              </div>
+              <p>Elegante statusiconen houden beveiliging premium en rustig, zonder alarmistisch te worden.</p>
+              <div class="cp-heritage-card__features">
+                <div v-for="iconName in quietHeritageFeatureIcons" :key="iconName" class="cp-heritage-card__feature">
+                  <ByzIcon :name="iconName" :aria-label="iconName" />
+                  <span>{{ iconName }}</span>
+                </div>
+              </div>
+            </ByzCard>
+
+            <ByzCard padding="md" class="cp-heritage-card">
+              <div class="cp-heritage-card__header">
+                <span class="cp-heritage-card__icon"><ByzIcon name="calendar-days" aria-label="Calendar" /></span>
+                <div>
+                  <div class="cp-heritage-card__label">Service contact</div>
+                  <h3>High-touch intake flow</h3>
+                </div>
+              </div>
+              <p>Contactmomenten voelen menselijker met warme, betrouwbare iconen in plaats van utilitaire UI-symbolen.</p>
+              <div class="cp-heritage-card__contact">
+                <div v-for="iconName in quietHeritageContactIcons" :key="iconName" class="cp-heritage-card__contact-item">
+                  <ByzIcon :name="iconName" :aria-label="iconName" />
+                  <span>{{ iconName }}</span>
+                </div>
+              </div>
+            </ByzCard>
+
+            <ByzCard padding="md" class="cp-heritage-card cp-heritage-card--accent">
+              <div class="cp-heritage-card__header">
+                <span class="cp-heritage-card__icon"><ByzIcon name="sparkles" aria-label="Sparkles" /></span>
+                <div>
+                  <div class="cp-heritage-card__label">Brand moment</div>
+                  <h3>Premium launch callout</h3>
+                </div>
+              </div>
+              <p>Accenticonen blijven zeldzaam en ceremonieel: bedoeld voor highlights, niet voor elk knopje op het scherm.</p>
+              <div class="cp-heritage-card__actions">
+                <ByzButton size="sm" variant="primary">
+                  Bekijk dossier
+                  <template #icon-right><ByzIcon name="arrow-right" aria-label="Arrow right" /></template>
+                </ByzButton>
+                <ByzButton size="sm" variant="ghost">
+                  <template #icon-left><ByzIcon name="book-open" aria-label="Book open" /></template>
+                  Lees briefing
+                </ByzButton>
+              </div>
+            </ByzCard>
+
+            <article class="cp-heritage-core">
+              <div class="cp-heritage-core__label">Core groups in use</div>
+              <div class="cp-heritage-core__rows">
+                <div v-for="group in quietHeritageCore" :key="group.id" class="cp-heritage-core__row">
+                  <div class="cp-heritage-core__title">{{ group.title }}</div>
+                  <div class="cp-heritage-core__icons">
+                    <span v-for="iconName in group.icons.slice(0, 3)" :key="iconName" class="cp-heritage-core__chip">
+                      <ByzIcon :name="iconName" :aria-label="iconName" />
+                      <span>{{ iconName }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
       <!-- ByzBadge -->
       <section class="cp-section">
@@ -336,7 +448,7 @@ const drawerOpen = ref(false)
         <h2 class="cp-section__title">ByzDrawer</h2>
         <div class="cp-group">
           <ByzButton variant="secondary" size="sm" @click="drawerOpen = true">Open drawer →</ByzButton>
-          <ByzDrawer :open="drawerOpen" title="Instellingen" @close="drawerOpen = false">
+          <ByzDrawer v-model="drawerOpen" title="Instellingen">
             <div style="display:flex;flex-direction:column;gap:1rem;">
               <ByzSwitch :model-value="true" label="Meldingen inschakelen" />
               <ByzSwitch :model-value="false" label="Marketing e-mails" />
@@ -359,7 +471,6 @@ const drawerOpen = ref(false)
           <ByzStepper
             v-model="stepperActive"
             :steps="stepperSteps"
-            :completed-steps="stepperCompleted"
           />
         </div>
         <div class="cp-group">
@@ -367,8 +478,7 @@ const drawerOpen = ref(false)
           <ByzStepper
             v-model="stepperActive"
             :steps="stepperSteps.slice(0, 3)"
-            :completed-steps="stepperCompleted"
-            orientation="vertical"
+            :vertical="true"
           />
         </div>
       </section>
@@ -594,6 +704,250 @@ const drawerOpen = ref(false)
   display: flex; gap: var(--byz-space-3); flex-wrap: wrap; align-items: center;
   &--align-end { align-items: flex-end; }
 }
+.cp-link-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--byz-color-border);
+  background: var(--byz-color-surface);
+  color: var(--byz-color-text-primary);
+  text-decoration: none;
+  font-weight: var(--byz-font-medium);
+  transition: border-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
+  &:hover { color: var(--byz-color-accent); border-color: var(--byz-color-accent); }
+}
+.cp-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--byz-space-4);
+}
+.cp-icon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--byz-space-3);
+  padding: var(--byz-space-4);
+  border: 1px solid var(--byz-color-border);
+  border-radius: 0.75rem;
+  background: var(--byz-color-surface);
+
+  code {
+    font-family: var(--byz-font-mono);
+    font-size: var(--byz-text-xs);
+    color: var(--byz-color-text-muted);
+    text-align: center;
+    word-break: break-word;
+  }
+}
+.cp-heritage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--byz-space-5);
+
+  &__hero {
+    padding: var(--byz-space-6);
+    border: 1px solid var(--byz-color-border);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--byz-color-accent) 12%, transparent), transparent 34%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--byz-color-surface) 86%, white 14%),
+        color-mix(in srgb, var(--byz-color-background) 92%, white 8%)
+      );
+
+    h3 {
+      margin: 0 0 var(--byz-space-3);
+      font-family: var(--byz-font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      color: var(--byz-color-text-primary);
+    }
+
+    p {
+      margin: 0;
+      max-width: 48rem;
+      color: var(--byz-color-text-secondary);
+      line-height: 1.7;
+    }
+  }
+
+  &__eyebrow {
+    margin-bottom: var(--byz-space-3);
+    color: var(--byz-color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: var(--byz-text-xs);
+    font-weight: var(--byz-font-semibold);
+  }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--byz-space-3);
+    margin-top: var(--byz-space-5);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--byz-space-4);
+  }
+}
+
+.cp-heritage-card {
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--byz-space-4);
+    margin-bottom: var(--byz-space-4);
+  }
+
+  &__icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: color-mix(in srgb, var(--byz-color-text-primary) 82%, var(--byz-color-accent) 18%);
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--byz-color-surface) 68%, white 32%),
+        color-mix(in srgb, var(--byz-color-background) 90%, white 10%)
+      );
+    border: 1px solid color-mix(in srgb, var(--byz-color-border) 88%, transparent);
+  }
+
+  &__label {
+    color: var(--byz-color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: var(--byz-text-xs);
+    font-weight: var(--byz-font-semibold);
+    margin-bottom: 0.25rem;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--byz-font-serif);
+    font-size: 1.35rem;
+  }
+
+  p {
+    margin: 0 0 var(--byz-space-5);
+    color: var(--byz-color-text-secondary);
+    line-height: 1.7;
+  }
+
+  &__features,
+  &__contact {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--byz-space-3);
+  }
+
+  &__feature,
+  &__contact-item {
+    border: 1px solid var(--byz-color-border);
+    border-radius: 0.95rem;
+    padding: var(--byz-space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--byz-space-2);
+    text-align: center;
+    background: color-mix(in srgb, var(--byz-color-surface) 88%, white 12%);
+    color: color-mix(in srgb, var(--byz-color-text-primary) 84%, var(--byz-color-accent) 16%);
+
+    span {
+      font-size: 0.75rem;
+      color: var(--byz-color-text-secondary);
+      word-break: break-word;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--byz-space-3);
+  }
+
+  &--accent {
+    background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--byz-color-accent) 12%, transparent), transparent 32%),
+      var(--byz-color-surface);
+  }
+}
+
+.cp-heritage-core {
+  border: 1px solid var(--byz-color-border);
+  border-radius: 1.25rem;
+  padding: var(--byz-space-5);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--byz-color-surface) 84%, white 16%),
+      color-mix(in srgb, var(--byz-color-background) 92%, white 8%)
+    );
+
+  &__label {
+    margin-bottom: var(--byz-space-4);
+    color: var(--byz-color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: var(--byz-text-xs);
+    font-weight: var(--byz-font-semibold);
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--byz-space-4);
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: var(--byz-space-4);
+    align-items: start;
+  }
+
+  &__title {
+    color: var(--byz-color-text-primary);
+    font-weight: var(--byz-font-semibold);
+  }
+
+  &__icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--byz-space-2);
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.25rem;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--byz-color-border) 88%, transparent);
+    background: color-mix(in srgb, var(--byz-color-surface) 86%, white 14%);
+    color: color-mix(in srgb, var(--byz-color-text-primary) 84%, var(--byz-color-accent) 16%);
+
+    span {
+      font-size: 0.75rem;
+      color: var(--byz-color-text-secondary);
+    }
+  }
+}
 .cp-stack  { display: flex; flex-direction: column; gap: var(--byz-space-3); }
 .cp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--byz-space-6); }
 .cp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--byz-space-4); }
@@ -629,11 +983,19 @@ const drawerOpen = ref(false)
   .cp-header__hamburger { display: flex; }
 
   .cp-main { padding: var(--byz-space-8) var(--byz-space-4) var(--byz-space-16); }
+  .cp-icon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cp-heritage__grid,
+  .cp-heritage-card__features,
+  .cp-heritage-card__contact,
+  .cp-heritage-core__row { grid-template-columns: 1fr; }
   .cp-grid-2 { grid-template-columns: 1fr; }
   .cp-grid-3 { grid-template-columns: 1fr; }
 }
 
 @media (min-width: 600px) and (max-width: 1080px) {
+  .cp-icon-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cp-heritage-card__features,
+  .cp-heritage-card__contact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cp-grid-3 { grid-template-columns: repeat(2, 1fr); }
 }
 

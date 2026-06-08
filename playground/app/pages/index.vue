@@ -36,6 +36,7 @@ const installCmd: Record<string, string> = {
         <span class="bp-nav__brand">Byzantium</span>
         <ul class="bp-nav__links" role="list">
           <li><a href="/tokens">Tokens</a></li>
+          <li><a href="/icons">Icons</a></li>
           <li><a href="/components">{{ p('navComponents') }}</a></li>
           <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
           <li><a href="/grid">{{ p('navGrid') }}</a></li>
@@ -46,7 +47,7 @@ const installCmd: Record<string, string> = {
           <button class="bp-nav__toggle" :aria-label="p('lightMode')" @click="toggle">
             {{ theme === 'dark' ? '☀' : '☾' }}
           </button>
-          <ByzButton variant="ghost" size="sm">GitHub</ByzButton>
+          <a href="https://github.com/Stefan-Espant/Byzantium-design-system" target="_blank" rel="noopener" class="bp-nav__github">GitHub</a>
         </div>
         <button class="bp-nav__hamburger" :aria-expanded="menuOpen" aria-label="Menu" @click="menuOpen = !menuOpen">
           <span /><span /><span />
@@ -57,6 +58,7 @@ const installCmd: Record<string, string> = {
     <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
       <nav class="mobile-nav-links">
         <a href="/tokens" @click="menuOpen = false">Tokens</a>
+        <a href="/icons" @click="menuOpen = false">Icons</a>
         <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
         <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
         <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
@@ -334,7 +336,7 @@ const installCmd: Record<string, string> = {
     <ByzFooter
       brand="Byzantium"
       :links="[
-        { label: 'GitHub',    href: '#' },
+        { label: 'GitHub',    href: 'https://github.com/Stefan-Espant/Byzantium-design-system' },
         { label: 'Changelog', href: '#' },
         { label: 'Tokens',    href: '/tokens' },
         { label: p('footerLicense'), href: '#' },
@@ -346,7 +348,10 @@ const installCmd: Record<string, string> = {
 </template>
 
 <style lang="scss" scoped>
-.bp { min-height: 100vh; }
+.bp {
+  min-height: 100vh;
+  overflow-x: clip;
+}
 
 /* ── NAVBAR ───────────────────────── */
 .bp-nav {
@@ -463,6 +468,7 @@ const installCmd: Record<string, string> = {
 /* ── SECTION ──────────────────────── */
 .bp-section {
   padding: var(--byz-space-24) var(--byz-space-8);
+  overflow-x: clip;
 
   &--alt {
     background: linear-gradient(180deg, var(--byz-color-surface) 0%, transparent 100%);
@@ -473,7 +479,8 @@ const installCmd: Record<string, string> = {
   &__inner { max-width: 72rem; margin: 0 auto; }
 
   &__header {
-    max-width: 72rem; margin: 0 auto var(--byz-space-12);
+    width: min(100%, 72rem);
+    margin: 0 auto var(--byz-space-12);
   }
 
   &__eyebrow {
@@ -484,17 +491,25 @@ const installCmd: Record<string, string> = {
   &__title {
     font-size: clamp(2rem, 4vw, 3.5rem); color: var(--byz-color-text-primary);
     max-width: 72rem; margin: 0 auto;
+    line-height: 1.05;
+    text-wrap: balance;
     em { font-style: italic; color: var(--byz-color-accent); font-weight: 300; }
   }
 }
 
 /* ── INSTALL ──────────────────────── */
 .bp-install {
-  max-width: 72rem; margin: 0 auto;
+  width: min(100%, 72rem);
+  max-width: 72rem;
+  margin: 0 auto;
   display: flex; flex-direction: column; gap: var(--byz-space-12);
 
   &__step {
-    display: grid; grid-template-columns: 64px 1fr; gap: var(--byz-space-8); align-items: start;
+    display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--byz-space-8); align-items: start;
+  }
+
+  &__step-body {
+    min-width: 0;
   }
 
   &__step-num {
@@ -514,10 +529,11 @@ const installCmd: Record<string, string> = {
 
 /* ── CODE BLOCK ───────────────────── */
 .bp-code-block {
+  max-width: 100%;
   background: var(--byz-color-surface);
   border: 1px solid var(--byz-color-border);
   border-radius: 0.5rem;
-  overflow: hidden;
+  overflow: clip;
 
   &__tabs {
     display: flex; border-bottom: 1px solid var(--byz-color-border);
@@ -538,7 +554,9 @@ const installCmd: Record<string, string> = {
   }
 
   &__body {
+    max-width: 100%;
     padding: var(--byz-space-4) var(--byz-space-6);
+    overflow-x: auto;
     pre { margin: 0; }
     code {
       font-family: var(--byz-font-mono); font-size: var(--byz-text-sm); line-height: 1.7;
@@ -653,6 +671,17 @@ const installCmd: Record<string, string> = {
   display: flex; align-items: center; gap: var(--byz-space-3); margin-left: auto;
 }
 
+.bp-nav__github {
+  display: inline-flex; align-items: center;
+  font-size: var(--byz-text-sm); font-weight: var(--byz-font-medium);
+  color: var(--byz-color-text-muted); text-decoration: none;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--byz-color-border);
+  border-radius: var(--byz-radius-md, 0.375rem);
+  transition: color var(--byz-duration-fast) var(--byz-ease-default), border-color var(--byz-duration-fast) var(--byz-ease-default);
+  &:hover { color: var(--byz-color-text); border-color: var(--byz-color-text-muted); }
+}
+
 // Hamburger button — hidden on desktop, shown on mobile
 .bp-nav__hamburger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
@@ -688,7 +717,7 @@ const installCmd: Record<string, string> = {
   .bp-stats { grid-template-columns: repeat(2, 1fr); }
 
   // Sections
-  .bp-section { padding: var(--byz-space-14) var(--byz-space-4); }
+  .bp-section { padding: var(--byz-space-8) var(--byz-space-4); }
 
   // Install step — remove number column
   .bp-install__step { grid-template-columns: 1fr; }
@@ -702,6 +731,9 @@ const installCmd: Record<string, string> = {
 
   // Preview grid — stacked
   .bp-preview-grid { grid-template-columns: 1fr; }
+
+  // Code blocks — scroll horizontally, tighter padding
+  .bp-code-block__body { padding: var(--byz-space-4); }
 }
 
 @media (min-width: 600px) and (max-width: 1080px) {
