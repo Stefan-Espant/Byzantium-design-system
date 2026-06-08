@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { onUnmounted, watch, computed } from 'vue'
+  import { onUnmounted, watch, computed, nextTick, useId, ref } from 'vue'
   import { useFocusTrap } from '../../../composables/useFocusTrap'
+  import { useScrollLock } from '../../../composables/useScrollLock'
   import { useLocale } from '../../../composables/useLocale'
 
   defineOptions({ name: 'ByzModal' })
@@ -15,23 +16,33 @@
 
   const { t } = useLocale()
   const resolvedCloseLabel = computed(() => props.closeLabel ?? t('close'))
+  const resolvedAriaLabel = computed(() => props.title || resolvedCloseLabel.value)
+  const titleId = useId()
 
   const emit = defineEmits<{ close: [] }>()
   const { trap, release } = useFocusTrap()
-  let dialogEl: HTMLElement | null = null
+  const { locked } = useScrollLock()
+  const dialogEl = ref<HTMLElement | null>(null)
 
   function handleKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') emit('close')
   }
 
-  watch(() => props.open, (val) => {
-    if (val && dialogEl) {
-      trap(dialogEl)
+  watch(() => props.open, async (val) => {
+    locked.value = val
+
+    if (val) {
+      await nextTick()
+      if (dialogEl.value) {
+        trap(dialogEl.value)
+        dialogEl.value.focus()
+      }
       document.addEventListener('keydown', handleKeydown)
-    } else {
-      release()
-      document.removeEventListener('keydown', handleKeydown)
+      return
     }
+
+    release()
+    document.removeEventListener('keydown', handleKeydown)
   })
 
   onUnmounted(() => {
@@ -47,13 +58,16 @@
         <div
           ref="dialogEl"
           role="dialog"
-          :aria-label="title"
+          :aria-labelledby="title ? titleId : undefined"
+          :aria-label="title ? undefined : resolvedAriaLabel"
           aria-modal="true"
+          tabindex="-1"
           class="byz-modal"
         >
           <div class="byz-modal__header">
-            <h2 class="byz-modal__title">{{ title }}</h2>
+            <h2 :id="titleId" class="byz-modal__title">{{ title }}</h2>
             <button
+              type="button"
               class="byz-modal__close"
               :aria-label="resolvedCloseLabel"
               @click="emit('close')"

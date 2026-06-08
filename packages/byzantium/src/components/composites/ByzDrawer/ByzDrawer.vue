@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, ref, nextTick } from 'vue'
+import { computed, watch, ref, nextTick, useId } from 'vue'
 import { useFocusTrap }   from '../../../composables/useFocusTrap'
 import { useScrollLock }  from '../../../composables/useScrollLock'
 import { useLocale }      from '../../../composables/useLocale'
@@ -30,6 +30,8 @@ const emit = defineEmits<{
 
 const { t } = useLocale()
 const resolvedCloseLabel = computed(() => props.closeLabel ?? t('closeDrawer'))
+const resolvedAriaLabel = computed(() => props.title || resolvedCloseLabel.value)
+const titleId = useId()
 
 const drawerRef          = ref<HTMLDivElement | null>(null)
 const { trap, release }  = useFocusTrap()
@@ -39,7 +41,10 @@ watch(() => props.modelValue, async (val) => {
   locked.value = val
   if (val) {
     await nextTick()
-    if (drawerRef.value) trap(drawerRef.value)
+    if (drawerRef.value) {
+      trap(drawerRef.value)
+      drawerRef.value.focus()
+    }
   } else {
     release()
   }
@@ -83,14 +88,17 @@ const sizeStyle = computed(() => {
         :style="sizeStyle"
         role="dialog"
         aria-modal="true"
-        :aria-label="title"
+        :aria-labelledby="title ? titleId : undefined"
+        :aria-label="title ? undefined : resolvedAriaLabel"
+        tabindex="-1"
         @keydown="onKeydown"
       >
         <div v-if="title || $slots.header" class="byz-drawer__header">
           <slot name="header">
-            <h2 class="byz-drawer__title">{{ title }}</h2>
+            <h2 :id="titleId" class="byz-drawer__title">{{ title }}</h2>
           </slot>
           <button
+            type="button"
             class="byz-drawer__close"
             :aria-label="resolvedCloseLabel"
             @click="close"
@@ -157,8 +165,10 @@ const sizeStyle = computed(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 44px;
+    min-height: 44px;
     background: var(--byz-color-surface-raised);
     border: 1px solid var(--byz-color-border);
     border-radius: 0.375rem;

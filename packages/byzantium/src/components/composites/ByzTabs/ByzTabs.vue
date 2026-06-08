@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, computed, watch, onMounted, nextTick } from 'vue'
+  import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 
   defineOptions({ name: 'ByzTabs' })
 
@@ -82,6 +82,10 @@
     nextTick(updateIndicator)
     window.addEventListener('resize', updateIndicator)
   })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', updateIndicator)
+  })
 </script>
 
 <template>
@@ -91,6 +95,7 @@
         v-for="(tab, index) in tabs"
         :key="tab.id"
         :ref="(el) => { if (el) tabRefs[index] = el as HTMLButtonElement }"
+        :id="`tab-${tab.id}`"
         role="tab"
         :aria-selected="tab.id === activeId"
         :aria-controls="`panel-${tab.id}`"
@@ -113,6 +118,7 @@
     <div
       :id="`panel-${activeId}`"
       role="tabpanel"
+      :aria-labelledby="`tab-${activeId}`"
       class="byz-tabs__panel"
     >
       <Transition name="byz-tabs-fade" mode="out-in">

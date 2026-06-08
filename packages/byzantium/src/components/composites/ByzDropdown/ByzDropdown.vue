@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watch, nextTick, onUnmounted, useId } from 'vue'
 
 defineOptions({ name: 'ByzDropdown' })
 
@@ -26,6 +26,9 @@ const emit = defineEmits<{
 
 const isOpen = ref(false)
 const rootEl = ref<HTMLElement | null>(null)
+const triggerEl = ref<HTMLElement | null>(null)
+const itemRefs = ref<HTMLButtonElement[]>([])
+const menuId = useId()
 
 function toggle() {
   isOpen.value = !isOpen.value
@@ -47,32 +50,135 @@ function closeOnOutside(event: MouseEvent) {
   }
 }
 
-function onKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape') {
+function enabledItems() {
+  return props.items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => !item.disabled && !item.separator)
+}
+
+function focusItem(index: number) {
+  itemRefs.value[index]?.focus()
+}
+
+function focusFirstItem() {
+  const firstEnabled = enabledItems()[0]
+  if (firstEnabled) focusItem(firstEnabled.index)
+}
+
+function focusLastItem() {
+  const lastEnabled = enabledItems().at(-1)
+  if (lastEnabled) focusItem(lastEnabled.index)
+}
+
+function onDocumentKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape' && isOpen.value) {
     close()
+    triggerEl.value?.focus()
   }
 }
 
-onMounted(() => {
-  document.addEventListener('click', closeOnOutside)
-  document.addEventListener('keydown', onKeydown)
+function onTriggerKeydown(event: KeyboardEvent) {
+  if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    if (!isOpen.value) {
+      isOpen.value = true
+      return
+    }
+    focusFirstItem()
+  }
+
+  if (event.key === 'ArrowUp') {
+    event.preventDefault()
+    if (!isOpen.value) {
+      isOpen.value = true
+      nextTick(focusLastItem)
+      return
+    }
+    focusLastItem()
+  }
+}
+
+function onMenuKeydown(event: KeyboardEvent, index: number) {
+  const available = enabledItems()
+  const currentPos = available.findIndex(({ index: currentIndex }) => currentIndex === index)
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault()
+    const nextPos = currentPos >= 0 ? (currentPos + 1) % available.length : 0
+    focusItem(available[nextPos].index)
+    return
+  }
+
+  if (event.key === 'ArrowUp') {
+    event.preventDefault()
+    const nextPos = currentPos >= 0 ? (currentPos - 1 + available.length) % available.length : available.length - 1
+    focusItem(available[nextPos].index)
+    return
+  }
+
+  if (event.key === 'Home') {
+    event.preventDefault()
+    focusFirstItem()
+    return
+  }
+
+  if (event.key === 'End') {
+    event.preventDefault()
+    focusLastItem()
+    return
+  }
+
+  if (event.key === 'Tab') {
+    close()
+    return
+  }
+
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    close()
+    triggerEl.value?.focus()
+  }
+}
+
+watch(isOpen, async (open) => {
+  if (open) {
+    await nextTick()
+    document.addEventListener('click', closeOnOutside)
+    document.addEventListener('keydown', onDocumentKeydown)
+    focusFirstItem()
+    return
+  }
+
+  document.removeEventListener('click', closeOnOutside)
+  document.removeEventListener('keydown', onDocumentKeydown)
 })
 
 onUnmounted(() => {
   document.removeEventListener('click', closeOnOutside)
-  document.removeEventListener('keydown', onKeydown)
+  document.removeEventListener('keydown', onDocumentKeydown)
 })
 </script>
 
 <template>
   <div ref="rootEl" class="byz-dropdown">
-    <div class="byz-dropdown__trigger" @click="toggle">
+    <div
+      ref="triggerEl"
+      class="byz-dropdown__trigger"
+      role="button"
+      tabindex="0"
+      aria-haspopup="menu"
+      :aria-expanded="isOpen"
+      :aria-controls="isOpen ? menuId : undefined"
+      @click="toggle"
+      @keydown="onTriggerKeydown"
+    >
       <slot name="trigger" />
     </div>
 
     <Transition name="byz-dropdown-fade">
       <div
         v-if="isOpen"
+        :id="menuId"
         :class="['byz-dropdown__menu', `byz-dropdown__menu--${placement}`]"
         role="menu"
       >
@@ -80,11 +186,14 @@ onUnmounted(() => {
           <hr v-if="item.separator" class="byz-dropdown__separator" />
           <button
             v-else
+            :ref="(el) => { if (el) itemRefs[index] = el as HTMLButtonElement }"
+            type="button"
             class="byz-dropdown__item"
             role="menuitem"
             :disabled="item.disabled"
             :class="{ 'byz-dropdown__item--disabled': item.disabled }"
             @click="handleSelect(item)"
+            @keydown="onMenuKeydown($event, index)"
           >
             <span v-if="item.icon" class="byz-dropdown__item-icon">{{ item.icon }}</span>
             <span class="byz-dropdown__item-label">{{ item.label }}</span>

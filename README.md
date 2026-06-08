@@ -8,7 +8,7 @@
 
 ## Overview
 
-Byzantium is a dark-first Vue 3 design system written in TypeScript and SCSS. It provides a complete component library, a semantic token layer, and accessibility utilities — all packaged as `@byzantium-design-system/core`.
+Byzantium is a dark-first Vue 3 design system written in TypeScript and SCSS. It provides a complete component library, a semantic token layer, and accessibility utilities — all packaged as `@byzantium/core`.
 
 The visual language is built around an **Imperial Dark** theme: deep backgrounds, a crimson/burgundy brand palette (`--byz-brand-*`), and Cormorant Garamond + Syne as the type pairing. Light mode is available via the `[data-theme="light"]` attribute.
 
@@ -21,7 +21,7 @@ The system follows a three-tier component model (Primitives → Composites → P
 ```bash
 pnpm install
 pnpm dev        # Start the Nuxt 4 playground at localhost:3002
-pnpm build      # Build @byzantium-design-system/core
+pnpm build      # Build @byzantium/core
 pnpm test       # Run Vitest unit tests
 pnpm typecheck  # vue-tsc --noEmit
 ```
@@ -32,7 +32,7 @@ pnpm typecheck  # vue-tsc --noEmit
 
 | Package | Description |
 |---------|-------------|
-| `@byzantium-design-system/core` | Design tokens, all components, composables |
+| `@byzantium/core` | Design tokens, all components, composables |
 | `playground` | Nuxt 4 development sandbox for interactive component exploration |
 
 ---
@@ -127,11 +127,11 @@ Tokens are declared in the `:root` selector (Imperial Dark defaults). The light 
 
 ## Usage
 
-Install `@byzantium-design-system/core` and import what you need:
+Install `@byzantium/core` and import what you need:
 
 ```ts
-import { ByzButton, ByzCard, useTheme } from '@byzantium-design-system/core'
-import '@byzantium-design-system/core/styles'
+import { ByzButton, ByzCard, useTheme } from '@byzantium/core'
+import '@byzantium/core/styles'
 ```
 
 Use components in your template:
@@ -157,7 +157,7 @@ Byzantium ships in **Imperial Dark** by default. No configuration is required �
 Use the `useTheme` composable to toggle or set the active theme programmatically:
 
 ```ts
-import { useTheme } from '@byzantium-design-system/core'
+import { useTheme } from '@byzantium/core'
 
 const { theme, setTheme, toggleTheme } = useTheme()
 
@@ -208,8 +208,8 @@ pnpm dev
 # Run unit tests (from the repo root)
 pnpm test
 
-# Run unit tests for @byzantium-design-system/core only
-pnpm --filter @byzantium-design-system/core test
+# Run unit tests for @byzantium/core only
+pnpm --filter @byzantium/core test
 
 # Type-check the full workspace
 pnpm typecheck
