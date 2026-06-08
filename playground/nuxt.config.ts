@@ -1,6 +1,15 @@
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon',  href: '/favicon.ico' },
+      ],
+    },
+  },
+
   rootDir: fileURLToPath(new URL('.', import.meta.url)),
 
   compatibilityDate: '2024-11-01',

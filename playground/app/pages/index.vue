@@ -13,6 +13,7 @@ import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
+const menuOpen = ref(false)
 const inputValue  = ref('')
 const showAlert   = ref(true)
 const pkgManager  = ref<'pnpm' | 'npm' | 'yarn'>('pnpm')
@@ -32,18 +33,23 @@ const installCmd: Record<string, string> = {
     <header class="bp-nav">
       <nav class="bp-nav__inner" aria-label="Hoofdnavigatie">
         <span class="bp-nav__brand">Byzantium</span>
-        <ul class="bp-nav__links" role="list">
-          <li><a href="/tokens">Tokens</a></li>
-          <li><a href="/components">{{ p('navComponents') }}</a></li>
-          <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
-          <li><a href="/grid">{{ p('navGrid') }}</a></li>
-          <li><a href="/changelog">{{ p('navChangelog') }}</a></li>
+        <ul class="bp-nav__links" :class="{ 'is-open': menuOpen }" role="list">
+          <li><a href="/tokens" @click="menuOpen = false">Tokens</a></li>
+          <li><a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a></li>
+          <li><a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a></li>
+          <li><a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a></li>
+          <li><a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a></li>
         </ul>
-        <LanguageSelector />
-        <button class="bp-nav__toggle" :aria-label="p('lightMode')" @click="toggle">
-          {{ theme === 'dark' ? '☀' : '☾' }}
-        </button>
-        <ByzButton variant="ghost" size="sm">GitHub</ByzButton>
+        <div class="bp-nav__controls">
+          <LanguageSelector />
+          <button class="bp-nav__toggle" :aria-label="p('lightMode')" @click="toggle">
+            {{ theme === 'dark' ? '☀' : '☾' }}
+          </button>
+          <ByzButton variant="ghost" size="sm">GitHub</ByzButton>
+          <button class="bp-nav__hamburger" :aria-expanded="menuOpen" aria-label="Menu" @click="menuOpen = !menuOpen">
+            <span /><span /><span />
+          </button>
+        </div>
       </nav>
     </header>
 
@@ -353,7 +359,7 @@ const installCmd: Record<string, string> = {
   }
 
   &__links {
-    display: flex; gap: var(--byz-space-6); list-style: none; margin: 0; padding: 0; flex: 1;
+    display: flex; gap: var(--byz-space-6); list-style: none; margin: 0; padding: 0; flex: 1; align-items: center;
     a {
       font-size: var(--byz-text-xs); letter-spacing: 0.1em; text-transform: uppercase;
       font-weight: var(--byz-font-medium); color: var(--byz-color-text-muted); text-decoration: none;
@@ -619,5 +625,93 @@ const installCmd: Record<string, string> = {
 .bp-cta {
   max-width: 72rem; margin: 0 auto; text-align: center;
   a { text-decoration: none; }
+}
+
+/* ── RESPONSIVE ───────────────────── */
+
+// Controls row (always visible alongside brand)
+.bp-nav__controls {
+  display: flex; align-items: center; gap: var(--byz-space-3); margin-left: auto;
+}
+
+// Hamburger button — hidden on desktop
+.bp-nav__hamburger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 6px; width: 36px; height: 36px;
+  span {
+    display: block; width: 20px; height: 2px;
+    background: var(--byz-color-text-muted); border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  &[aria-expanded="true"] {
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+@media (max-width: 768px) {
+  // Navbar — stacked layout
+  .bp-nav__inner {
+    flex-wrap: wrap; gap: var(--byz-space-2); padding: 0 var(--byz-space-4);
+  }
+
+  .bp-nav__links {
+    display: none; flex-direction: column; width: 100%;
+    padding: var(--byz-space-3) 0 var(--byz-space-4);
+    border-top: 1px solid var(--byz-color-border);
+    gap: 0;
+    li { list-style: none; }
+    a {
+      display: block; padding: var(--byz-space-3) var(--byz-space-2);
+      font-size: var(--byz-text-sm) !important; letter-spacing: 0.06em;
+    }
+    &.is-open { display: flex; }
+  }
+
+  .bp-nav__hamburger { display: flex; }
+
+  // Hero
+  .bp-hero {
+    min-height: 70vh;
+    padding: var(--byz-space-16) var(--byz-space-4);
+    &__actions { flex-direction: column; align-items: center; }
+  }
+
+  // Stats — 2×2
+  .bp-stats { grid-template-columns: repeat(2, 1fr); }
+
+  // Sections
+  .bp-section { padding: var(--byz-space-14) var(--byz-space-4); }
+
+  // Install step — remove number column
+  .bp-install__step { grid-template-columns: 1fr; }
+  .bp-install__step-num { font-size: 2rem; }
+
+  // Architecture tiers — stacked
+  .bp-tiers { grid-template-columns: 1fr; }
+
+  // Features — stacked
+  .bp-features { grid-template-columns: 1fr; gap: var(--byz-space-6); }
+
+  // Preview grid — stacked
+  .bp-preview-grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .bp-nav__inner { padding: 0 var(--byz-space-5); gap: var(--byz-space-5); }
+  .bp-nav__links { gap: var(--byz-space-4); }
+
+  .bp-section { padding: var(--byz-space-16) var(--byz-space-6); }
+
+  // Stats stays 4-col on tablet
+
+  // Architecture — 1-col stacked on tablet too
+  .bp-tiers { grid-template-columns: 1fr; max-width: 32rem; }
+
+  // Features — 2-col
+  .bp-features { grid-template-columns: repeat(2, 1fr); }
+
+  // Preview grid — stays 2-col on tablet
 }
 </style>
