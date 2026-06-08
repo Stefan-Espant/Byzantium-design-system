@@ -13,6 +13,7 @@ import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
+const menuOpen = ref(false)
 const { add: addToast }                        = useToast()
 
 // Form state
@@ -107,13 +108,41 @@ const drawerOpen = ref(false)
       <nav class="cp-header__inner">
         <a href="/" class="cp-header__brand">Byzantium</a>
         <span class="cp-header__title">{{ p('componentsPageTitle') }}</span>
-        <LanguageSelector />
-        <button class="cp-header__toggle" :aria-label="p('lightMode')" @click="toggle">
-          {{ theme === 'dark' ? '☀' : '☾' }}
+        <div class="cp-header__controls">
+          <LanguageSelector />
+          <button class="cp-header__toggle" :aria-label="p('lightMode')" @click="toggle">
+            {{ theme === 'dark' ? '☀' : '☾' }}
+          </button>
+          <a href="/" class="cp-header__back">{{ p('navBack') }}</a>
+        </div>
+        <button
+          class="cp-header__hamburger"
+          :aria-expanded="menuOpen"
+          @click="menuOpen = !menuOpen"
+        >
+          <span></span><span></span><span></span>
         </button>
-        <a href="/" class="cp-header__back">{{ p('navBack') }}</a>
       </nav>
     </header>
+
+    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
+      <nav class="mobile-nav-links">
+        <a href="/" @click="menuOpen = false">{{ p('navBack') }}</a>
+        <a href="/tokens" @click="menuOpen = false">Tokens</a>
+        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
+        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
+        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
+        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
+      </nav>
+      <template #footer>
+        <div class="mobile-nav-footer">
+          <LanguageSelector />
+          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
+            {{ theme === 'dark' ? '☀' : '☾' }}
+          </button>
+        </div>
+      </template>
+    </ByzDrawer>
 
     <main class="cp-main">
 
@@ -569,4 +598,62 @@ const drawerOpen = ref(false)
 .cp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--byz-space-6); }
 .cp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--byz-space-4); }
 .cp-preview { border: 1px solid var(--byz-color-border); border-radius: 0.5rem; overflow: hidden; }
+
+/* ─── Hamburger / controls ─────────────────────────────────────────────────── */
+.cp-header__controls {
+  display: flex; align-items: center; gap: var(--byz-space-4);
+}
+
+.cp-header__hamburger {
+  display: none; flex-direction: column; justify-content: center; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  padding: 6px; margin-left: auto; width: 36px; height: 36px; flex-shrink: 0;
+
+  span {
+    display: block; width: 20px; height: 2px; border-radius: 1px;
+    background: var(--byz-color-text-muted);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  &[aria-expanded="true"] {
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+@media (max-width: 1080px) {
+  .cp-header__inner { padding: 0 var(--byz-space-4); flex-wrap: wrap; }
+  .cp-header__title { display: none; }
+  .cp-header__controls { display: none; }
+  .cp-header__hamburger { display: flex; }
+
+  .cp-main { padding: var(--byz-space-8) var(--byz-space-4) var(--byz-space-16); }
+  .cp-grid-2 { grid-template-columns: 1fr; }
+  .cp-grid-3 { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 600px) and (max-width: 1080px) {
+  .cp-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+.mobile-nav-links {
+  display: flex; flex-direction: column;
+  a {
+    display: block; padding: var(--byz-space-3) var(--byz-space-4);
+    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
+    text-decoration: none; letter-spacing: 0.06em;
+    border-radius: 0.375rem;
+    &:hover { color: var(--byz-color-accent); background: rgba(255,255,255,0.04); }
+  }
+}
+.mobile-nav-footer {
+  display: flex; align-items: center; gap: var(--byz-space-3); flex-wrap: wrap;
+}
+.mobile-nav-toggle {
+  background: var(--byz-color-surface-raised); border: 1px solid var(--byz-color-border);
+  color: var(--byz-color-text); padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;
+  &:hover { background: var(--byz-color-surface-hover); }
+}
 </style>

@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter playground dev",
+    "preview": "./preview.sh",
     "docs": "pnpm --filter docs dev",
     "build": "pnpm --filter @byzantium/core build",
     "test": "vitest run",

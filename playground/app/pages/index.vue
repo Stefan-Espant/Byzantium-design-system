@@ -7,6 +7,7 @@ import {
   ByzBadge,
   ByzProgress,
   ByzFooter,
+  ByzDrawer,
   useTheme,
 } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
@@ -33,12 +34,12 @@ const installCmd: Record<string, string> = {
     <header class="bp-nav">
       <nav class="bp-nav__inner" aria-label="Hoofdnavigatie">
         <span class="bp-nav__brand">Byzantium</span>
-        <ul class="bp-nav__links" :class="{ 'is-open': menuOpen }" role="list">
-          <li><a href="/tokens" @click="menuOpen = false">Tokens</a></li>
-          <li><a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a></li>
-          <li><a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a></li>
-          <li><a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a></li>
-          <li><a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a></li>
+        <ul class="bp-nav__links" role="list">
+          <li><a href="/tokens">Tokens</a></li>
+          <li><a href="/components">{{ p('navComponents') }}</a></li>
+          <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
+          <li><a href="/grid">{{ p('navGrid') }}</a></li>
+          <li><a href="/changelog">{{ p('navChangelog') }}</a></li>
         </ul>
         <div class="bp-nav__controls">
           <LanguageSelector />
@@ -46,12 +47,30 @@ const installCmd: Record<string, string> = {
             {{ theme === 'dark' ? '☀' : '☾' }}
           </button>
           <ByzButton variant="ghost" size="sm">GitHub</ByzButton>
-          <button class="bp-nav__hamburger" :aria-expanded="menuOpen" aria-label="Menu" @click="menuOpen = !menuOpen">
-            <span /><span /><span />
-          </button>
         </div>
+        <button class="bp-nav__hamburger" :aria-expanded="menuOpen" aria-label="Menu" @click="menuOpen = !menuOpen">
+          <span /><span /><span />
+        </button>
       </nav>
     </header>
+
+    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
+      <nav class="mobile-nav-links">
+        <a href="/tokens" @click="menuOpen = false">Tokens</a>
+        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
+        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
+        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
+        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
+      </nav>
+      <template #footer>
+        <div class="mobile-nav-footer">
+          <LanguageSelector />
+          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
+            {{ theme === 'dark' ? '☀' : '☾' }}
+          </button>
+        </div>
+      </template>
+    </ByzDrawer>
 
     <!-- ── HERO ─────────────────────────────────── -->
     <section class="bp-hero" aria-labelledby="hero-title">
@@ -629,15 +648,16 @@ const installCmd: Record<string, string> = {
 
 /* ── RESPONSIVE ───────────────────── */
 
-// Controls row (always visible alongside brand)
+// Controls row (always visible alongside brand on desktop)
 .bp-nav__controls {
   display: flex; align-items: center; gap: var(--byz-space-3); margin-left: auto;
 }
 
-// Hamburger button — hidden on desktop
+// Hamburger button — hidden on desktop, shown on mobile
 .bp-nav__hamburger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 6px; width: 36px; height: 36px;
+  margin-left: auto; flex-shrink: 0;
   span {
     display: block; width: 20px; height: 2px;
     background: var(--byz-color-text-muted); border-radius: 2px;
@@ -650,25 +670,11 @@ const installCmd: Record<string, string> = {
   }
 }
 
-@media (max-width: 768px) {
-  // Navbar — stacked layout
-  .bp-nav__inner {
-    flex-wrap: wrap; gap: var(--byz-space-2); padding: 0 var(--byz-space-4);
-  }
-
-  .bp-nav__links {
-    display: none; flex-direction: column; width: 100%;
-    padding: var(--byz-space-3) 0 var(--byz-space-4);
-    border-top: 1px solid var(--byz-color-border);
-    gap: 0;
-    li { list-style: none; }
-    a {
-      display: block; padding: var(--byz-space-3) var(--byz-space-2);
-      font-size: var(--byz-text-sm) !important; letter-spacing: 0.06em;
-    }
-    &.is-open { display: flex; }
-  }
-
+@media (max-width: 1080px) {
+  // Navbar — hamburger layout
+  .bp-nav__inner { flex-wrap: wrap; gap: 0; padding: 0 var(--byz-space-4); }
+  .bp-nav__links { display: none; }
+  .bp-nav__controls { display: none; }
   .bp-nav__hamburger { display: flex; }
 
   // Hero
@@ -689,29 +695,36 @@ const installCmd: Record<string, string> = {
   .bp-install__step-num { font-size: 2rem; }
 
   // Architecture tiers — stacked
-  .bp-tiers { grid-template-columns: 1fr; }
+  .bp-tiers { grid-template-columns: 1fr; max-width: 32rem; }
 
-  // Features — stacked
+  // Features — stacked below 600px, 2-col above
   .bp-features { grid-template-columns: 1fr; gap: var(--byz-space-6); }
 
   // Preview grid — stacked
   .bp-preview-grid { grid-template-columns: 1fr; }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .bp-nav__inner { padding: 0 var(--byz-space-5); gap: var(--byz-space-5); }
-  .bp-nav__links { gap: var(--byz-space-4); }
-
-  .bp-section { padding: var(--byz-space-16) var(--byz-space-6); }
-
-  // Stats stays 4-col on tablet
-
-  // Architecture — 1-col stacked on tablet too
-  .bp-tiers { grid-template-columns: 1fr; max-width: 32rem; }
-
-  // Features — 2-col
+@media (min-width: 600px) and (max-width: 1080px) {
   .bp-features { grid-template-columns: repeat(2, 1fr); }
+}
 
-  // Preview grid — stays 2-col on tablet
+.mobile-nav-links {
+  display: flex; flex-direction: column;
+  a {
+    display: block; padding: var(--byz-space-3) var(--byz-space-4);
+    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
+    text-decoration: none; letter-spacing: 0.06em;
+    border-radius: 0.375rem;
+    &:hover { color: var(--byz-color-accent); background: rgba(255,255,255,0.04); }
+  }
+}
+.mobile-nav-footer {
+  display: flex; align-items: center; gap: var(--byz-space-3); flex-wrap: wrap;
+}
+.mobile-nav-toggle {
+  background: var(--byz-color-surface-raised); border: 1px solid var(--byz-color-border);
+  color: var(--byz-color-text); padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;
+  &:hover { background: var(--byz-color-surface-hover); }
 }
 </style>
