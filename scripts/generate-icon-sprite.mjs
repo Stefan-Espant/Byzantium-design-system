@@ -56,7 +56,7 @@ async function loadIcons() {
       name: iconName,
       camelName: toCamelCase(iconName),
       body,
-    })
+    }) 
   }
 
   return icons
