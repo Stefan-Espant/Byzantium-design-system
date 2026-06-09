@@ -5,9 +5,22 @@ const { p } = usePlaygroundLocale()
 
 const releases = [
   {
-    version: '0.7.0',
+    version: '0.7.1',
     date: '2026-06-09',
     label: 'latest',
+    changes: [
+      { type: 'feat', text: 'PlaygroundHeader — gedeelde headercomponent met toegankelijk mega menu voor alle 9 playground-pagina\'s' },
+      { type: 'feat', text: 'Mega menu groepeert pagina\'s in 4 categorieën: Stijl, Componenten, Layout en Meta — met paginabeschrijvingen' },
+      { type: 'feat', text: 'Mega menu volledig vertaald naar alle 16 talen (groepslabels, paginabeschrijvingen)' },
+      { type: 'feat', text: 'Changelog \'latest\'-badge vertaald per taal' },
+      { type: 'fix', text: 'Apostrofs in Franse en Italiaanse locale-strings gecorrigeerd (bouwfout opgelost)' },
+      { type: 'fix', text: '1327 regels gedupliceerde header-SCSS en ByzDrawer nav-code verwijderd uit alle pagina\'s' },
+    ],
+  },
+  {
+    version: '0.7.0',
+    date: '2026-06-09',
+    label: null,
     changes: [
       { type: 'feat', text: 'ByzRating — ster-beoordeling met v-model, readonly-modus, sm/md/lg-groottes en ARIA radiogroup' },
       { type: 'feat', text: 'ByzCode — monospace codeblok met taal-badge, kopieknop (useClipboard) en donker thema' },
