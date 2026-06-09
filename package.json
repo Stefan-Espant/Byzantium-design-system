@@ -7,7 +7,7 @@
     "preview": "./preview.sh",
     "docs": "pnpm --filter docs dev",
     "build": "pnpm --filter @byzantium/core build",
-    "test": "vitest run",
+    "test": "pnpm --filter @byzantium/core test",
     "lint": "eslint .",
     "typecheck": "pnpm --filter @byzantium/core typecheck",
     "changeset": "changeset",
