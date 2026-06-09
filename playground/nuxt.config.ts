@@ -12,7 +12,7 @@ export default defineNuxtConfig({
 
   rootDir: fileURLToPath(new URL('.', import.meta.url)),
 
-  modules: ['@vercel/analytics/nuxt'],
+  modules: ['@vercel/analytics/nuxt', '@vercel/speed-insights/nuxt'],
 
   compatibilityDate: '2024-11-01',
   future: {
