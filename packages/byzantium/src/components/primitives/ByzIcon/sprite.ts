@@ -1,10 +1,11 @@
-import spriteMarkup from './byz-icons-sprite.svg?raw'
-
 const SPRITE_CONTAINER_ID = 'byz-icon-sprite-root'
 
-export function ensureByzIconSprite() {
+export async function ensureByzIconSprite() {
   if (typeof document === 'undefined') return
   if (document.getElementById(SPRITE_CONTAINER_ID)) return
+
+  const res = await fetch('/byz-icons-sprite.svg')
+  if (!res.ok) return
 
   const container = document.createElement('div')
   container.id = SPRITE_CONTAINER_ID
@@ -13,7 +14,7 @@ export function ensureByzIconSprite() {
   container.style.width = '0'
   container.style.height = '0'
   container.style.overflow = 'hidden'
-  container.innerHTML = spriteMarkup
+  container.innerHTML = await res.text()
 
   document.body.prepend(container)
 }

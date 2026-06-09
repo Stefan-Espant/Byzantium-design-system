@@ -1,14 +1,21 @@
 <script setup lang="ts">
-  import spriteMarkup from './byz-icons-sprite.svg?raw'
+import { ref, onMounted } from 'vue'
 
-  defineOptions({ name: 'ByzIconSprite' })
+defineOptions({ name: 'ByzIconSprite' })
+
+const spriteHtml = ref('')
+
+onMounted(async () => {
+  const res = await fetch('/byz-icons-sprite.svg')
+  if (res.ok) spriteHtml.value = await res.text()
+})
 </script>
 
 <template>
   <div
     class="byz-icon-sprite-root"
     aria-hidden="true"
-    v-html="spriteMarkup"
+    v-html="spriteHtml"
   />
 </template>
 

@@ -27,8 +27,8 @@
     return props.size
   })
 
-  onMounted(() => {
-    ensureByzIconSprite()
+  onMounted(async () => {
+    await ensureByzIconSprite()
   })
 </script>
 

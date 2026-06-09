@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises'
+import { readdir, readFile, writeFile, mkdir, copyFile } from 'node:fs/promises'
 import { join, dirname, basename, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -103,7 +103,11 @@ async function loadCustomIcons() {
   return icons
 }
 
+const playgroundPublicDir = join(repoRoot, 'playground/public')
+
 await mkdir(outputDir, { recursive: true })
+await mkdir(playgroundPublicDir, { recursive: true })
+
 const lucideIcons = await loadIcons()
 const customIcons = await loadCustomIcons()
 
@@ -113,5 +117,9 @@ const uniqueCustom = customIcons.filter((i) => !knownNames.has(i.name))
 const icons = [...lucideIcons, ...uniqueCustom]
 await writeSprite(icons)
 await writeNamesModule(icons)
+await copyFile(
+  join(outputDir, 'byz-icons-sprite.svg'),
+  join(playgroundPublicDir, 'byz-icons-sprite.svg'),
+)
 
 console.log(`Generated sprite with ${icons.length} icons (${lucideIcons.length} Lucide + ${uniqueCustom.length} custom)`)
