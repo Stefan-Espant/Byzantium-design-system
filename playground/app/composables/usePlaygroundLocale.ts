@@ -97,8 +97,23 @@ export interface PlaygroundStrings {
   // Typography
   typographyPageTitle: string
   // Changelog
-  changelogTitle:  string
-  changelogSub:    string
+  changelogTitle:      string
+  changelogSub:        string
+  changelogLatestLabel: string
+  // Mega menu groups
+  menuGroupStyle:       string
+  menuGroupComponents:  string
+  menuGroupLayout:      string
+  menuGroupMeta:        string
+  // Mega menu descriptions
+  menuDescTokens:       string
+  menuDescTypography:   string
+  menuDescIcons:        string
+  menuDescComponents:   string
+  menuDescForms:        string
+  menuDescGrid:         string
+  menuDescPatterns:     string
+  menuDescChangelog:    string
 }
 
 const translations: Record<LocaleKey, PlaygroundStrings> = {
@@ -134,7 +149,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Grid systeem', gridSub: 'Byzantium biedt vijf grid-varianten. Kies op basis van de densiteit die je layout vraagt.',
     interactiveDemo: 'Interactieve demo', colsLabel: 'Kolommen', gapLabel: 'Gap', responsiveSub: 'Responsive spans',
     patternsPageTitle: 'Patronen', formsPageTitle: 'Formuliercomponenten', typographyPageTitle: 'Typografie',
-    changelogTitle: 'Changelog', changelogSub: 'Alle wijzigingen per versie, nieuwste eerst.',
+    changelogTitle: 'Changelog', changelogSub: 'Alle wijzigingen per versie, nieuwste eerst.', changelogLatestLabel: 'nieuwste', menuGroupStyle: 'Stijl', menuGroupComponents: 'Componenten', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Design tokens & CSS-variabelen', menuDescTypography: 'Lettertypes, schalen en gewichten', menuDescIcons: '1707 Lucide + 3 custom iconen', menuDescComponents: '45+ primitives & composites', menuDescForms: 'Formulieren & useForm-validatie', menuDescGrid: '12-koloms responsive grid', menuDescPatterns: 'Kant-en-klare paginapatronen', menuDescChangelog: 'Versiegeschiedenis & releases',
   },
   en: {
     navComponents: 'Components', navPatterns: 'Patterns', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Forms', navTypography: 'Typography', navBack: '← Back',
@@ -168,7 +183,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Grid system', gridSub: 'Byzantium offers five grid variants. Choose based on the density your layout requires.',
     interactiveDemo: 'Interactive demo', colsLabel: 'Columns', gapLabel: 'Gap', responsiveSub: 'Responsive spans',
     patternsPageTitle: 'Patterns', formsPageTitle: 'Form Components', typographyPageTitle: 'Typography',
-    changelogTitle: 'Changelog', changelogSub: 'All changes per version, newest first.',
+    changelogTitle: 'Changelog', changelogSub: 'All changes per version, newest first.', changelogLatestLabel: 'latest', menuGroupStyle: 'Style', menuGroupComponents: 'Components', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Design tokens & CSS variables', menuDescTypography: 'Typefaces, scales and weights', menuDescIcons: '1707 Lucide + 3 custom icons', menuDescComponents: '45+ primitives & composites', menuDescForms: 'Forms & useForm validation', menuDescGrid: '12-column responsive grid', menuDescPatterns: 'Ready-made page patterns', menuDescChangelog: 'Version history & releases',
   },
   de: {
     navComponents: 'Komponenten', navPatterns: 'Muster', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Formulare', navTypography: 'Typografie', navBack: '← Zurück',
@@ -202,7 +217,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Grid-System', gridSub: 'Byzantium bietet fünf Grid-Varianten. Wähle je nach Dichte deines Layouts.',
     interactiveDemo: 'Interaktive Demo', colsLabel: 'Spalten', gapLabel: 'Abstand', responsiveSub: 'Responsive Spans',
     patternsPageTitle: 'Muster', formsPageTitle: 'Formularkomponenten', typographyPageTitle: 'Typografie',
-    changelogTitle: 'Changelog', changelogSub: 'Alle Änderungen pro Version, neueste zuerst.',
+    changelogTitle: 'Changelog', changelogSub: 'Alle Änderungen pro Version, neueste zuerst.', changelogLatestLabel: 'neueste', menuGroupStyle: 'Stil', menuGroupComponents: 'Komponenten', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Design-Tokens & CSS-Variablen', menuDescTypography: 'Schriftarten, Skalen und Gewichte', menuDescIcons: '1707 Lucide + 3 benutzerdefinierte Icons', menuDescComponents: '45+ Primitives & Composites', menuDescForms: 'Formulare & useForm-Validierung', menuDescGrid: '12-Spalten responsives Grid', menuDescPatterns: 'Vorgefertigte Seitenmuster', menuDescChangelog: 'Versionsgeschichte & Releases',
   },
   fr: {
     navComponents: 'Composants', navPatterns: 'Modèles', navGrid: 'Grille', navChangelog: 'Journal', navForms: 'Formulaires', navTypography: 'Typographie', navBack: '← Retour',
@@ -236,7 +251,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Système de grille', gridSub: 'Byzantium propose cinq variantes de grille. Choisissez selon la densité requise.',
     interactiveDemo: 'Démo interactive', colsLabel: 'Colonnes', gapLabel: 'Espacement', responsiveSub: 'Spans responsifs',
     patternsPageTitle: 'Modèles', formsPageTitle: 'Composants de formulaire', typographyPageTitle: 'Typographie',
-    changelogTitle: 'Journal des modifications', changelogSub: 'Toutes les modifications par version, les plus récentes en premier.',
+    changelogTitle: 'Journal des modifications', changelogSub: 'Toutes les modifications par version, les plus récentes en premier.', changelogLatestLabel: 'dernière', menuGroupStyle: 'Style', menuGroupComponents: 'Composants', menuGroupLayout: 'Mise en page', menuGroupMeta: 'Méta', menuDescTokens: 'Jetons de design & variables CSS', menuDescTypography: 'Polices, échelles et graisses', menuDescIcons: '1707 Lucide + 3 icônes personnalisées', menuDescComponents: '45+ primitives & composites', menuDescForms: 'Formulaires & validation useForm', menuDescGrid: 'Grille responsive à 12 colonnes', menuDescPatterns: 'Modèles de pages prêts à l'emploi', menuDescChangelog: 'Historique des versions & sorties',
   },
   es: {
     navComponents: 'Componentes', navPatterns: 'Patrones', navGrid: 'Cuadrícula', navChangelog: 'Registro', navForms: 'Formularios', navTypography: 'Tipografía', navBack: '← Volver',
@@ -270,7 +285,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sistema de cuadrícula', gridSub: 'Byzantium ofrece cinco variantes de cuadrícula.',
     interactiveDemo: 'Demo interactiva', colsLabel: 'Columnas', gapLabel: 'Espacio', responsiveSub: 'Spans responsivos',
     patternsPageTitle: 'Patrones', formsPageTitle: 'Componentes de formulario', typographyPageTitle: 'Tipografía',
-    changelogTitle: 'Registro de cambios', changelogSub: 'Todos los cambios por versión, los más recientes primero.',
+    changelogTitle: 'Registro de cambios', changelogSub: 'Todos los cambios por versión, los más recientes primero.', changelogLatestLabel: 'última', menuGroupStyle: 'Estilo', menuGroupComponents: 'Componentes', menuGroupLayout: 'Diseño', menuGroupMeta: 'Meta', menuDescTokens: 'Tokens de diseño & variables CSS', menuDescTypography: 'Tipografías, escalas y pesos', menuDescIcons: '1707 Lucide + 3 iconos personalizados', menuDescComponents: '45+ primitivos & compuestos', menuDescForms: 'Formularios & validación useForm', menuDescGrid: 'Cuadrícula responsive de 12 columnas', menuDescPatterns: 'Patrones de página listos para usar', menuDescChangelog: 'Historial de versiones & lanzamientos',
   },
   it: {
     navComponents: 'Componenti', navPatterns: 'Pattern', navGrid: 'Griglia', navChangelog: 'Registro', navForms: 'Moduli', navTypography: 'Tipografia', navBack: '← Indietro',
@@ -304,7 +319,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sistema a griglia', gridSub: 'Byzantium offre cinque varianti di griglia.',
     interactiveDemo: 'Demo interattiva', colsLabel: 'Colonne', gapLabel: 'Spazio', responsiveSub: 'Span responsivi',
     patternsPageTitle: 'Pattern', formsPageTitle: 'Componenti modulo', typographyPageTitle: 'Tipografia',
-    changelogTitle: 'Registro modifiche', changelogSub: 'Tutte le modifiche per versione, le più recenti prima.',
+    changelogTitle: 'Registro modifiche', changelogSub: 'Tutte le modifiche per versione, le più recenti prima.', changelogLatestLabel: 'ultima', menuGroupStyle: 'Stile', menuGroupComponents: 'Componenti', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Token di design & variabili CSS', menuDescTypography: 'Caratteri tipografici, scale e pesi', menuDescIcons: '1707 Lucide + 3 icone personalizzate', menuDescComponents: '45+ primitive & compositi', menuDescForms: 'Moduli & validazione useForm', menuDescGrid: 'Griglia responsive a 12 colonne', menuDescPatterns: 'Modelli di pagina pronti all'uso', menuDescChangelog: 'Cronologia versioni & rilasci',
   },
   pt: {
     navComponents: 'Componentes', navPatterns: 'Padrões', navGrid: 'Grelha', navChangelog: 'Registo', navForms: 'Formulários', navTypography: 'Tipografia', navBack: '← Voltar',
@@ -338,7 +353,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sistema de grelha', gridSub: 'Byzantium oferece cinco variantes de grelha.',
     interactiveDemo: 'Demo interativa', colsLabel: 'Colunas', gapLabel: 'Espaço', responsiveSub: 'Spans responsivos',
     patternsPageTitle: 'Padrões', formsPageTitle: 'Componentes de formulário', typographyPageTitle: 'Tipografia',
-    changelogTitle: 'Registo de alterações', changelogSub: 'Todas as alterações por versão, as mais recentes primeiro.',
+    changelogTitle: 'Registo de alterações', changelogSub: 'Todas as alterações por versão, as mais recentes primeiro.', changelogLatestLabel: 'mais recente', menuGroupStyle: 'Estilo', menuGroupComponents: 'Componentes', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Tokens de design & variáveis CSS', menuDescTypography: 'Tipografias, escalas e pesos', menuDescIcons: '1707 Lucide + 3 ícones personalizados', menuDescComponents: '45+ primitivos & compostos', menuDescForms: 'Formulários & validação useForm', menuDescGrid: 'Grelha responsiva de 12 colunas', menuDescPatterns: 'Padrões de página prontos a usar', menuDescChangelog: 'Histórico de versões & lançamentos',
   },
   pl: {
     navComponents: 'Komponenty', navPatterns: 'Wzorce', navGrid: 'Siatka', navChangelog: 'Zmiany', navForms: 'Formularze', navTypography: 'Typografia', navBack: '← Wstecz',
@@ -372,7 +387,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'System siatki', gridSub: 'Byzantium oferuje pięć wariantów siatki.',
     interactiveDemo: 'Demo interaktywne', colsLabel: 'Kolumny', gapLabel: 'Odstęp', responsiveSub: 'Responsywne spany',
     patternsPageTitle: 'Wzorce', formsPageTitle: 'Komponenty formularzy', typographyPageTitle: 'Typografia',
-    changelogTitle: 'Historia zmian', changelogSub: 'Wszystkie zmiany według wersji, najnowsze pierwsze.',
+    changelogTitle: 'Historia zmian', changelogSub: 'Wszystkie zmiany według wersji, najnowsze pierwsze.', changelogLatestLabel: 'najnowsza', menuGroupStyle: 'Styl', menuGroupComponents: 'Komponenty', menuGroupLayout: 'Układ', menuGroupMeta: 'Meta', menuDescTokens: 'Tokeny projektowe & zmienne CSS', menuDescTypography: 'Kroje pisma, skale i grubości', menuDescIcons: '1707 Lucide + 3 niestandardowe ikony', menuDescComponents: '45+ prymitywów & komponentów złożonych', menuDescForms: 'Formularze & walidacja useForm', menuDescGrid: '12-kolumnowa responsywna siatka', menuDescPatterns: 'Gotowe wzorce stron', menuDescChangelog: 'Historia wersji & wydania',
   },
   ro: {
     navComponents: 'Componente', navPatterns: 'Tipare', navGrid: 'Grilă', navChangelog: 'Jurnal', navForms: 'Formulare', navTypography: 'Tipografie', navBack: '← Înapoi',
@@ -406,7 +421,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sistem de grilă', gridSub: 'Byzantium oferă cinci variante de grilă.',
     interactiveDemo: 'Demo interactiv', colsLabel: 'Coloane', gapLabel: 'Spațiu', responsiveSub: 'Spans responsive',
     patternsPageTitle: 'Tipare', formsPageTitle: 'Componente formular', typographyPageTitle: 'Tipografie',
-    changelogTitle: 'Jurnal de modificări', changelogSub: 'Toate modificările pe versiune, cele mai noi primele.',
+    changelogTitle: 'Jurnal de modificări', changelogSub: 'Toate modificările pe versiune, cele mai noi primele.', changelogLatestLabel: 'cea mai recentă', menuGroupStyle: 'Stil', menuGroupComponents: 'Componente', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Token-uri de design & variabile CSS', menuDescTypography: 'Fonturi, scale și grosimi', menuDescIcons: '1707 Lucide + 3 pictograme personalizate', menuDescComponents: '45+ primitive & composites', menuDescForms: 'Formulare & validare useForm', menuDescGrid: 'Grilă responsivă cu 12 coloane', menuDescPatterns: 'Tipare de pagini gata de utilizat', menuDescChangelog: 'Istoricul versiunilor & lansări',
   },
   hu: {
     navComponents: 'Komponensek', navPatterns: 'Minták', navGrid: 'Rács', navChangelog: 'Változások', navForms: 'Űrlapok', navTypography: 'Tipográfia', navBack: '← Vissza',
@@ -440,7 +455,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Rács rendszer', gridSub: 'Byzantium öt rács variánst kínál.',
     interactiveDemo: 'Interaktív demo', colsLabel: 'Oszlopok', gapLabel: 'Távolság', responsiveSub: 'Reszponzív span-ek',
     patternsPageTitle: 'Minták', formsPageTitle: 'Űrlapkomponensek', typographyPageTitle: 'Tipográfia',
-    changelogTitle: 'Változásnapló', changelogSub: 'Minden változás verziónként, legújabb elöl.',
+    changelogTitle: 'Változásnapló', changelogSub: 'Minden változás verziónként, legújabb elöl.', changelogLatestLabel: 'legújabb', menuGroupStyle: 'Stílus', menuGroupComponents: 'Komponensek', menuGroupLayout: 'Elrendezés', menuGroupMeta: 'Meta', menuDescTokens: 'Design tokenek & CSS változók', menuDescTypography: 'Betűtípusok, skálák és vastagságok', menuDescIcons: '1707 Lucide + 3 egyéni ikon', menuDescComponents: '45+ primitív & összetett', menuDescForms: 'Űrlapok & useForm érvényesítés', menuDescGrid: '12 oszlopos reszponzív rács', menuDescPatterns: 'Kész oldalminták', menuDescChangelog: 'Verzióelőzmény & kiadások',
   },
   cs: {
     navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mřížka', navChangelog: 'Změny', navForms: 'Formuláře', navTypography: 'Typografie', navBack: '← Zpět',
@@ -474,7 +489,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Systém mřížky', gridSub: 'Byzantium nabízí pět variant mřížky.',
     interactiveDemo: 'Interaktivní demo', colsLabel: 'Sloupce', gapLabel: 'Mezera', responsiveSub: 'Responzivní spany',
     patternsPageTitle: 'Vzory', formsPageTitle: 'Komponenty formuláře', typographyPageTitle: 'Typografie',
-    changelogTitle: 'Přehled změn', changelogSub: 'Všechny změny podle verze, nejnovější první.',
+    changelogTitle: 'Přehled změn', changelogSub: 'Všechny změny podle verze, nejnovější první.', changelogLatestLabel: 'nejnovější', menuGroupStyle: 'Styl', menuGroupComponents: 'Komponenty', menuGroupLayout: 'Rozvržení', menuGroupMeta: 'Meta', menuDescTokens: 'Design tokeny & CSS proměnné', menuDescTypography: 'Písma, stupnice a tučnosti', menuDescIcons: '1707 Lucide + 3 vlastní ikony', menuDescComponents: '45+ primitiv & složených komponent', menuDescForms: 'Formuláře & validace useForm', menuDescGrid: '12sloupcový responzivní grid', menuDescPatterns: 'Hotové vzory stránek', menuDescChangelog: 'Historie verzí & vydání',
   },
   sk: {
     navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mriežka', navChangelog: 'Zmeny', navForms: 'Formuláre', navTypography: 'Typografia', navBack: '← Späť',
@@ -508,7 +523,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Systém mriežky', gridSub: 'Byzantium ponúka päť variantov mriežky.',
     interactiveDemo: 'Interaktívne demo', colsLabel: 'Stĺpce', gapLabel: 'Medzera', responsiveSub: 'Responzívne spany',
     patternsPageTitle: 'Vzory', formsPageTitle: 'Komponenty formulára', typographyPageTitle: 'Typografia',
-    changelogTitle: 'Prehľad zmien', changelogSub: 'Všetky zmeny podľa verzie, najnovšie prvé.',
+    changelogTitle: 'Prehľad zmien', changelogSub: 'Všetky zmeny podľa verzie, najnovšie prvé.', changelogLatestLabel: 'najnovšia', menuGroupStyle: 'Štýl', menuGroupComponents: 'Komponenty', menuGroupLayout: 'Rozloženie', menuGroupMeta: 'Meta', menuDescTokens: 'Dizajnové tokeny & CSS premenné', menuDescTypography: 'Písma, stupnice a hrúbky', menuDescIcons: '1707 Lucide + 3 vlastné ikony', menuDescComponents: '45+ primitív & zložených komponent', menuDescForms: 'Formuláre & validácia useForm', menuDescGrid: '12-stĺpcový responzívny grid', menuDescPatterns: 'Hotové vzory stránok', menuDescChangelog: 'História verzií & vydania',
   },
   hr: {
     navComponents: 'Komponente', navPatterns: 'Obrasci', navGrid: 'Rešetka', navChangelog: 'Promjene', navForms: 'Obrasci', navTypography: 'Tipografija', navBack: '← Natrag',
@@ -542,7 +557,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sustav rešetke', gridSub: 'Byzantium nudi pet varijanti rešetke.',
     interactiveDemo: 'Interaktivni demo', colsLabel: 'Stupci', gapLabel: 'Razmak', responsiveSub: 'Responzivni spanovi',
     patternsPageTitle: 'Obrasci', formsPageTitle: 'Komponente obrasca', typographyPageTitle: 'Tipografija',
-    changelogTitle: 'Dnevnik promjena', changelogSub: 'Sve promjene po verziji, najnovije prve.',
+    changelogTitle: 'Dnevnik promjena', changelogSub: 'Sve promjene po verziji, najnovije prve.', changelogLatestLabel: 'najnovija', menuGroupStyle: 'Stil', menuGroupComponents: 'Komponente', menuGroupLayout: 'Raspored', menuGroupMeta: 'Meta', menuDescTokens: 'Dizajn tokeni & CSS varijable', menuDescTypography: 'Fontovi, skale i debljine', menuDescIcons: '1707 Lucide + 3 prilagođene ikone', menuDescComponents: '45+ primitiva & složenih komponenti', menuDescForms: 'Obrasci & validacija useForm', menuDescGrid: '12-stupačna responzivna mreža', menuDescPatterns: 'Gotovi obrasci stranica', menuDescChangelog: 'Povijest verzija & izdanja',
   },
   sl: {
     navComponents: 'Komponente', navPatterns: 'Vzorci', navGrid: 'Mreža', navChangelog: 'Spremembe', navForms: 'Obrazci', navTypography: 'Tipografija', navBack: '← Nazaj',
@@ -576,7 +591,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Sistem mreže', gridSub: 'Byzantium ponuja pet variant mreže.',
     interactiveDemo: 'Interaktivni demo', colsLabel: 'Stolpci', gapLabel: 'Razmik', responsiveSub: 'Odzivni razponi',
     patternsPageTitle: 'Vzorci', formsPageTitle: 'Komponente obrazca', typographyPageTitle: 'Tipografija',
-    changelogTitle: 'Dnevnik sprememb', changelogSub: 'Vse spremembe po različici, najnovejše najprej.',
+    changelogTitle: 'Dnevnik sprememb', changelogSub: 'Vse spremembe po različici, najnovejše najprej.', changelogLatestLabel: 'najnovejša', menuGroupStyle: 'Slog', menuGroupComponents: 'Komponente', menuGroupLayout: 'Postavitev', menuGroupMeta: 'Meta', menuDescTokens: 'Dizajnski žetoni & CSS spremenljivke', menuDescTypography: 'Pisave, lestvice in debelosti', menuDescIcons: '1707 Lucide + 3 prilagojene ikone', menuDescComponents: '45+ primitivov & sestavljenih', menuDescForms: 'Obrazci & preverjanje useForm', menuDescGrid: '12-stolpčna odzivna mreža', menuDescPatterns: 'Pripravljeni vzorci strani', menuDescChangelog: 'Zgodovina različic & izdaje',
   },
   sv: {
     navComponents: 'Komponenter', navPatterns: 'Mönster', navGrid: 'Grid', navChangelog: 'Ändringslogg', navForms: 'Formulär', navTypography: 'Typografi', navBack: '← Tillbaka',
@@ -610,7 +625,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Gridsystem', gridSub: 'Byzantium erbjuder fem gridvarianter.',
     interactiveDemo: 'Interaktiv demo', colsLabel: 'Kolumner', gapLabel: 'Mellanrum', responsiveSub: 'Responsiva spans',
     patternsPageTitle: 'Mönster', formsPageTitle: 'Formulärkomponenter', typographyPageTitle: 'Typografi',
-    changelogTitle: 'Ändringslogg', changelogSub: 'Alla ändringar per version, nyaste först.',
+    changelogTitle: 'Ändringslogg', changelogSub: 'Alla ändringar per version, nyaste först.', changelogLatestLabel: 'senaste', menuGroupStyle: 'Stil', menuGroupComponents: 'Komponenter', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Designtokens & CSS-variabler', menuDescTypography: 'Typsnitt, skalor och vikter', menuDescIcons: '1707 Lucide + 3 anpassade ikoner', menuDescComponents: '45+ primitiver & sammansatta', menuDescForms: 'Formulär & useForm-validering', menuDescGrid: '12-kolumners responsivt grid', menuDescPatterns: 'Färdiga sidmönster', menuDescChangelog: 'Versionshistorik & utgåvor',
   },
   da: {
     navComponents: 'Komponenter', navPatterns: 'Mønstre', navGrid: 'Grid', navChangelog: 'Ændringslog', navForms: 'Formularer', navTypography: 'Typografi', navBack: '← Tilbage',
@@ -644,7 +659,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     gridPageTitle: 'Gridsystem', gridSub: 'Byzantium tilbyder fem grid-varianter.',
     interactiveDemo: 'Interaktiv demo', colsLabel: 'Kolonner', gapLabel: 'Mellemrum', responsiveSub: 'Responsive spans',
     patternsPageTitle: 'Mønstre', formsPageTitle: 'Formularkomponenter', typographyPageTitle: 'Typografi',
-    changelogTitle: 'Ændringslog', changelogSub: 'Alle ændringer per version, nyeste først.',
+    changelogTitle: 'Ændringslog', changelogSub: 'Alle ændringer per version, nyeste først.', changelogLatestLabel: 'nyeste', menuGroupStyle: 'Stil', menuGroupComponents: 'Komponenter', menuGroupLayout: 'Layout', menuGroupMeta: 'Meta', menuDescTokens: 'Designtokens & CSS-variabler', menuDescTypography: 'Skrifttyper, skalaer og vægte', menuDescIcons: '1707 Lucide + 3 tilpassede ikoner', menuDescComponents: '45+ primitiver & sammensatte', menuDescForms: 'Formularer & useForm-validering', menuDescGrid: '12-kolonne responsivt grid', menuDescPatterns: 'Færdige sidemønstre', menuDescChangelog: 'Versionshistorik & udgivelser',
   },
   fi: {
     navComponents: 'Komponentit', navPatterns: 'Mallit', navGrid: 'Ruudukko', navChangelog: 'Muutosloki', navBack: '← Takaisin',

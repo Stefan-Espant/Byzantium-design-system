@@ -23,31 +23,31 @@ onUnmounted(() => document.removeEventListener('keydown', handleKey))
 
 const groups = computed(() => [
   {
-    label: 'Stijl',
+    label: p('menuGroupStyle'),
     items: [
-      { href: '/tokens',     label: 'Tokens',          desc: 'Design tokens & CSS variabelen' },
-      { href: '/typography', label: p('navTypography'), desc: 'Lettertypes, schalen en gewichten' },
-      { href: '/icons',      label: 'Icons',            desc: '1707 Lucide + 3 custom iconen' },
+      { href: '/tokens',     label: 'Tokens',          desc: p('menuDescTokens') },
+      { href: '/typography', label: p('navTypography'), desc: p('menuDescTypography') },
+      { href: '/icons',      label: 'Icons',            desc: p('menuDescIcons') },
     ],
   },
   {
-    label: 'Componenten',
+    label: p('menuGroupComponents'),
     items: [
-      { href: '/components', label: p('navComponents'), desc: '45+ primitives & composites' },
-      { href: '/forms',      label: p('navForms'),      desc: 'Formulieren & useForm validatie' },
+      { href: '/components', label: p('navComponents'), desc: p('menuDescComponents') },
+      { href: '/forms',      label: p('navForms'),      desc: p('menuDescForms') },
     ],
   },
   {
-    label: 'Layout',
+    label: p('menuGroupLayout'),
     items: [
-      { href: '/grid',       label: p('navGrid'),       desc: '12-koloms responsive grid' },
-      { href: '/patterns',   label: p('navPatterns'),   desc: 'Kant-en-klare paginapatronen' },
+      { href: '/grid',       label: p('navGrid'),       desc: p('menuDescGrid') },
+      { href: '/patterns',   label: p('navPatterns'),   desc: p('menuDescPatterns') },
     ],
   },
   {
-    label: 'Meta',
+    label: p('menuGroupMeta'),
     items: [
-      { href: '/changelog',  label: p('navChangelog'),  desc: 'Versiegeschiedenis & releases' },
+      { href: '/changelog',  label: p('navChangelog'),  desc: p('menuDescChangelog') },
     ],
   },
 ])
@@ -116,14 +116,14 @@ const groups = computed(() => [
         </div>
       </nav>
     </Transition>
-  </header>
 
-  <div
-    v-if="menuOpen"
-    class="ph-backdrop"
-    aria-hidden="true"
-    @click="close"
-  />
+    <div
+      v-if="menuOpen"
+      class="ph-backdrop"
+      aria-hidden="true"
+      @click="close"
+    />
+  </header>
 </template>
 
 <style scoped lang="scss">

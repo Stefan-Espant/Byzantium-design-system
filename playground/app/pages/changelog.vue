@@ -130,7 +130,7 @@ const typeColors: Record<string, string> = {
         >
           <div class="cl-release__header">
             <span class="cl-release__version">v{{ release.version }}</span>
-            <span v-if="release.label" class="cl-release__badge">{{ release.label }}</span>
+            <span v-if="release.label" class="cl-release__badge">{{ p('changelogLatestLabel') }}</span>
             <span class="cl-release__date">{{ release.date }}</span>
           </div>
 
