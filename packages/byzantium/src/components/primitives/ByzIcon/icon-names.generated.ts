@@ -1703,7 +1703,10 @@ export const generatedIconNames = [
   "zodiac-taurus",
   "zodiac-virgo",
   "zoom-in",
-  "zoom-out"
+  "zoom-out",
+  "byz-arch",
+  "byz-crown",
+  "byz-seal"
 ] as const
 
 export type GeneratedIconName = typeof generatedIconNames[number]

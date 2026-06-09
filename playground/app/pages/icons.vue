@@ -322,6 +322,16 @@ async function copyIconName(iconName: string) {
     font-family: var(--byz-font-serif);
     font-size: var(--byz-text-xl);
     font-weight: var(--byz-font-bold);
+
+    &:hover {
+      color: var(--byz-color-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--byz-color-accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
   }
 
   &__links {
@@ -339,6 +349,13 @@ async function copyIconName(iconName: string) {
 
     a[aria-current="page"],
     a:hover {
+      color: var(--byz-color-accent);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--byz-color-accent);
+      outline-offset: 3px;
+      border-radius: 4px;
       color: var(--byz-color-accent);
     }
   }
@@ -362,6 +379,19 @@ async function copyIconName(iconName: string) {
     background: transparent;
     text-decoration: none;
     padding: 0 0.875rem;
+    transition: border-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
+
+    &:hover {
+      border-color: var(--byz-color-accent);
+      color: var(--byz-color-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--byz-color-accent);
+      outline-offset: 2px;
+      border-color: var(--byz-color-accent);
+      color: var(--byz-color-accent);
+    }
   }
 
   &__toggle {
@@ -747,6 +777,18 @@ async function copyIconName(iconName: string) {
   background: transparent;
   color: var(--byz-color-text-muted);
   cursor: pointer;
+  transition: border-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--byz-color-accent) 60%, var(--byz-color-border));
+    color: var(--byz-color-text-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--byz-color-accent);
+    outline-offset: 2px;
+    border-color: var(--byz-color-accent);
+  }
 
   &.is-active {
     border-color: var(--byz-color-accent);
@@ -985,6 +1027,12 @@ async function copyIconName(iconName: string) {
     border-color: color-mix(in srgb, var(--byz-color-accent) 60%, var(--byz-color-border));
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--byz-color-accent);
+    outline-offset: 2px;
+    border-color: var(--byz-color-accent);
+  }
+
   &__name {
     font-family: var(--byz-font-mono);
     font-size: var(--byz-text-xs);
@@ -1042,6 +1090,18 @@ async function copyIconName(iconName: string) {
       text-decoration: none;
       padding: var(--byz-space-3);
       border-radius: 0.75rem;
+      transition: background-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
+
+      &:hover {
+        background: color-mix(in srgb, var(--byz-color-accent) 10%, transparent);
+        color: var(--byz-color-accent);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--byz-color-accent);
+        outline-offset: 2px;
+        color: var(--byz-color-accent);
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 import { readdir, readFile, writeFile, mkdir } from 'node:fs/promises'
-import { join, dirname } from 'node:path'
+import { join, dirname, basename, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -8,6 +8,7 @@ const lucideIconsDir = join(
   repoRoot,
   'node_modules/.pnpm/lucide-vue-next@1.0.0_vue@3.5.35_typescript@5.9.3_/node_modules/lucide-vue-next/dist/esm/icons',
 )
+const customIconsDir = join(__dirname, 'custom-icons')
 const outputDir = join(
   repoRoot,
   'packages/byzantium/src/components/primitives/ByzIcon',
@@ -84,9 +85,33 @@ export type GeneratedIconName = typeof generatedIconNames[number]
   await writeFile(join(outputDir, 'icon-names.generated.ts'), namesModule, 'utf8')
 }
 
+async function loadCustomIcons() {
+  let files
+  try {
+    files = (await readdir(customIconsDir)).filter((f) => f.endsWith('.svg')).sort()
+  } catch {
+    return []
+  }
+
+  const icons = []
+  for (const file of files) {
+    const name = basename(file, extname(file))
+    const source = await readFile(join(customIconsDir, file), 'utf8')
+    const inner = source.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '').trim()
+    icons.push({ name, body: inner })
+  }
+  return icons
+}
+
 await mkdir(outputDir, { recursive: true })
-const icons = await loadIcons()
+const lucideIcons = await loadIcons()
+const customIcons = await loadCustomIcons()
+
+const knownNames = new Set(lucideIcons.map((i) => i.name))
+const uniqueCustom = customIcons.filter((i) => !knownNames.has(i.name))
+
+const icons = [...lucideIcons, ...uniqueCustom]
 await writeSprite(icons)
 await writeNamesModule(icons)
 
-console.log(`Generated sprite with ${icons.length} icons`)
+console.log(`Generated sprite with ${icons.length} icons (${lucideIcons.length} Lucide + ${uniqueCustom.length} custom)`)
