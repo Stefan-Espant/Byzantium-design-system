@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ByzGrid, ByzCol, ByzDrawer, useTheme } from '@byzantium/core'
+import { ByzGrid, ByzCol } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
-const menuOpen = ref(false)
 
 const activeVariant = ref<4 | 8 | 12 | 16 | 24>(12)
 const activeGap     = ref<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md')
@@ -39,49 +37,7 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
 <template>
   <div class="gd-page">
 
-    <!-- HEADER -->
-    <header class="gd-header">
-      <nav class="gd-header__inner">
-        <a href="/" class="gd-header__brand">Byzantium</a>
-        <span class="gd-header__title">{{ p('gridPageTitle') }}</span>
-        <div class="gd-header__controls">
-          <LanguageSelector />
-          <button class="gd-header__toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-          <a href="/" class="gd-header__back">{{ p('navBack') }}</a>
-        </div>
-        <button
-          class="gd-header__hamburger"
-          :aria-expanded="menuOpen"
-          aria-label="Menu"
-          @click="menuOpen = !menuOpen"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </header>
-
-    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
-      <nav class="mobile-nav-links">
-        <a href="/" @click="menuOpen = false">{{ p('navBack') }}</a>
-        <a href="/tokens" @click="menuOpen = false">Tokens</a>
-        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
-        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
-        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
-        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
-        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
-        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
-      </nav>
-      <template #footer>
-        <div class="mobile-nav-footer">
-          <LanguageSelector />
-          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-        </div>
-      </template>
-    </ByzDrawer>
+    <PlaygroundHeader />
 
     <main class="gd-main">
 
@@ -337,59 +293,6 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
   background: var(--byz-color-background);
   color: var(--byz-color-text);
   font-family: var(--byz-font-sans);
-}
-
-// ── Header ─────────────────────────────────────────────────────────────────
-.gd-header {
-  position: sticky;
-  top: 0;
-  z-index: var(--byz-z-sticky, 100);
-  background: var(--byz-color-nav-bg, rgba(14, 3, 5, 0.9));
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--byz-color-border);
-
-  &__inner {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0.75rem 1.5rem;
-  }
-
-  &__brand {
-    font-family: var(--byz-font-serif);
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--byz-brand-500);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-  }
-
-  &__title {
-    font-size: 0.875rem;
-    color: var(--byz-color-text-muted);
-    flex: 1;
-  }
-
-  &__toggle {
-    background: var(--byz-color-surface-raised);
-    border: 1px solid var(--byz-color-border);
-    color: var(--byz-color-text);
-    padding: 0.25rem 0.625rem;
-    border-radius: 0.375rem;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: background 0.15s;
-    &:hover { background: var(--byz-color-surface-hover); }
-  }
-
-  &__back {
-    font-size: 0.8rem;
-    color: var(--byz-color-text-muted);
-    text-decoration: none;
-    &:hover { color: var(--byz-brand-500); }
-  }
 }
 
 // ── Main ───────────────────────────────────────────────────────────────────
@@ -665,50 +568,8 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
   }
 }
 
-// ── Hamburger / controls ───────────────────────────────────────────────────
-.gd-header__controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.gd-header__hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  margin-left: auto;
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-
-  span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    border-radius: 1px;
-    background: var(--byz-color-text-muted);
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  &[aria-expanded="true"] {
-    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    span:nth-child(2) { opacity: 0; }
-    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  }
-}
-
 // ── Responsive ─────────────────────────────────────────────────────────────
 @media (max-width: 1080px) {
-  .gd-header__inner { padding: 0.5rem 1rem; flex-wrap: wrap; }
-  .gd-header__title { display: none; }
-  .gd-header__controls { display: none; }
-  .gd-header__hamburger { display: flex; }
-
   .gd-main { padding: 1.5rem 1rem 4rem; }
 
   .gd-variants-table {
@@ -721,23 +582,4 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
   .gd-controls__group { flex-wrap: wrap; }
 }
 
-.mobile-nav-links {
-  display: flex; flex-direction: column;
-  a {
-    display: block; padding: var(--byz-space-3) var(--byz-space-4);
-    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
-    text-decoration: none; letter-spacing: 0.06em;
-    border-radius: 0.375rem;
-    &:hover { color: var(--byz-color-accent); background: rgba(255,255,255,0.04); }
-  }
-}
-.mobile-nav-footer {
-  display: flex; align-items: center; gap: var(--byz-space-3); flex-wrap: wrap;
-}
-.mobile-nav-toggle {
-  background: var(--byz-color-surface-raised); border: 1px solid var(--byz-color-border);
-  color: var(--byz-color-text); padding: 0.25rem 0.625rem;
-  border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;
-  &:hover { background: var(--byz-color-surface-hover); }
-}
 </style>

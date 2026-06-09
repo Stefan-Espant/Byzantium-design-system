@@ -7,14 +7,10 @@ import {
   ByzBadge,
   ByzProgress,
   ByzFooter,
-  ByzDrawer,
-  useTheme,
 } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
-const menuOpen = ref(false)
 const inputValue  = ref('')
 const showAlert   = ref(true)
 const pkgManager  = ref<'pnpm' | 'npm' | 'yarn'>('pnpm')
@@ -30,53 +26,7 @@ const installCmd: Record<string, string> = {
 <template>
   <div class="bp">
 
-    <!-- ── NAVBAR ───────────────────────────────── -->
-    <header class="bp-nav">
-      <nav class="bp-nav__inner" aria-label="Hoofdnavigatie">
-        <span class="bp-nav__brand">Byzantium</span>
-        <ul class="bp-nav__links" role="list">
-          <li><a href="/tokens">Tokens</a></li>
-          <li><a href="/icons">Icons</a></li>
-          <li><a href="/components">{{ p('navComponents') }}</a></li>
-          <li><a href="/forms">{{ p('navForms') }}</a></li>
-          <li><a href="/typography">{{ p('navTypography') }}</a></li>
-          <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
-          <li><a href="/grid">{{ p('navGrid') }}</a></li>
-          <li><a href="/changelog">{{ p('navChangelog') }}</a></li>
-        </ul>
-        <div class="bp-nav__controls">
-          <LanguageSelector />
-          <button class="bp-nav__toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-          <a href="https://github.com/Stefan-Espant/Byzantium-design-system" target="_blank" rel="noopener" class="bp-nav__github">GitHub</a>
-        </div>
-        <button class="bp-nav__hamburger" :aria-expanded="menuOpen" aria-label="Menu" @click="menuOpen = !menuOpen">
-          <span /><span /><span />
-        </button>
-      </nav>
-    </header>
-
-    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
-      <nav class="mobile-nav-links">
-        <a href="/tokens" @click="menuOpen = false">Tokens</a>
-        <a href="/icons" @click="menuOpen = false">Icons</a>
-        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
-        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
-        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
-        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
-        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
-        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
-      </nav>
-      <template #footer>
-        <div class="mobile-nav-footer">
-          <LanguageSelector />
-          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-        </div>
-      </template>
-    </ByzDrawer>
+    <PlaygroundHeader />
 
     <main>
     <!-- ── HERO ─────────────────────────────────── -->
@@ -360,46 +310,6 @@ const installCmd: Record<string, string> = {
   overflow-x: clip;
 }
 
-/* ── NAVBAR ───────────────────────── */
-.bp-nav {
-  position: sticky; top: 0; z-index: var(--byz-z-sticky);
-  background: var(--byz-color-nav-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--byz-color-border);
-  transition: background var(--byz-duration-normal) var(--byz-ease-default);
-
-  &__inner {
-    display: flex; align-items: center; gap: var(--byz-space-8);
-    max-width: 72rem; margin: 0 auto;
-    padding: 0 var(--byz-space-8); min-height: 60px;
-  }
-
-  &__brand {
-    font-family: var(--byz-font-serif); font-size: var(--byz-text-xl);
-    font-weight: var(--byz-font-bold); letter-spacing: 0.03em;
-    color: var(--byz-color-text-primary);
-  }
-
-  &__toggle {
-    background: none; border: 1px solid var(--byz-color-border); border-radius: 50%;
-    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--byz-color-text-muted); font-size: 14px;
-    transition: color var(--byz-duration-fast) var(--byz-ease-default),
-                border-color var(--byz-duration-fast) var(--byz-ease-default);
-    &:hover { color: var(--byz-color-accent); border-color: var(--byz-color-accent); }
-  }
-
-  &__links {
-    display: flex; gap: var(--byz-space-6); list-style: none; margin: 0; padding: 0; flex: 1; align-items: center;
-    a {
-      font-size: var(--byz-text-xs); letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: var(--byz-font-medium); color: var(--byz-color-text-muted); text-decoration: none;
-      transition: color var(--byz-duration-fast) var(--byz-ease-default);
-      &:hover { color: var(--byz-color-text-secondary); }
-    }
-  }
-}
-
 /* ── HERO ─────────────────────────── */
 .bp-hero {
   position: relative; min-height: 90vh; display: flex; flex-direction: column;
@@ -673,46 +583,7 @@ const installCmd: Record<string, string> = {
 
 /* ── RESPONSIVE ───────────────────── */
 
-// Controls row (always visible alongside brand on desktop)
-.bp-nav__controls {
-  display: flex; align-items: center; gap: var(--byz-space-3); margin-left: auto;
-}
-
-.bp-nav__github {
-  display: inline-flex; align-items: center;
-  font-size: var(--byz-text-sm); font-weight: var(--byz-font-medium);
-  color: var(--byz-color-text-muted); text-decoration: none;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid var(--byz-color-border);
-  border-radius: var(--byz-radius-md, 0.375rem);
-  transition: color var(--byz-duration-fast) var(--byz-ease-default), border-color var(--byz-duration-fast) var(--byz-ease-default);
-  &:hover { color: var(--byz-color-text); border-color: var(--byz-color-text-muted); }
-}
-
-// Hamburger button — hidden on desktop, shown on mobile
-.bp-nav__hamburger {
-  display: none; flex-direction: column; justify-content: center; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 6px; width: 36px; height: 36px;
-  margin-left: auto; flex-shrink: 0;
-  span {
-    display: block; width: 20px; height: 2px;
-    background: var(--byz-color-text-muted); border-radius: 2px;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  &[aria-expanded="true"] {
-    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    span:nth-child(2) { opacity: 0; }
-    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  }
-}
-
 @media (max-width: 1080px) {
-  // Navbar — hamburger layout
-  .bp-nav__inner { flex-wrap: wrap; gap: 0; padding: 0 var(--byz-space-4); }
-  .bp-nav__links { display: none; }
-  .bp-nav__controls { display: none; }
-  .bp-nav__hamburger { display: flex; }
-
   // Hero
   .bp-hero {
     min-height: 70vh;
@@ -747,23 +618,4 @@ const installCmd: Record<string, string> = {
   .bp-features { grid-template-columns: repeat(2, 1fr); }
 }
 
-.mobile-nav-links {
-  display: flex; flex-direction: column;
-  a {
-    display: block; padding: var(--byz-space-3) var(--byz-space-4);
-    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
-    text-decoration: none; letter-spacing: 0.06em;
-    border-radius: 0.375rem;
-    &:hover { color: var(--byz-color-accent); background: rgba(255,255,255,0.04); }
-  }
-}
-.mobile-nav-footer {
-  display: flex; align-items: center; gap: var(--byz-space-3); flex-wrap: wrap;
-}
-.mobile-nav-toggle {
-  background: var(--byz-color-surface-raised); border: 1px solid var(--byz-color-border);
-  color: var(--byz-color-text); padding: 0.25rem 0.625rem;
-  border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;
-  &:hover { background: var(--byz-color-surface-hover); }
-}
 </style>

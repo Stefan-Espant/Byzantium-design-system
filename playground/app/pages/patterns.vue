@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import {
   ByzHero, ByzNavbar, ByzFooter, ByzSidebar, ByzPageHeader, ByzEmptyState,
-  ByzButton, ByzBadge, ByzBreadcrumb, ByzDrawer,
-  useTheme,
+  ByzButton, ByzBadge, ByzBreadcrumb,
 } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
-const menuOpen = ref(false)
 
 // Sidebar open state
 const sidebarOpen = ref(true)
@@ -18,49 +15,7 @@ const sidebarCollapsed = ref(false)
 <template>
   <div class="pt-page">
 
-    <!-- HEADER -->
-    <header class="pt-header">
-      <nav class="pt-header__inner">
-        <a href="/" class="pt-header__brand">Byzantium</a>
-        <span class="pt-header__title">Patronen</span>
-        <div class="pt-header__controls">
-          <LanguageSelector />
-          <button class="pt-header__toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-          <a href="/" class="pt-header__back">{{ p('navBack') }}</a>
-        </div>
-        <button
-          class="pt-header__hamburger"
-          :aria-expanded="menuOpen"
-          aria-label="Menu"
-          @click="menuOpen = !menuOpen"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </header>
-
-    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
-      <nav class="mobile-nav-links">
-        <a href="/" @click="menuOpen = false">{{ p('navBack') }}</a>
-        <a href="/tokens" @click="menuOpen = false">Tokens</a>
-        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
-        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
-        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
-        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
-        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
-        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
-      </nav>
-      <template #footer>
-        <div class="mobile-nav-footer">
-          <LanguageSelector />
-          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-        </div>
-      </template>
-    </ByzDrawer>
+    <PlaygroundHeader />
 
     <main class="pt-main">
 
@@ -245,36 +200,6 @@ const sidebarCollapsed = ref(false)
 <style lang="scss" scoped>
 .pt-page { min-height: 100vh; display: flex; flex-direction: column; }
 
-/* ── Header ────────────────────────────────────────────────────────────────── */
-.pt-header {
-  position: sticky; top: 0; z-index: 10;
-  background: var(--byz-color-nav-bg);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--byz-color-border);
-
-  &__inner {
-    display: flex; align-items: center; gap: var(--byz-space-4);
-    max-width: 72rem; margin: 0 auto;
-    padding: 0 var(--byz-space-8); min-height: 56px;
-  }
-  &__brand {
-    font-family: var(--byz-font-serif); font-size: var(--byz-text-lg);
-    font-weight: var(--byz-font-bold); color: var(--byz-color-text-primary);
-    text-decoration: none;
-  }
-  &__title { flex: 1; font-size: var(--byz-text-sm); color: var(--byz-color-text-muted); }
-  &__toggle {
-    background: none; border: 1px solid var(--byz-color-border); border-radius: 50%;
-    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--byz-color-text-muted); font-size: 14px;
-    &:hover { color: var(--byz-color-accent); border-color: var(--byz-color-accent); }
-  }
-  &__back {
-    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted); text-decoration: none;
-    &:hover { color: var(--byz-color-accent); }
-  }
-}
-
 /* ── Main ──────────────────────────────────────────────────────────────────── */
 .pt-main {
   flex: 1; max-width: 72rem; margin: 0 auto; width: 100%;
@@ -383,56 +308,8 @@ const sidebarCollapsed = ref(false)
   }
 }
 
-/* ─── Hamburger / controls ─────────────────────────────────────────────────── */
-.pt-header__controls {
-  display: flex; align-items: center; gap: var(--byz-space-4);
-}
-
-.pt-header__hamburger {
-  display: none; flex-direction: column; justify-content: center; gap: 5px;
-  background: none; border: none; cursor: pointer;
-  padding: 6px; margin-left: auto; width: 36px; height: 36px; flex-shrink: 0;
-
-  span {
-    display: block; width: 20px; height: 2px; border-radius: 1px;
-    background: var(--byz-color-text-muted);
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  &[aria-expanded="true"] {
-    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    span:nth-child(2) { opacity: 0; }
-    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  }
-}
-
 @media (max-width: 1080px) {
-  .pt-header__inner { padding: 0 var(--byz-space-4); flex-wrap: wrap; }
-  .pt-header__title { display: none; }
-  .pt-header__controls { display: none; }
-  .pt-header__hamburger { display: flex; }
-
   .pt-main { padding: var(--byz-space-8) var(--byz-space-4) var(--byz-space-16); }
   .pt-grid-2 { grid-template-columns: 1fr; }
-}
-
-.mobile-nav-links {
-  display: flex; flex-direction: column;
-  a {
-    display: block; padding: var(--byz-space-3) var(--byz-space-4);
-    font-size: var(--byz-text-sm); color: var(--byz-color-text-muted);
-    text-decoration: none; letter-spacing: 0.06em;
-    border-radius: 0.375rem;
-    &:hover { color: var(--byz-color-accent); background: rgba(255,255,255,0.04); }
-  }
-}
-.mobile-nav-footer {
-  display: flex; align-items: center; gap: var(--byz-space-3); flex-wrap: wrap;
-}
-.mobile-nav-toggle {
-  background: var(--byz-color-surface-raised); border: 1px solid var(--byz-color-border);
-  color: var(--byz-color-text); padding: 0.25rem 0.625rem;
-  border-radius: 0.375rem; font-size: 0.75rem; cursor: pointer;
-  &:hover { background: var(--byz-color-surface-hover); }
 }
 </style>

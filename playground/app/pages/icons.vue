@@ -10,12 +10,9 @@ import {
   byzIconNames,
   useClipboard,
   useToast,
-  useTheme,
 } from '@byzantium/core'
 
-const { theme, toggle } = useTheme()
 const query = ref('')
-const menuOpen = ref(false)
 const selectedSize = ref<'sm' | 'md' | 'lg'>('md')
 const { add: addToast } = useToast()
 const { copy } = useClipboard()
@@ -98,32 +95,7 @@ async function copyIconName(iconName: string) {
   <div class="ip-page">
     <ByzIconSprite />
     <ByzToastContainer />
-    <header class="ip-header">
-      <nav class="ip-header__inner">
-        <a href="/" class="ip-header__brand">Byzantium</a>
-        <div class="ip-header__links">
-          <a href="/components">Componenten</a>
-          <a href="/icons" aria-current="page">Icons</a>
-        </div>
-        <div class="ip-header__controls">
-          <button class="ip-header__toggle" aria-label="Thema wisselen" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-          <a href="/components" class="ip-header__back">← Terug</a>
-        </div>
-        <button class="ip-header__hamburger" :aria-expanded="menuOpen" @click="menuOpen = !menuOpen">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </header>
-
-    <div v-if="menuOpen" class="ip-mobile-menu">
-      <a href="/" @click="menuOpen = false">Home</a>
-      <a href="/components" @click="menuOpen = false">Componenten</a>
-      <a href="/icons" @click="menuOpen = false">Icons</a>
-      <a href="/forms" @click="menuOpen = false">Formulieren</a>
-      <a href="/typography" @click="menuOpen = false">Typografie</a>
-    </div>
+    <PlaygroundHeader />
 
     <main class="ip-main">
       <section class="ip-hero">
@@ -298,132 +270,6 @@ async function copyIconName(iconName: string) {
 <style lang="scss" scoped>
 .ip-page {
   min-height: 100vh;
-}
-
-.ip-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: color-mix(in srgb, var(--byz-color-nav-bg) 88%, transparent);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--byz-color-border);
-
-  &__inner {
-    max-width: 76rem;
-    margin: 0 auto;
-    min-height: 60px;
-    padding: 0 var(--byz-space-8);
-    display: flex;
-    align-items: center;
-    gap: var(--byz-space-6);
-  }
-
-  &__brand {
-    color: var(--byz-color-text-primary);
-    text-decoration: none;
-    font-family: var(--byz-font-serif);
-    font-size: var(--byz-text-xl);
-    font-weight: var(--byz-font-bold);
-
-    &:hover {
-      color: var(--byz-color-accent);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--byz-color-accent);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-  }
-
-  &__links {
-    display: flex;
-    gap: var(--byz-space-5);
-
-    a {
-      color: var(--byz-color-text-muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: var(--byz-text-xs);
-      font-weight: var(--byz-font-semibold);
-    }
-
-    a[aria-current="page"],
-    a:hover {
-      color: var(--byz-color-accent);
-    }
-
-    a:focus-visible {
-      outline: 2px solid var(--byz-color-accent);
-      outline-offset: 3px;
-      border-radius: 4px;
-      color: var(--byz-color-accent);
-    }
-  }
-
-  &__controls {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: var(--byz-space-3);
-  }
-
-  &__toggle,
-  &__back {
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--byz-color-border);
-    border-radius: 999px;
-    color: var(--byz-color-text-muted);
-    background: transparent;
-    text-decoration: none;
-    padding: 0 0.875rem;
-    transition: border-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
-
-    &:hover {
-      border-color: var(--byz-color-accent);
-      color: var(--byz-color-accent);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--byz-color-accent);
-      outline-offset: 2px;
-      border-color: var(--byz-color-accent);
-      color: var(--byz-color-accent);
-    }
-  }
-
-  &__toggle {
-    width: 44px;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  &__hamburger {
-    display: none;
-    margin-left: auto;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      margin: 4px auto;
-      background: var(--byz-color-text-muted);
-    }
-  }
-}
-
-.ip-mobile-menu {
-  display: none;
 }
 
 .ip-main {
@@ -1064,49 +910,6 @@ async function copyIconName(iconName: string) {
 }
 
 @media (max-width: 1080px) {
-  .ip-header {
-    &__inner {
-      padding: 0 var(--byz-space-4);
-      gap: var(--byz-space-3);
-    }
-
-    &__links,
-    &__controls {
-      display: none;
-    }
-
-    &__hamburger {
-      display: block;
-    }
-  }
-
-  .ip-mobile-menu {
-    display: flex;
-    flex-direction: column;
-    gap: var(--byz-space-2);
-    padding: var(--byz-space-4);
-    border-bottom: 1px solid var(--byz-color-border);
-
-    a {
-      color: var(--byz-color-text-muted);
-      text-decoration: none;
-      padding: var(--byz-space-3);
-      border-radius: 0.75rem;
-      transition: background-color var(--byz-duration-fast) var(--byz-ease-default), color var(--byz-duration-fast) var(--byz-ease-default);
-
-      &:hover {
-        background: color-mix(in srgb, var(--byz-color-accent) 10%, transparent);
-        color: var(--byz-color-accent);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--byz-color-accent);
-        outline-offset: 2px;
-        color: var(--byz-color-accent);
-      }
-    }
-  }
-
   .ip-main {
     padding: var(--byz-space-8) var(--byz-space-4) var(--byz-space-16);
   }

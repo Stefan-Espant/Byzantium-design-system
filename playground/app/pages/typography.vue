@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ByzDrawer, ByzFooter, useTheme } from '@byzantium/core'
+import { ByzFooter } from '@byzantium/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
-const { theme, toggle } = useTheme()
 const { p } = usePlaygroundLocale()
-const menuOpen = ref(false)
 
 const typeScales = [
   { name: 'text-xs',   token: '--byz-text-xs',   clamp: '0.75rem → 0.875rem',  sample: 'Kleine bijschriften, labels, metadata' },
@@ -34,50 +32,7 @@ const leadings = [
 <template>
   <div class="ty-page">
 
-    <!-- HEADER -->
-    <header class="ty-header">
-      <nav class="ty-header__inner">
-        <a href="/" class="ty-header__brand">Byzantium</a>
-        <span class="ty-header__title">{{ p('typographyPageTitle') }}</span>
-        <div class="ty-header__controls">
-          <LanguageSelector />
-          <button class="ty-header__toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-          <a href="/" class="ty-header__back">{{ p('navBack') }}</a>
-        </div>
-        <button
-          class="ty-header__hamburger"
-          :aria-expanded="menuOpen"
-          aria-label="Menu"
-          @click="menuOpen = !menuOpen"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </header>
-
-    <ByzDrawer v-model="menuOpen" side="left" title="Byzantium">
-      <nav class="mobile-nav-links">
-        <a href="/" @click="menuOpen = false">{{ p('navBack') }}</a>
-        <a href="/tokens" @click="menuOpen = false">Tokens</a>
-        <a href="/icons" @click="menuOpen = false">Icons</a>
-        <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
-        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
-        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
-        <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
-        <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
-        <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
-      </nav>
-      <template #footer>
-        <div class="mobile-nav-footer">
-          <LanguageSelector />
-          <button class="mobile-nav-toggle" :aria-label="p('lightMode')" @click="toggle">
-            {{ theme === 'dark' ? '☀' : '☾' }}
-          </button>
-        </div>
-      </template>
-    </ByzDrawer>
+    <PlaygroundHeader />
 
     <main class="ty-main">
 
@@ -233,68 +188,6 @@ const leadings = [
   background: var(--byz-color-background);
   color: var(--byz-color-text-primary);
   font-family: var(--byz-font-sans);
-}
-
-// ── Header ──────────────────────────────────────────────────────
-.ty-header {
-  position: sticky;
-  top: 0;
-  z-index: var(--byz-z-sticky);
-  background: var(--byz-color-nav-bg);
-  border-bottom: 1px solid var(--byz-color-border);
-  backdrop-filter: blur(12px);
-
-  &__inner {
-    display: flex;
-    align-items: center;
-    gap: var(--byz-space-4);
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: var(--byz-space-3) var(--byz-space-6);
-  }
-
-  &__brand {
-    font-family: var(--byz-font-serif);
-    font-size: var(--byz-text-xl);
-    font-weight: var(--byz-font-bold);
-    color: var(--byz-brand-400);
-    text-decoration: none;
-    &:hover { color: var(--byz-brand-300); }
-  }
-
-  &__title { font-size: var(--byz-text-sm); color: var(--byz-color-text-muted); flex: 1; }
-
-  &__controls { display: flex; align-items: center; gap: var(--byz-space-3); }
-
-  &__toggle {
-    background: none;
-    border: 1px solid var(--byz-color-border);
-    border-radius: 0.375rem;
-    padding: var(--byz-space-1) var(--byz-space-2);
-    color: var(--byz-color-text-secondary);
-    cursor: pointer;
-    font-size: var(--byz-text-sm);
-    &:hover { border-color: var(--byz-brand-500); color: var(--byz-color-text-primary); }
-  }
-
-  &__back {
-    font-size: var(--byz-text-sm);
-    color: var(--byz-color-text-muted);
-    text-decoration: none;
-    &:hover { color: var(--byz-brand-400); }
-  }
-
-  &__hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--byz-space-2);
-    margin-left: auto;
-    span { display: block; width: 22px; height: 2px; background: var(--byz-color-text-secondary); border-radius: 1px; }
-  }
 }
 
 // ── Main ─────────────────────────────────────────────────────────
@@ -582,44 +475,11 @@ const leadings = [
 
 // ── Mobile ───────────────────────────────────────────────────────
 @media (max-width: 1080px) {
-  .ty-header__controls { display: none; }
-  .ty-header__hamburger { display: flex; }
   .ty-main { padding: var(--byz-space-8) var(--byz-space-4) var(--byz-space-16); }
   .ty-fonts    { grid-template-columns: 1fr; }
   .ty-leadings { grid-template-columns: 1fr; }
   .ty-hierarchy { grid-template-columns: 1fr; }
   .ty-scale-row { grid-template-columns: 1fr; }
   .ty-weight-row { grid-template-columns: 1fr; }
-}
-
-.mobile-nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--byz-space-1);
-  a {
-    padding: var(--byz-space-3) var(--byz-space-4);
-    color: var(--byz-color-text-secondary);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-size: var(--byz-text-sm);
-    &:hover { background: rgba(192,16,48,0.08); color: var(--byz-brand-400); }
-    &:focus-visible { outline: 2px solid var(--byz-color-focus); outline-offset: 2px; }
-  }
-}
-
-.mobile-nav-footer {
-  display: flex;
-  align-items: center;
-  gap: var(--byz-space-3);
-  padding: var(--byz-space-3) var(--byz-space-4);
-}
-
-.mobile-nav-toggle {
-  background: none;
-  border: 1px solid var(--byz-color-border);
-  border-radius: 0.375rem;
-  padding: var(--byz-space-1) var(--byz-space-2);
-  color: var(--byz-color-text-secondary);
-  cursor: pointer;
 }
 </style>
