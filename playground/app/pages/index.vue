@@ -337,9 +337,9 @@ const installCmd: Record<string, string> = {
       brand="Byzantium"
       :links="[
         { label: 'GitHub',    href: 'https://github.com/Stefan-Espant/Byzantium-design-system' },
-        { label: 'Changelog', href: '#' },
+        { label: 'Changelog', href: '/changelog' },
         { label: 'Tokens',    href: '/tokens' },
-        { label: p('footerLicense'), href: '#' },
+        { label: p('footerLicense'), href: 'https://github.com/Stefan-Espant/Byzantium-design-system/blob/main/LICENSE' },
       ]"
       copyright="MIT · v0.1.0"
     />
