@@ -18,6 +18,7 @@ const releases = [
       { type: 'fix', text: 'Hover- en focus-states toegevoegd aan alle interactieve elementen op /icons' },
       { type: 'fix', text: 'Footer-links gecorrigeerd: Changelog → /changelog, License → GitHub' },
       { type: 'fix', text: 'CI-workflows bijgewerkt naar Node.js 22 voor pnpm@11.5.2 compatibiliteit' },
+      { type: 'fix', text: 'Release-workflow bijgewerkt naar npm OIDC Trusted Publishers (geen token meer nodig)' },
     ],
   },
   {
