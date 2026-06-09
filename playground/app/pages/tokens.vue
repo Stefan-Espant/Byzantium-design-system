@@ -115,6 +115,7 @@ function barWidth(rem: number): string {
         <button
           class="cp-header__hamburger"
           :aria-expanded="menuOpen"
+          aria-label="Menu"
           @click="menuOpen = !menuOpen"
         >
           <span></span><span></span><span></span>

@@ -54,6 +54,7 @@ const utilityCode = `<!-- 12-koloms grid via utility classes -->
         <button
           class="gd-header__hamburger"
           :aria-expanded="menuOpen"
+          aria-label="Menu"
           @click="menuOpen = !menuOpen"
         >
           <span></span><span></span><span></span>

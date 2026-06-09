@@ -122,6 +122,7 @@ const drawerOpen = ref(false)
         <button
           class="cp-header__hamburger"
           :aria-expanded="menuOpen"
+          aria-label="Menu"
           @click="menuOpen = !menuOpen"
         >
           <span></span><span></span><span></span>

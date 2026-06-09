@@ -74,6 +74,7 @@ const installCmd: Record<string, string> = {
       </template>
     </ByzDrawer>
 
+    <main>
     <!-- ── HERO ─────────────────────────────────── -->
     <section class="bp-hero" aria-labelledby="hero-title">
       <div class="bp-hero__glow" aria-hidden="true" />
@@ -331,6 +332,8 @@ const installCmd: Record<string, string> = {
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- ── FOOTER ────────────────────────────────── -->
     <ByzFooter
