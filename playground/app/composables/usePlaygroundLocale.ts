@@ -7,6 +7,8 @@ export interface PlaygroundStrings {
   navPatterns:     string
   navGrid:         string
   navChangelog:    string
+  navForms:        string
+  navTypography:   string
   navBack:         string
   lightMode:       string
   darkMode:        string
@@ -90,6 +92,10 @@ export interface PlaygroundStrings {
   responsiveSub:   string
   // Patterns
   patternsPageTitle: string
+  // Forms
+  formsPageTitle:      string
+  // Typography
+  typographyPageTitle: string
   // Changelog
   changelogTitle:  string
   changelogSub:    string
@@ -97,7 +103,7 @@ export interface PlaygroundStrings {
 
 const translations: Record<LocaleKey, PlaygroundStrings> = {
   nl: {
-    navComponents: 'Componenten', navPatterns: 'Patronen', navGrid: 'Grid', navChangelog: 'Changelog', navBack: '← Terug',
+    navComponents: 'Componenten', navPatterns: 'Patronen', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Formulieren', navTypography: 'Typografie', navBack: '← Terug',
     lightMode: 'Licht', darkMode: 'Donker',
     heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Built to endure.', heroSubtitle: 'Toegankelijk van nature. Één bron van waarheid voor alles wat visueel is.',
     heroCtaStart: 'Aan de slag', heroCtaView: 'Bekijk componenten',
@@ -127,11 +133,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Componenten', primitives: 'Primitives', composites: 'Composites', patterns: 'Patronen',
     gridPageTitle: 'Grid systeem', gridSub: 'Byzantium biedt vijf grid-varianten. Kies op basis van de densiteit die je layout vraagt.',
     interactiveDemo: 'Interactieve demo', colsLabel: 'Kolommen', gapLabel: 'Gap', responsiveSub: 'Responsive spans',
-    patternsPageTitle: 'Patronen',
+    patternsPageTitle: 'Patronen', formsPageTitle: 'Formuliercomponenten', typographyPageTitle: 'Typografie',
     changelogTitle: 'Changelog', changelogSub: 'Alle wijzigingen per versie, nieuwste eerst.',
   },
   en: {
-    navComponents: 'Components', navPatterns: 'Patterns', navGrid: 'Grid', navChangelog: 'Changelog', navBack: '← Back',
+    navComponents: 'Components', navPatterns: 'Patterns', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Forms', navTypography: 'Typography', navBack: '← Back',
     lightMode: 'Light', darkMode: 'Dark',
     heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Built to endure.', heroSubtitle: 'Accessible by nature. One source of truth for everything visual.',
     heroCtaStart: 'Get started', heroCtaView: 'View components',
@@ -161,11 +167,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Components', primitives: 'Primitives', composites: 'Composites', patterns: 'Patterns',
     gridPageTitle: 'Grid system', gridSub: 'Byzantium offers five grid variants. Choose based on the density your layout requires.',
     interactiveDemo: 'Interactive demo', colsLabel: 'Columns', gapLabel: 'Gap', responsiveSub: 'Responsive spans',
-    patternsPageTitle: 'Patterns',
+    patternsPageTitle: 'Patterns', formsPageTitle: 'Form Components', typographyPageTitle: 'Typography',
     changelogTitle: 'Changelog', changelogSub: 'All changes per version, newest first.',
   },
   de: {
-    navComponents: 'Komponenten', navPatterns: 'Muster', navGrid: 'Grid', navChangelog: 'Changelog', navBack: '← Zurück',
+    navComponents: 'Komponenten', navPatterns: 'Muster', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Formulare', navTypography: 'Typografie', navBack: '← Zurück',
     lightMode: 'Hell', darkMode: 'Dunkel',
     heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Gebaut um zu bestehen.', heroSubtitle: 'Von Natur aus zugänglich. Eine Quelle der Wahrheit für alles Visuelle.',
     heroCtaStart: 'Jetzt starten', heroCtaView: 'Komponenten ansehen',
@@ -195,11 +201,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenten', primitives: 'Primitives', composites: 'Composites', patterns: 'Muster',
     gridPageTitle: 'Grid-System', gridSub: 'Byzantium bietet fünf Grid-Varianten. Wähle je nach Dichte deines Layouts.',
     interactiveDemo: 'Interaktive Demo', colsLabel: 'Spalten', gapLabel: 'Abstand', responsiveSub: 'Responsive Spans',
-    patternsPageTitle: 'Muster',
+    patternsPageTitle: 'Muster', formsPageTitle: 'Formularkomponenten', typographyPageTitle: 'Typografie',
     changelogTitle: 'Changelog', changelogSub: 'Alle Änderungen pro Version, neueste zuerst.',
   },
   fr: {
-    navComponents: 'Composants', navPatterns: 'Modèles', navGrid: 'Grille', navChangelog: 'Journal', navBack: '← Retour',
+    navComponents: 'Composants', navPatterns: 'Modèles', navGrid: 'Grille', navChangelog: 'Journal', navForms: 'Formulaires', navTypography: 'Typographie', navBack: '← Retour',
     lightMode: 'Clair', darkMode: 'Sombre',
     heroEyebrow: 'Système de design · v0.5.0', heroTitle: 'Conçu pour durer.', heroSubtitle: 'Accessible par nature. Une source de vérité pour tout ce qui est visuel.',
     heroCtaStart: 'Commencer', heroCtaView: 'Voir les composants',
@@ -229,11 +235,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Composants', primitives: 'Primitifs', composites: 'Composites', patterns: 'Modèles',
     gridPageTitle: 'Système de grille', gridSub: 'Byzantium propose cinq variantes de grille. Choisissez selon la densité requise.',
     interactiveDemo: 'Démo interactive', colsLabel: 'Colonnes', gapLabel: 'Espacement', responsiveSub: 'Spans responsifs',
-    patternsPageTitle: 'Modèles',
+    patternsPageTitle: 'Modèles', formsPageTitle: 'Composants de formulaire', typographyPageTitle: 'Typographie',
     changelogTitle: 'Journal des modifications', changelogSub: 'Toutes les modifications par version, les plus récentes en premier.',
   },
   es: {
-    navComponents: 'Componentes', navPatterns: 'Patrones', navGrid: 'Cuadrícula', navChangelog: 'Registro', navBack: '← Volver',
+    navComponents: 'Componentes', navPatterns: 'Patrones', navGrid: 'Cuadrícula', navChangelog: 'Registro', navForms: 'Formularios', navTypography: 'Tipografía', navBack: '← Volver',
     lightMode: 'Claro', darkMode: 'Oscuro',
     heroEyebrow: 'Sistema de diseño · v0.5.0', heroTitle: 'Construido para perdurar.', heroSubtitle: 'Accesible por naturaleza. Una única fuente de verdad para todo lo visual.',
     heroCtaStart: 'Comenzar', heroCtaView: 'Ver componentes',
@@ -263,11 +269,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Componentes', primitives: 'Primitivos', composites: 'Compuestos', patterns: 'Patrones',
     gridPageTitle: 'Sistema de cuadrícula', gridSub: 'Byzantium ofrece cinco variantes de cuadrícula.',
     interactiveDemo: 'Demo interactiva', colsLabel: 'Columnas', gapLabel: 'Espacio', responsiveSub: 'Spans responsivos',
-    patternsPageTitle: 'Patrones',
+    patternsPageTitle: 'Patrones', formsPageTitle: 'Componentes de formulario', typographyPageTitle: 'Tipografía',
     changelogTitle: 'Registro de cambios', changelogSub: 'Todos los cambios por versión, los más recientes primero.',
   },
   it: {
-    navComponents: 'Componenti', navPatterns: 'Pattern', navGrid: 'Griglia', navChangelog: 'Registro', navBack: '← Indietro',
+    navComponents: 'Componenti', navPatterns: 'Pattern', navGrid: 'Griglia', navChangelog: 'Registro', navForms: 'Moduli', navTypography: 'Tipografia', navBack: '← Indietro',
     lightMode: 'Chiaro', darkMode: 'Scuro',
     heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Costruito per durare.', heroSubtitle: "Accessibile per natura. Un'unica fonte di verità per tutto ciò che è visivo.",
     heroCtaStart: 'Inizia', heroCtaView: 'Vedi componenti',
@@ -297,11 +303,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Componenti', primitives: 'Primitivi', composites: 'Compositi', patterns: 'Pattern',
     gridPageTitle: 'Sistema a griglia', gridSub: 'Byzantium offre cinque varianti di griglia.',
     interactiveDemo: 'Demo interattiva', colsLabel: 'Colonne', gapLabel: 'Spazio', responsiveSub: 'Span responsivi',
-    patternsPageTitle: 'Pattern',
+    patternsPageTitle: 'Pattern', formsPageTitle: 'Componenti modulo', typographyPageTitle: 'Tipografia',
     changelogTitle: 'Registro modifiche', changelogSub: 'Tutte le modifiche per versione, le più recenti prima.',
   },
   pt: {
-    navComponents: 'Componentes', navPatterns: 'Padrões', navGrid: 'Grelha', navChangelog: 'Registo', navBack: '← Voltar',
+    navComponents: 'Componentes', navPatterns: 'Padrões', navGrid: 'Grelha', navChangelog: 'Registo', navForms: 'Formulários', navTypography: 'Tipografia', navBack: '← Voltar',
     lightMode: 'Claro', darkMode: 'Escuro',
     heroEyebrow: 'Sistema de design · v0.5.0', heroTitle: 'Construído para durar.', heroSubtitle: 'Acessível por natureza. Uma fonte única de verdade para tudo o que é visual.',
     heroCtaStart: 'Começar', heroCtaView: 'Ver componentes',
@@ -331,11 +337,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Componentes', primitives: 'Primitivos', composites: 'Compostos', patterns: 'Padrões',
     gridPageTitle: 'Sistema de grelha', gridSub: 'Byzantium oferece cinco variantes de grelha.',
     interactiveDemo: 'Demo interativa', colsLabel: 'Colunas', gapLabel: 'Espaço', responsiveSub: 'Spans responsivos',
-    patternsPageTitle: 'Padrões',
+    patternsPageTitle: 'Padrões', formsPageTitle: 'Componentes de formulário', typographyPageTitle: 'Tipografia',
     changelogTitle: 'Registo de alterações', changelogSub: 'Todas as alterações por versão, as mais recentes primeiro.',
   },
   pl: {
-    navComponents: 'Komponenty', navPatterns: 'Wzorce', navGrid: 'Siatka', navChangelog: 'Zmiany', navBack: '← Wstecz',
+    navComponents: 'Komponenty', navPatterns: 'Wzorce', navGrid: 'Siatka', navChangelog: 'Zmiany', navForms: 'Formularze', navTypography: 'Typografia', navBack: '← Wstecz',
     lightMode: 'Jasny', darkMode: 'Ciemny',
     heroEyebrow: 'System projektowania · v0.5.0', heroTitle: 'Zbudowany, by trwać.', heroSubtitle: 'Dostępny z natury. Jedno źródło prawdy dla wszystkiego, co wizualne.',
     heroCtaStart: 'Zacznij', heroCtaView: 'Zobacz komponenty',
@@ -365,11 +371,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenty', primitives: 'Prymitywy', composites: 'Złożone', patterns: 'Wzorce',
     gridPageTitle: 'System siatki', gridSub: 'Byzantium oferuje pięć wariantów siatki.',
     interactiveDemo: 'Demo interaktywne', colsLabel: 'Kolumny', gapLabel: 'Odstęp', responsiveSub: 'Responsywne spany',
-    patternsPageTitle: 'Wzorce',
+    patternsPageTitle: 'Wzorce', formsPageTitle: 'Komponenty formularzy', typographyPageTitle: 'Typografia',
     changelogTitle: 'Historia zmian', changelogSub: 'Wszystkie zmiany według wersji, najnowsze pierwsze.',
   },
   ro: {
-    navComponents: 'Componente', navPatterns: 'Tipare', navGrid: 'Grilă', navChangelog: 'Jurnal', navBack: '← Înapoi',
+    navComponents: 'Componente', navPatterns: 'Tipare', navGrid: 'Grilă', navChangelog: 'Jurnal', navForms: 'Formulare', navTypography: 'Tipografie', navBack: '← Înapoi',
     lightMode: 'Luminos', darkMode: 'Întunecat',
     heroEyebrow: 'Sistem de design · v0.5.0', heroTitle: 'Construit să dureze.', heroSubtitle: 'Accesibil prin natură. O singură sursă a adevărului pentru tot ce este vizual.',
     heroCtaStart: 'Începe', heroCtaView: 'Vezi componentele',
@@ -399,11 +405,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Componente', primitives: 'Primitive', composites: 'Compuse', patterns: 'Tipare',
     gridPageTitle: 'Sistem de grilă', gridSub: 'Byzantium oferă cinci variante de grilă.',
     interactiveDemo: 'Demo interactiv', colsLabel: 'Coloane', gapLabel: 'Spațiu', responsiveSub: 'Spans responsive',
-    patternsPageTitle: 'Tipare',
+    patternsPageTitle: 'Tipare', formsPageTitle: 'Componente formular', typographyPageTitle: 'Tipografie',
     changelogTitle: 'Jurnal de modificări', changelogSub: 'Toate modificările pe versiune, cele mai noi primele.',
   },
   hu: {
-    navComponents: 'Komponensek', navPatterns: 'Minták', navGrid: 'Rács', navChangelog: 'Változások', navBack: '← Vissza',
+    navComponents: 'Komponensek', navPatterns: 'Minták', navGrid: 'Rács', navChangelog: 'Változások', navForms: 'Űrlapok', navTypography: 'Tipográfia', navBack: '← Vissza',
     lightMode: 'Világos', darkMode: 'Sötét',
     heroEyebrow: 'Design rendszer · v0.5.0', heroTitle: 'Tartósságra tervezve.', heroSubtitle: 'Természetéből adódóan akadálymentes. Egyetlen igazságforrás minden vizuálishoz.',
     heroCtaStart: 'Kezdés', heroCtaView: 'Komponensek megtekintése',
@@ -433,11 +439,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponensek', primitives: 'Primitívek', composites: 'Kompozitok', patterns: 'Minták',
     gridPageTitle: 'Rács rendszer', gridSub: 'Byzantium öt rács variánst kínál.',
     interactiveDemo: 'Interaktív demo', colsLabel: 'Oszlopok', gapLabel: 'Távolság', responsiveSub: 'Reszponzív span-ek',
-    patternsPageTitle: 'Minták',
+    patternsPageTitle: 'Minták', formsPageTitle: 'Űrlapkomponensek', typographyPageTitle: 'Tipográfia',
     changelogTitle: 'Változásnapló', changelogSub: 'Minden változás verziónként, legújabb elöl.',
   },
   cs: {
-    navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mřížka', navChangelog: 'Změny', navBack: '← Zpět',
+    navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mřížka', navChangelog: 'Změny', navForms: 'Formuláře', navTypography: 'Typografie', navBack: '← Zpět',
     lightMode: 'Světlý', darkMode: 'Tmavý',
     heroEyebrow: 'Design systém · v0.5.0', heroTitle: 'Vytvořen pro vytrvalost.', heroSubtitle: 'Přístupný ze své podstaty. Jeden zdroj pravdy pro vše vizuální.',
     heroCtaStart: 'Začít', heroCtaView: 'Zobrazit komponenty',
@@ -467,11 +473,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenty', primitives: 'Primitiva', composites: 'Složené', patterns: 'Vzory',
     gridPageTitle: 'Systém mřížky', gridSub: 'Byzantium nabízí pět variant mřížky.',
     interactiveDemo: 'Interaktivní demo', colsLabel: 'Sloupce', gapLabel: 'Mezera', responsiveSub: 'Responzivní spany',
-    patternsPageTitle: 'Vzory',
+    patternsPageTitle: 'Vzory', formsPageTitle: 'Komponenty formuláře', typographyPageTitle: 'Typografie',
     changelogTitle: 'Přehled změn', changelogSub: 'Všechny změny podle verze, nejnovější první.',
   },
   sk: {
-    navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mriežka', navChangelog: 'Zmeny', navBack: '← Späť',
+    navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mriežka', navChangelog: 'Zmeny', navForms: 'Formuláre', navTypography: 'Typografia', navBack: '← Späť',
     lightMode: 'Svetlý', darkMode: 'Tmavý',
     heroEyebrow: 'Dizajnový systém · v0.5.0', heroTitle: 'Vytvorený pre trvanlivosť.', heroSubtitle: 'Prístupný zo svojej podstaty. Jeden zdroj pravdy pre všetko vizuálne.',
     heroCtaStart: 'Začať', heroCtaView: 'Zobraziť komponenty',
@@ -501,11 +507,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenty', primitives: 'Primitívy', composites: 'Zložené', patterns: 'Vzory',
     gridPageTitle: 'Systém mriežky', gridSub: 'Byzantium ponúka päť variantov mriežky.',
     interactiveDemo: 'Interaktívne demo', colsLabel: 'Stĺpce', gapLabel: 'Medzera', responsiveSub: 'Responzívne spany',
-    patternsPageTitle: 'Vzory',
+    patternsPageTitle: 'Vzory', formsPageTitle: 'Komponenty formulára', typographyPageTitle: 'Typografia',
     changelogTitle: 'Prehľad zmien', changelogSub: 'Všetky zmeny podľa verzie, najnovšie prvé.',
   },
   hr: {
-    navComponents: 'Komponente', navPatterns: 'Obrasci', navGrid: 'Rešetka', navChangelog: 'Promjene', navBack: '← Natrag',
+    navComponents: 'Komponente', navPatterns: 'Obrasci', navGrid: 'Rešetka', navChangelog: 'Promjene', navForms: 'Obrasci', navTypography: 'Tipografija', navBack: '← Natrag',
     lightMode: 'Svijetlo', darkMode: 'Tamno',
     heroEyebrow: 'Dizajn sustav · v0.5.0', heroTitle: 'Izgrađen za trajnost.', heroSubtitle: 'Pristupačan po prirodi. Jedan izvor istine za sve vizualno.',
     heroCtaStart: 'Počni', heroCtaView: 'Pogledaj komponente',
@@ -535,11 +541,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponente', primitives: 'Primitivi', composites: 'Složeni', patterns: 'Obrasci',
     gridPageTitle: 'Sustav rešetke', gridSub: 'Byzantium nudi pet varijanti rešetke.',
     interactiveDemo: 'Interaktivni demo', colsLabel: 'Stupci', gapLabel: 'Razmak', responsiveSub: 'Responzivni spanovi',
-    patternsPageTitle: 'Obrasci',
+    patternsPageTitle: 'Obrasci', formsPageTitle: 'Komponente obrasca', typographyPageTitle: 'Tipografija',
     changelogTitle: 'Dnevnik promjena', changelogSub: 'Sve promjene po verziji, najnovije prve.',
   },
   sl: {
-    navComponents: 'Komponente', navPatterns: 'Vzorci', navGrid: 'Mreža', navChangelog: 'Spremembe', navBack: '← Nazaj',
+    navComponents: 'Komponente', navPatterns: 'Vzorci', navGrid: 'Mreža', navChangelog: 'Spremembe', navForms: 'Obrazci', navTypography: 'Tipografija', navBack: '← Nazaj',
     lightMode: 'Svetlo', darkMode: 'Temno',
     heroEyebrow: 'Oblikovalski sistem · v0.5.0', heroTitle: 'Zgrajen za vzdržljivost.', heroSubtitle: 'Dostopen po naravi. En vir resnice za vse vizualno.',
     heroCtaStart: 'Začni', heroCtaView: 'Oglej si komponente',
@@ -569,11 +575,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponente', primitives: 'Primitivi', composites: 'Sestavljeni', patterns: 'Vzorci',
     gridPageTitle: 'Sistem mreže', gridSub: 'Byzantium ponuja pet variant mreže.',
     interactiveDemo: 'Interaktivni demo', colsLabel: 'Stolpci', gapLabel: 'Razmik', responsiveSub: 'Odzivni razponi',
-    patternsPageTitle: 'Vzorci',
+    patternsPageTitle: 'Vzorci', formsPageTitle: 'Komponente obrazca', typographyPageTitle: 'Tipografija',
     changelogTitle: 'Dnevnik sprememb', changelogSub: 'Vse spremembe po različici, najnovejše najprej.',
   },
   sv: {
-    navComponents: 'Komponenter', navPatterns: 'Mönster', navGrid: 'Grid', navChangelog: 'Ändringslogg', navBack: '← Tillbaka',
+    navComponents: 'Komponenter', navPatterns: 'Mönster', navGrid: 'Grid', navChangelog: 'Ändringslogg', navForms: 'Formulär', navTypography: 'Typografi', navBack: '← Tillbaka',
     lightMode: 'Ljust', darkMode: 'Mörkt',
     heroEyebrow: 'Designsystem · v0.5.0', heroTitle: 'Byggt för att bestå.', heroSubtitle: 'Tillgängligt av naturen. En enda sanningskälla för allt visuellt.',
     heroCtaStart: 'Kom igång', heroCtaView: 'Se komponenter',
@@ -603,11 +609,11 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenter', primitives: 'Primitiver', composites: 'Sammansatta', patterns: 'Mönster',
     gridPageTitle: 'Gridsystem', gridSub: 'Byzantium erbjuder fem gridvarianter.',
     interactiveDemo: 'Interaktiv demo', colsLabel: 'Kolumner', gapLabel: 'Mellanrum', responsiveSub: 'Responsiva spans',
-    patternsPageTitle: 'Mönster',
+    patternsPageTitle: 'Mönster', formsPageTitle: 'Formulärkomponenter', typographyPageTitle: 'Typografi',
     changelogTitle: 'Ändringslogg', changelogSub: 'Alla ändringar per version, nyaste först.',
   },
   da: {
-    navComponents: 'Komponenter', navPatterns: 'Mønstre', navGrid: 'Grid', navChangelog: 'Ændringslog', navBack: '← Tilbage',
+    navComponents: 'Komponenter', navPatterns: 'Mønstre', navGrid: 'Grid', navChangelog: 'Ændringslog', navForms: 'Formularer', navTypography: 'Typografi', navBack: '← Tilbage',
     lightMode: 'Lyst', darkMode: 'Mørkt',
     heroEyebrow: 'Designsystem · v0.5.0', heroTitle: 'Bygget til at vare.', heroSubtitle: 'Tilgængeligt af natur. Én kilde til sandhed for alt visuelt.',
     heroCtaStart: 'Kom i gang', heroCtaView: 'Se komponenter',
@@ -637,7 +643,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
     componentsPageTitle: 'Komponenter', primitives: 'Primitiver', composites: 'Sammensatte', patterns: 'Mønstre',
     gridPageTitle: 'Gridsystem', gridSub: 'Byzantium tilbyder fem grid-varianter.',
     interactiveDemo: 'Interaktiv demo', colsLabel: 'Kolonner', gapLabel: 'Mellemrum', responsiveSub: 'Responsive spans',
-    patternsPageTitle: 'Mønstre',
+    patternsPageTitle: 'Mønstre', formsPageTitle: 'Formularkomponenter', typographyPageTitle: 'Typografi',
     changelogTitle: 'Ændringslog', changelogSub: 'Alle ændringer per version, nyeste først.',
   },
   fi: {

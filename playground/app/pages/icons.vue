@@ -121,6 +121,8 @@ async function copyIconName(iconName: string) {
       <a href="/" @click="menuOpen = false">Home</a>
       <a href="/components" @click="menuOpen = false">Componenten</a>
       <a href="/icons" @click="menuOpen = false">Icons</a>
+      <a href="/forms" @click="menuOpen = false">Formulieren</a>
+      <a href="/typography" @click="menuOpen = false">Typografie</a>
     </div>
 
     <main class="ip-main">

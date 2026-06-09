@@ -38,6 +38,8 @@ const installCmd: Record<string, string> = {
           <li><a href="/tokens">Tokens</a></li>
           <li><a href="/icons">Icons</a></li>
           <li><a href="/components">{{ p('navComponents') }}</a></li>
+          <li><a href="/forms">{{ p('navForms') }}</a></li>
+          <li><a href="/typography">{{ p('navTypography') }}</a></li>
           <li><a href="/patterns">{{ p('navPatterns') }}</a></li>
           <li><a href="/grid">{{ p('navGrid') }}</a></li>
           <li><a href="/changelog">{{ p('navChangelog') }}</a></li>
@@ -62,6 +64,8 @@ const installCmd: Record<string, string> = {
         <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
         <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
         <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
+        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
+        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
         <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
       </nav>
       <template #footer>

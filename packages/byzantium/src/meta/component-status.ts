@@ -20,6 +20,9 @@ export const componentStatus: Record<string, ComponentStatus> = {
   ByzAnnouncer:        'stable',
   ByzSearchInput:      'beta',
   ByzNotificationBell: 'beta',
+  ByzRating:           'beta',
+  ByzCode:             'beta',
+  ByzKbd:              'stable',
 
   // Composites
   ByzAlert:            'stable',

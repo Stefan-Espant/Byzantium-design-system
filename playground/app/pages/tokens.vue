@@ -130,6 +130,8 @@ function barWidth(rem: number): string {
         <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
         <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
         <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
+        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
+        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
         <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
       </nav>
       <template #footer>

@@ -51,6 +51,9 @@ export { default as ByzNotificationBell } from './components/primitives/ByzNotif
 export { default as ByzGrid }             from './components/primitives/ByzGrid'
 export { default as ByzCol }              from './components/primitives/ByzCol'
 export type { GridCols, GridGap }         from './components/primitives/ByzGrid'
+export { default as ByzRating }           from './components/primitives/ByzRating'
+export { default as ByzCode }             from './components/primitives/ByzCode'
+export { default as ByzKbd }              from './components/primitives/ByzKbd'
 
 // ── Composites ────────────────────────────────────────────────
 export { default as ByzAlert }          from './components/composites/ByzAlert'

@@ -8,9 +8,23 @@ const menuOpen = ref(false)
 
 const releases = [
   {
-    version: '0.6.0',
+    version: '0.7.0',
     date: '2026-06-09',
     label: 'latest',
+    changes: [
+      { type: 'feat', text: 'ByzRating — ster-beoordeling met v-model, readonly-modus, sm/md/lg-groottes en ARIA radiogroup' },
+      { type: 'feat', text: 'ByzCode — monospace codeblok met taal-badge, kopieknop (useClipboard) en donker thema' },
+      { type: 'feat', text: 'ByzKbd — toetsenbordweergave met meerdere toetsen gescheiden door + en fysieke toetsstijl' },
+      { type: 'feat', text: '/forms playground-pagina: alle formuliercomponenten (ByzInput, ByzTextarea, ByzSelect, ByzCheckbox, ByzRadio, ByzSwitch, ByzSearchInput, ByzFileUpload, ByzCombobox, ByzDatePicker) + live useForm-demo met validatie en toast bij verzenden' },
+      { type: 'feat', text: '/typography playground-pagina: letterspécimen (Syne/Cormorant/SourceCodePro), typeschaal xs→4xl, gewichten, regelafstanden en tekst-hiërarchie' },
+      { type: 'feat', text: 'Navigatie bijgewerkt in alle 7 playground-pagina\'s: /forms en /typography toegevoegd aan desktop én mobiel menu' },
+      { type: 'feat', text: 'Localisatie uitgebreid: navForms, navTypography, formsPageTitle, typographyPageTitle toegevoegd aan alle 16 talen' },
+    ],
+  },
+  {
+    version: '0.6.0',
+    date: '2026-06-09',
+    label: null,
     changes: [
       { type: 'feat', text: 'Icon sprite uitgebreid naar 1707 iconen: alle 1704 Lucide-iconen + 3 custom Byzantium-iconen (byz-crown, byz-seal, byz-arch)' },
       { type: 'feat', text: 'Custom icon infrastructuur: SVG-bestanden in scripts/custom-icons/ worden automatisch meegenomen bij generatie' },
@@ -133,6 +147,8 @@ const typeColors: Record<string, string> = {
         <a href="/components" @click="menuOpen = false">{{ p('navComponents') }}</a>
         <a href="/patterns" @click="menuOpen = false">{{ p('navPatterns') }}</a>
         <a href="/grid" @click="menuOpen = false">{{ p('navGrid') }}</a>
+        <a href="/forms" @click="menuOpen = false">{{ p('navForms') }}</a>
+        <a href="/typography" @click="menuOpen = false">{{ p('navTypography') }}</a>
         <a href="/changelog" @click="menuOpen = false">{{ p('navChangelog') }}</a>
       </nav>
       <template #footer>
