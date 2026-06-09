@@ -20,6 +20,7 @@ const releases = [
       { type: 'fix', text: 'CI-workflows bijgewerkt naar Node.js 22 voor pnpm@11.5.2 compatibiliteit' },
       { type: 'fix', text: 'Release-workflow bijgewerkt naar npm OIDC Trusted Publishers (geen token meer nodig)' },
       { type: 'fix', text: 'Storybook workspace hernoemd naar @byzantium/storybook om naambotsing met npm-pakket te voorkomen (fix voor changeset version corruptie)' },
+      { type: 'fix', text: 'ByzIcon sprite fetch: try-catch toegevoegd zodat relatieve URL geen unhandled rejection gooit in Vitest/Node.js' },
     ],
   },
   {
