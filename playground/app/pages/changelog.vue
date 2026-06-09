@@ -8,9 +8,22 @@ const menuOpen = ref(false)
 
 const releases = [
   {
+    version: '0.6.0',
+    date: '2026-06-09',
+    label: 'latest',
+    changes: [
+      { type: 'feat', text: 'Icon sprite uitgebreid naar 1707 iconen: alle 1704 Lucide-iconen + 3 custom Byzantium-iconen (byz-crown, byz-seal, byz-arch)' },
+      { type: 'feat', text: 'Custom icon infrastructuur: SVG-bestanden in scripts/custom-icons/ worden automatisch meegenomen bij generatie' },
+      { type: 'feat', text: 'Vercel Analytics en Speed Insights toegevoegd aan playground' },
+      { type: 'fix', text: 'Hover- en focus-states toegevoegd aan alle interactieve elementen op /icons' },
+      { type: 'fix', text: 'Footer-links gecorrigeerd: Changelog → /changelog, License → GitHub' },
+      { type: 'fix', text: 'CI-workflows bijgewerkt naar Node.js 22 voor pnpm@11.5.2 compatibiliteit' },
+    ],
+  },
+  {
     version: '0.5.0',
     date: '2026-06-07',
-    label: 'latest',
+    label: null,
     changes: [
       { type: 'feat', text: 'ByzDrawer — zijpaneel met 4 posities (left/right/top/bottom), focus-trap en scroll-lock' },
       { type: 'feat', text: 'ByzStepper — wizard component met lineaire en vrije navigatie, verticale modus' },
