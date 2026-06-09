@@ -12,6 +12,8 @@ export default defineNuxtConfig({
 
   rootDir: fileURLToPath(new URL('.', import.meta.url)),
 
+  modules: ['@vercel/analytics/nuxt'],
+
   compatibilityDate: '2024-11-01',
   future: {
     compatibilityVersion: 4
