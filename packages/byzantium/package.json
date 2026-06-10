@@ -28,6 +28,15 @@
     "**/*.scss",
     "**/*.css"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Byzantium-design-system/Byzantium-design-system.git",
+    "directory": "packages/byzantium"
+  },
+  "homepage": "https://github.com/Byzantium-design-system/Byzantium-design-system#readme",
+  "bugs": {
+    "url": "https://github.com/Byzantium-design-system/Byzantium-design-system/issues"
+  },
   "publishConfig": {
     "access": "public"
   },
