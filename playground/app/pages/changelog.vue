@@ -5,9 +5,19 @@ const { p } = usePlaygroundLocale()
 
 const releases = [
   {
+    version: '0.7.2',
+    date: '2026-06-10',
+    label: 'latest',
+    changes: [
+      { type: 'fix', text: 'Pakketnaam gecorrigeerd van @byzantium/core naar @byzantium-design-system/core in alle 84 bestanden — lost OIDC-mismatch op waardoor npm-publicatie mislukte' },
+      { type: 'fix', text: 'MIT-licentieveld toegevoegd aan package.json (eerder zichtbaar als "none" op npmjs.com ondanks aanwezige LICENSE-file)' },
+      { type: 'fix', text: 'Build-artefacten (dist 2/, dist 4/, tsconfig.tsbuildinfo) verwijderd uit git-history en .gitignore bijgewerkt' },
+    ],
+  },
+  {
     version: '0.7.1',
     date: '2026-06-09',
-    label: 'latest',
+    label: null,
     changes: [
       { type: 'feat', text: 'PlaygroundHeader — gedeelde headercomponent met toegankelijk mega menu voor alle 9 playground-pagina\'s' },
       { type: 'feat', text: 'Mega menu groepeert pagina\'s in 4 categorieën: Stijl, Componenten, Layout en Meta — met paginabeschrijvingen' },

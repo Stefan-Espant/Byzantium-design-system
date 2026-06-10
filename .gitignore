@@ -11,5 +11,6 @@ dist
 docs/superpowers/
 .claude
 
-.envtsconfig.tsbuildinfo
-"dist *"
+.env
+tsconfig.tsbuildinfo
+dist *

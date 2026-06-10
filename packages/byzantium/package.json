@@ -2,6 +2,7 @@
   "name": "@byzantium-design-system/core",
   "version": "0.1.0",
   "description": "Byzantium design system — tokens, components and patterns",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/byzantium.umd.cjs",
   "module": "./dist/byzantium.js",
