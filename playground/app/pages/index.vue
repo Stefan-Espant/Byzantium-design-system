@@ -293,10 +293,10 @@ const installCmd: Record<string, string> = {
     <ByzFooter
       brand="Byzantium"
       :links="[
-        { label: 'GitHub',    href: 'https://github.com/Stefan-Espant/Byzantium-design-system' },
+        { label: 'GitHub',    href: 'https://github.com/byzantium-design-system/Byzantium-design-system' },
         { label: 'Changelog', href: '/changelog' },
         { label: 'Tokens',    href: '/tokens' },
-        { label: p('footerLicense'), href: 'https://github.com/Stefan-Espant/Byzantium-design-system/blob/main/LICENSE' },
+        { label: p('footerLicense'), href: 'https://github.com/byzantium-design-system/Byzantium-design-system/blob/main/LICENSE' },
       ]"
       copyright="MIT · v0.1.0"
     />

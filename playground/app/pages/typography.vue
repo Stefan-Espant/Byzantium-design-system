@@ -172,7 +172,7 @@ const leadings = [
     <ByzFooter
       brand="Byzantium"
       :links="[
-        { label: 'GitHub', href: 'https://github.com/Stefan-Espant/Byzantium-design-system' },
+        { label: 'GitHub', href: 'https://github.com/byzantium-design-system/Byzantium-design-system' },
         { label: 'Changelog', href: '/changelog' },
       ]"
       copyright="© 2026 Semantique Agency"

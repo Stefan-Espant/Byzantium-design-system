@@ -80,6 +80,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Publish to GitHub Packages
+        if: steps.check.outputs.has_changesets == 'true'
+        working-directory: packages/byzantium
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+          npm publish --registry https://npm.pkg.github.com --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create GitHub Release
         if: steps.check.outputs.has_changesets == 'true'
         run: |
