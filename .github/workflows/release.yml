@@ -29,6 +29,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -66,9 +67,9 @@ jobs:
       - name: Publish to npm
         if: steps.check.outputs.has_changesets == 'true'
         working-directory: packages/byzantium
-        run: npm publish --provenance --access public
+        run: npm publish --access public
         env:
-          NPM_CONFIG_PROVENANCE: "true"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_Token_2 }}
 
       - name: Push version bump
         if: steps.check.outputs.has_changesets == 'true'
