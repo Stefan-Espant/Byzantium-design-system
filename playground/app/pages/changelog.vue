@@ -12,6 +12,10 @@ const releases = [
       { type: 'fix', text: 'Pakketnaam gecorrigeerd van @byzantium/core naar @byzantium-design-system/core in alle 84 bestanden — lost OIDC-mismatch op waardoor npm-publicatie mislukte' },
       { type: 'fix', text: 'MIT-licentieveld toegevoegd aan package.json (eerder zichtbaar als "none" op npmjs.com ondanks aanwezige LICENSE-file)' },
       { type: 'fix', text: 'Build-artefacten (dist 2/, dist 4/, tsconfig.tsbuildinfo) verwijderd uit git-history en .gitignore bijgewerkt' },
+      { type: 'fix', text: 'Repository overgedragen naar byzantium-design-system GitHub-organisatie; npm Trusted Publisher en remote URL bijgewerkt' },
+      { type: 'fix', text: 'GitHub Packages publish-workflow toegevoegd (publish-gpr.yml); packages:write-permissie aan release-workflow toegevoegd' },
+      { type: 'fix', text: 'npm-publicatie omgezet van OIDC Trusted Publisher naar token-gebaseerde authenticatie (NPM_Token_2) — OIDC conflicteerde met pnpm changeset publish' },
+      { type: 'fix', text: 'Footer-versienummer bijgewerkt van v0.1.0 naar v0.7.2 op homepage en demo-toast in components-pagina' },
     ],
   },
   {
