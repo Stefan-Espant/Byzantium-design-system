@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -66,7 +65,8 @@ jobs:
 
       - name: Publish to npm
         if: steps.check.outputs.has_changesets == 'true'
-        run: pnpm changeset publish
+        working-directory: packages/byzantium
+        run: npm publish --provenance --access public
         env:
           NPM_CONFIG_PROVENANCE: "true"
 
