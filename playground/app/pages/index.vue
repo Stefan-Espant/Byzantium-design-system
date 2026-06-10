@@ -269,7 +269,7 @@ const installCmd: Record<string, string> = {
             <ByzAlert
               v-if="showAlert"
               type="info"
-              title="v0.1.0"
+              title="v0.7.2"
               dismissible
               @dismiss="showAlert = false"
             >
@@ -298,7 +298,7 @@ const installCmd: Record<string, string> = {
         { label: 'Tokens',    href: '/tokens' },
         { label: p('footerLicense'), href: 'https://github.com/byzantium-design-system/Byzantium-design-system/blob/main/LICENSE' },
       ]"
-      copyright="MIT · v0.1.0"
+      copyright="MIT · v0.7.2"
     />
 
   </div>

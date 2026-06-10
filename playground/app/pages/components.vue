@@ -481,7 +481,7 @@ const drawerOpen = ref(false)
             <ByzButton size="sm" variant="secondary" @click="addToast('Opgeslagen!', 'success')">Success toast</ByzButton>
             <ByzButton size="sm" variant="secondary" @click="addToast('Er is een fout opgetreden.', 'error')">Error toast</ByzButton>
             <ByzButton size="sm" variant="secondary" @click="addToast('Let op: dit kan niet ongedaan.', 'warning')">Warning toast</ByzButton>
-            <ByzButton size="sm" variant="secondary" @click="addToast('Byzantium v0.1.0 beschikbaar.', 'info')">Info toast</ByzButton>
+            <ByzButton size="sm" variant="secondary" @click="addToast('Byzantium v0.7.2 beschikbaar.', 'info')">Info toast</ByzButton>
           </div>
         </div>
       </section>
