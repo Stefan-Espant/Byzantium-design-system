@@ -4,20 +4,20 @@ Byzantium is a structured, accessible Vue 3 design system built for production. 
 
 ## Installation
 
-Install `@byzantium/core` using your preferred package manager:
+Install `@byzantium-design-system/core` using your preferred package manager:
 
 ::: code-group
 
 ```sh [pnpm]
-pnpm add @byzantium/core
+pnpm add @byzantium-design-system/core
 ```
 
 ```sh [npm]
-npm install @byzantium/core
+npm install @byzantium-design-system/core
 ```
 
 ```sh [yarn]
-yarn add @byzantium/core
+yarn add @byzantium-design-system/core
 ```
 
 :::
@@ -28,7 +28,7 @@ Import components directly in your Vue files:
 
 ```vue
 <script setup lang="ts">
-import { ByzButton, ByzInput } from '@byzantium/core'
+import { ByzButton, ByzInput } from '@byzantium-design-system/core'
 </script>
 
 <template>
@@ -45,8 +45,8 @@ To register all components globally in your Vue app:
 // main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
-import { ByzButton, ByzInput } from '@byzantium/core'
-import '@byzantium/core/styles'
+import { ByzButton, ByzInput } from '@byzantium-design-system/core'
+import '@byzantium-design-system/core/styles'
 
 const app = createApp(App)
 
@@ -64,7 +64,7 @@ Byzantium ships with **Imperial Dark** as its default theme. Use the `useTheme()
 ```vue
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 
 const { theme, setTheme, toggle, init } = useTheme()
 

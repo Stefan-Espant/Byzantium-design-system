@@ -29,7 +29,7 @@ importers:
 
   docs:
     dependencies:
-      '@byzantium/core':
+      '@byzantium-design-system/core':
         specifier: workspace:*
         version: link:../packages/byzantium
       vue:
@@ -99,7 +99,7 @@ importers:
 
   storybook:
     dependencies:
-      '@byzantium/core':
+      '@byzantium-design-system/core':
         specifier: workspace:*
         version: link:../packages/byzantium
     devDependencies:

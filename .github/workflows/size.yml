@@ -38,7 +38,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build @byzantium/core
+      - name: Build @byzantium-design-system/core
         run: pnpm build
 
       - name: Report bundle sizes

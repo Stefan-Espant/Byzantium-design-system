@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme, useLocale } from '@byzantium/core'
+import { useTheme, useLocale } from '@byzantium-design-system/core'
 
 const { init: initTheme }  = useTheme()
 const { init: initLocale } = useLocale()

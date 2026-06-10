@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { ref } from 'vue'
-import { ByzInput } from '@byzantium/core'
+import { ByzInput } from '@byzantium-design-system/core'
 
 const meta: Meta<typeof ByzInput> = {
   title: 'Primitives/ByzInput',

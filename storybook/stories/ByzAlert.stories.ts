@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ByzAlert } from '@byzantium/core'
+import { ByzAlert } from '@byzantium-design-system/core'
 
 const meta: Meta<typeof ByzAlert> = {
   title: 'Composites/ByzAlert',

@@ -7,7 +7,7 @@ import {
   ByzBadge,
   ByzProgress,
   ByzFooter,
-} from '@byzantium/core'
+} from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { p } = usePlaygroundLocale()
@@ -17,9 +17,9 @@ const pkgManager  = ref<'pnpm' | 'npm' | 'yarn'>('pnpm')
 const pkgManagers = ['pnpm', 'npm', 'yarn'] as const
 
 const installCmd: Record<string, string> = {
-  pnpm: 'pnpm add @byzantium/core',
-  npm:  'npm install @byzantium/core',
-  yarn: 'yarn add @byzantium/core',
+  pnpm: 'pnpm add @byzantium-design-system/core',
+  npm:  'npm install @byzantium-design-system/core',
+  yarn: 'yarn add @byzantium-design-system/core',
 }
 </script>
 
@@ -110,8 +110,8 @@ const installCmd: Record<string, string> = {
                 <button class="bp-code-block__tab is-active">Vue SFC</button>
               </div>
               <div class="bp-code-block__body">
-                <pre><code><span class="ct-keyword">import</span> { ByzButton, ByzCard, useTheme } <span class="ct-keyword">from</span> <span class="ct-string">'@byzantium/core'</span>
-<span class="ct-keyword">import</span> <span class="ct-string">'@byzantium/core/styles'</span></code></pre>
+                <pre><code><span class="ct-keyword">import</span> { ByzButton, ByzCard, useTheme } <span class="ct-keyword">from</span> <span class="ct-string">'@byzantium-design-system/core'</span>
+<span class="ct-keyword">import</span> <span class="ct-string">'@byzantium-design-system/core/styles'</span></code></pre>
               </div>
             </div>
 

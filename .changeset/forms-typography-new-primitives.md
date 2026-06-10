@@ -1,5 +1,5 @@
 ---
-"@byzantium/core": minor
+"@byzantium-design-system/core": minor
 ---
 
 Add ByzRating, ByzCode, ByzKbd primitives; /forms and /typography playground pages

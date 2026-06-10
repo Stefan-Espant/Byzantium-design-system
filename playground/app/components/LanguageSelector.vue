@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useLocale, localeNames } from '@byzantium/core'
-import type { LocaleKey } from '@byzantium/core'
+import { useLocale, localeNames } from '@byzantium-design-system/core'
+import type { LocaleKey } from '@byzantium-design-system/core'
 
 const { currentKey, setLocale } = useLocale()
 

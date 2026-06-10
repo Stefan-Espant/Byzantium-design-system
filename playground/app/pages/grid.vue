@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ByzGrid, ByzCol } from '@byzantium/core'
+import { ByzGrid, ByzCol } from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { p } = usePlaygroundLocale()

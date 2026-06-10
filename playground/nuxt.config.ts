@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   ],
 
   alias: {
-    '@byzantium/core': fileURLToPath(new URL('../packages/byzantium/src', import.meta.url))
+    '@byzantium-design-system/core': fileURLToPath(new URL('../packages/byzantium/src', import.meta.url))
   },
 
   vite: {

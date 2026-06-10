@@ -6,7 +6,7 @@
     "build": "storybook build"
   },
   "dependencies": {
-    "@byzantium/core": "workspace:*"
+    "@byzantium-design-system/core": "workspace:*"
   },
   "devDependencies": {
     "@storybook/vue3": "^8.4.0",

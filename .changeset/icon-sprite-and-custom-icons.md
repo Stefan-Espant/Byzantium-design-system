@@ -1,5 +1,5 @@
 ---
-"@byzantium/core": minor
+"@byzantium-design-system/core": minor
 ---
 
 Add custom icon support and expand icon sprite to 1707 icons

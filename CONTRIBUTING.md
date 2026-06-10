@@ -20,7 +20,7 @@ pnpm dev          # starts the playground (hot-reload)
 
 ```
 packages/
-  byzantium/      # @byzantium/core — the published package
+  byzantium/      # @byzantium-design-system/core — the published package
     src/
       components/ # Vue components
       composables/
@@ -81,13 +81,13 @@ pnpm changeset
 ```
 
 The CLI will ask:
-1. Which package is affected? (`@byzantium/core`)
+1. Which package is affected? (`@byzantium-design-system/core`)
 2. Bump type: `patch` (bug fix), `minor` (new feature), `major` (breaking change)
 3. A short summary — this becomes the CHANGELOG entry.
 
 Commit the generated `.changeset/*.md` file alongside your changes.
 
-Internal tooling and playground changes that do not affect `@byzantium/core` do **not** need a changeset.
+Internal tooling and playground changes that do not affect `@byzantium-design-system/core` do **not** need a changeset.
 
 ## Submitting a pull request
 

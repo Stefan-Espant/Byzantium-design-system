@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ByzBadge } from '@byzantium/core'
+import { ByzBadge } from '@byzantium-design-system/core'
 
 const meta: Meta<typeof ByzBadge> = {
   title: 'Primitives/ByzBadge',

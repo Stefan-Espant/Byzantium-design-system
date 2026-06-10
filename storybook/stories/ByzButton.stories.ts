@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ByzButton } from '@byzantium/core'
+import { ByzButton } from '@byzantium-design-system/core'
 
 const meta: Meta<typeof ByzButton> = {
   title: 'Primitives/ByzButton',

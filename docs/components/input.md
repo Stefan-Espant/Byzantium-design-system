@@ -26,7 +26,7 @@ An accessible text input with built-in label, hint, and error message handling. 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ByzInput } from '@byzantium/core'
+import { ByzInput } from '@byzantium-design-system/core'
 
 const email = ref('')
 </script>

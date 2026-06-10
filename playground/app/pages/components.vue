@@ -8,7 +8,7 @@ import {
   ByzStepper, ByzPopover, ByzDrawer,
   ByzPageHeader, ByzEmptyState, ByzFooter,
   byzCoreIconGroups, byzIconNames, useToast,
-} from '@byzantium/core'
+} from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { p } = usePlaygroundLocale()
@@ -41,7 +41,7 @@ const tabs = [
 // Accordion
 const accordionItems = [
   { id: 'a1', title: 'Wat zijn design tokens?', content: 'Design tokens zijn de kleinste bouwstenen van een design system: kleuren, spacing, typografie en motion als naamgegeven variabelen.' },
-  { id: 'a2', title: 'Hoe gebruik ik de componenten?', content: 'Importeer componenten uit @byzantium/core en gebruik ze direct in je Vue templates. Elk component ondersteunt TypeScript props.' },
+  { id: 'a2', title: 'Hoe gebruik ik de componenten?', content: 'Importeer componenten uit @byzantium-design-system/core en gebruik ze direct in je Vue templates. Elk component ondersteunt TypeScript props.' },
   { id: 'a3', title: 'Is er dark mode ondersteuning?', content: 'Ja — Byzantium is dark-first. Gebruik useTheme() om te wisselen tussen licht en donker. De voorkeur wordt opgeslagen in localStorage.' },
 ]
 

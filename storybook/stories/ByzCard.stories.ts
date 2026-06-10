@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ByzCard } from '@byzantium/core'
+import { ByzCard } from '@byzantium-design-system/core'
 
 const meta: Meta<typeof ByzCard> = {
   title: 'Composites/ByzCard',

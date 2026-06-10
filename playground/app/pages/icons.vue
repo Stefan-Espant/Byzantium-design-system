@@ -10,7 +10,7 @@ import {
   byzIconNames,
   useClipboard,
   useToast,
-} from '@byzantium/core'
+} from '@byzantium-design-system/core'
 
 const query = ref('')
 const selectedSize = ref<'sm' | 'md' | 'lg'>('md')

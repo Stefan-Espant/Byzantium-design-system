@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ByzFooter } from '@byzantium/core'
+import { ByzFooter } from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { p } = usePlaygroundLocale()

@@ -6,10 +6,10 @@
     "dev": "pnpm --filter playground dev",
     "preview": "./preview.sh",
     "docs": "pnpm --filter docs dev",
-    "build": "pnpm --filter @byzantium/core build",
-    "test": "pnpm --filter @byzantium/core test",
+    "build": "pnpm --filter @byzantium-design-system/core build",
+    "test": "pnpm --filter @byzantium-design-system/core test",
     "lint": "eslint .",
-    "typecheck": "pnpm --filter @byzantium/core typecheck",
+    "typecheck": "pnpm --filter @byzantium-design-system/core typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish"

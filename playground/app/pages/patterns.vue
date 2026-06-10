@@ -2,7 +2,7 @@
 import {
   ByzHero, ByzNavbar, ByzFooter, ByzSidebar, ByzPageHeader, ByzEmptyState,
   ByzButton, ByzBadge, ByzBreadcrumb,
-} from '@byzantium/core'
+} from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 
 const { p } = usePlaygroundLocale()

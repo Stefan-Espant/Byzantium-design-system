@@ -84,11 +84,11 @@ jobs:
         if: steps.check.outputs.has_changesets == 'true'
         run: |
           VERSION=$(node -p "require('./packages/byzantium/package.json').version")
-          TAG="@byzantium/core@${VERSION}"
+          TAG="@byzantium-design-system/core@${VERSION}"
           git tag "$TAG" || true
           git push origin "$TAG" || true
           gh release create "$TAG" \
-            --title "@byzantium/core v${VERSION}" \
+            --title "@byzantium-design-system/core v${VERSION}" \
             --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

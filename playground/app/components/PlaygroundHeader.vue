@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 import { usePlaygroundLocale } from '~/composables/usePlaygroundLocale'
 import LanguageSelector from '~/components/LanguageSelector.vue'
 

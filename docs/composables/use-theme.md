@@ -7,7 +7,7 @@ Byzantium defaults to **Imperial Dark** (`'dark'`) on first load.
 ## Import
 
 ```ts
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 ```
 
 ## API
@@ -24,7 +24,7 @@ import { useTheme } from '@byzantium/core'
 ```vue
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 
 const { theme, toggle, init } = useTheme()
 
@@ -56,7 +56,7 @@ Call `init()` once in your root component or `App.vue` to hydrate the theme from
 ```ts
 // App.vue
 import { onMounted } from 'vue'
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 
 const { init } = useTheme()
 
@@ -74,7 +74,7 @@ onMounted(() => {
 ```vue
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useTheme } from '@byzantium/core'
+import { useTheme } from '@byzantium-design-system/core'
 
 const { theme } = useTheme()
 const isDark = computed(() => theme.value === 'dark')
