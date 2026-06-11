@@ -5,9 +5,17 @@ const { p } = usePlaygroundLocale()
 
 const releases = [
   {
-    version: '1.0.0',
+    version: '1.1.0',
     date: '2026-06-11',
     label: 'latest',
+    changes: [
+      { type: 'feat', text: 'View Transitions API ingeschakeld — vloeiende fade + slide animatie bij paginanavigatie' },
+    ],
+  },
+  {
+    version: '1.0.0',
+    date: '2026-06-11',
+    label: null,
     changes: [
       { type: 'feat', text: 'Stabiele v1.0.0 release — Byzantium Design System is production-ready' },
       { type: 'feat', text: 'PlaygroundHeader toont drie primaire links (Components, Tokens, Changelog) direct in de navigatiebalk op desktop' },
