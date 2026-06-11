@@ -30,6 +30,10 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
+  experimental: {
+    viewTransition: true,
+  },
+
   nitro: {
     preset: 'static',
     output: {
