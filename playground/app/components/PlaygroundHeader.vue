@@ -56,12 +56,12 @@ const groups = computed(() => [
 <template>
   <header class="ph">
     <nav class="ph__bar" aria-label="Hoofdnavigatie">
-      <a href="/" class="ph__brand">Byzantium</a>
+      <NuxtLink to="/" class="ph__brand">Byzantium</NuxtLink>
 
       <div class="ph__primary-nav" aria-label="Primaire navigatie">
-        <a href="/components" class="ph__nav-link" :aria-current="route.path === '/components' ? 'page' : undefined">{{ p('navComponents') }}</a>
-        <a href="/tokens"     class="ph__nav-link" :aria-current="route.path === '/tokens'     ? 'page' : undefined">Tokens</a>
-        <a href="/changelog"  class="ph__nav-link" :aria-current="route.path === '/changelog'  ? 'page' : undefined">{{ p('navChangelog') }}</a>
+        <NuxtLink to="/components" class="ph__nav-link" :aria-current="route.path === '/components' ? 'page' : undefined">{{ p('navComponents') }}</NuxtLink>
+        <NuxtLink to="/tokens"     class="ph__nav-link" :aria-current="route.path === '/tokens'     ? 'page' : undefined">Tokens</NuxtLink>
+        <NuxtLink to="/changelog"  class="ph__nav-link" :aria-current="route.path === '/changelog'  ? 'page' : undefined">{{ p('navChangelog') }}</NuxtLink>
       </div>
 
       <div class="ph__controls">
@@ -106,17 +106,17 @@ const groups = computed(() => [
             class="ph-mega__group"
           >
             <span class="ph-mega__group-label">{{ group.label }}</span>
-            <a
+            <NuxtLink
               v-for="item in group.items"
               :key="item.href"
-              :href="item.href"
+              :to="item.href"
               class="ph-mega__link"
               :aria-current="route.path === item.href ? 'page' : undefined"
               @click="close"
             >
               <span class="ph-mega__link-name">{{ item.label }}</span>
               <span class="ph-mega__link-desc">{{ item.desc }}</span>
-            </a>
+            </NuxtLink>
           </div>
         </div>
         <div class="ph-mega__footer">
