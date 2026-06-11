@@ -199,11 +199,12 @@ const groups = computed(() => [
   }
 
   &__lang :deep(.lang-selector) {
-    padding-top: var(--byz-space-1);
-    padding-bottom: var(--byz-space-1);
+    box-sizing: border-box;
+    height: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
     font-size: var(--byz-text-sm);
-    line-height: 1.5;
-    height: 2.25rem;
+    line-height: 2rem;
   }
 
   &__theme-btn {

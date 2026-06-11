@@ -120,7 +120,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   nl: {
     navComponents: 'Componenten', navPatterns: 'Patronen', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Formulieren', navTypography: 'Typografie', navBack: '← Terug',
     lightMode: 'Licht', darkMode: 'Donker',
-    heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Built to endure.', heroSubtitle: 'Toegankelijk van nature. Één bron van waarheid voor alles wat visueel is.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Built to endure.', heroSubtitle: 'Toegankelijk van nature. Één bron van waarheid voor alles wat visueel is.',
     heroCtaStart: 'Aan de slag', heroCtaView: 'Bekijk componenten',
     statComponents: 'Componenten', statTokens: 'Design tokens', statComposables: 'Composables', statA11y: 'Accessibility first',
     eyebrowInstall: 'Installatie', installTitle: 'Aan de slag in twee stappen.', installSub: 'Voeg Byzantium toe aan elk Vue 3 / Nuxt 4 project.',
@@ -154,7 +154,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   en: {
     navComponents: 'Components', navPatterns: 'Patterns', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Forms', navTypography: 'Typography', navBack: '← Back',
     lightMode: 'Light', darkMode: 'Dark',
-    heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Built to endure.', heroSubtitle: 'Accessible by nature. One source of truth for everything visual.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Built to endure.', heroSubtitle: 'Accessible by nature. One source of truth for everything visual.',
     heroCtaStart: 'Get started', heroCtaView: 'View components',
     statComponents: 'Components', statTokens: 'Design tokens', statComposables: 'Composables', statA11y: 'Accessibility first',
     eyebrowInstall: 'Installation', installTitle: 'Get started in two steps.', installSub: 'Add Byzantium to any Vue 3 / Nuxt 4 project.',
@@ -188,7 +188,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   de: {
     navComponents: 'Komponenten', navPatterns: 'Muster', navGrid: 'Grid', navChangelog: 'Changelog', navForms: 'Formulare', navTypography: 'Typografie', navBack: '← Zurück',
     lightMode: 'Hell', darkMode: 'Dunkel',
-    heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Gebaut um zu bestehen.', heroSubtitle: 'Von Natur aus zugänglich. Eine Quelle der Wahrheit für alles Visuelle.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Gebaut um zu bestehen.', heroSubtitle: 'Von Natur aus zugänglich. Eine Quelle der Wahrheit für alles Visuelle.',
     heroCtaStart: 'Jetzt starten', heroCtaView: 'Komponenten ansehen',
     statComponents: 'Komponenten', statTokens: 'Design-Tokens', statComposables: 'Composables', statA11y: 'Barrierefreiheit',
     eyebrowInstall: 'Installation', installTitle: 'In zwei Schritten loslegen.', installSub: 'Byzantium zu jedem Vue 3 / Nuxt 4 Projekt hinzufügen.',
@@ -222,7 +222,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   fr: {
     navComponents: 'Composants', navPatterns: 'Modèles', navGrid: 'Grille', navChangelog: 'Journal', navForms: 'Formulaires', navTypography: 'Typographie', navBack: '← Retour',
     lightMode: 'Clair', darkMode: 'Sombre',
-    heroEyebrow: 'Système de design · v0.5.0', heroTitle: 'Conçu pour durer.', heroSubtitle: 'Accessible par nature. Une source de vérité pour tout ce qui est visuel.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Conçu pour durer.', heroSubtitle: 'Accessible par nature. Une source de vérité pour tout ce qui est visuel.',
     heroCtaStart: 'Commencer', heroCtaView: 'Voir les composants',
     statComponents: 'Composants', statTokens: 'Tokens de design', statComposables: 'Composables', statA11y: 'Accessibilité',
     eyebrowInstall: 'Installation', installTitle: 'Commencer en deux étapes.', installSub: 'Ajoutez Byzantium à tout projet Vue 3 / Nuxt 4.',
@@ -256,7 +256,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   es: {
     navComponents: 'Componentes', navPatterns: 'Patrones', navGrid: 'Cuadrícula', navChangelog: 'Registro', navForms: 'Formularios', navTypography: 'Tipografía', navBack: '← Volver',
     lightMode: 'Claro', darkMode: 'Oscuro',
-    heroEyebrow: 'Sistema de diseño · v0.5.0', heroTitle: 'Construido para perdurar.', heroSubtitle: 'Accesible por naturaleza. Una única fuente de verdad para todo lo visual.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Construido para perdurar.', heroSubtitle: 'Accesible por naturaleza. Una única fuente de verdad para todo lo visual.',
     heroCtaStart: 'Comenzar', heroCtaView: 'Ver componentes',
     statComponents: 'Componentes', statTokens: 'Tokens de diseño', statComposables: 'Composables', statA11y: 'Accesibilidad',
     eyebrowInstall: 'Instalación', installTitle: 'Comenzar en dos pasos.', installSub: 'Agrega Byzantium a cualquier proyecto Vue 3 / Nuxt 4.',
@@ -290,7 +290,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   it: {
     navComponents: 'Componenti', navPatterns: 'Pattern', navGrid: 'Griglia', navChangelog: 'Registro', navForms: 'Moduli', navTypography: 'Tipografia', navBack: '← Indietro',
     lightMode: 'Chiaro', darkMode: 'Scuro',
-    heroEyebrow: 'Design System · v0.5.0', heroTitle: 'Costruito per durare.', heroSubtitle: "Accessibile per natura. Un'unica fonte di verità per tutto ciò che è visivo.",
+    heroEyebrow: 'v1.0.0', heroTitle: 'Costruito per durare.', heroSubtitle: "Accessibile per natura. Un'unica fonte di verità per tutto ciò che è visivo.",
     heroCtaStart: 'Inizia', heroCtaView: 'Vedi componenti',
     statComponents: 'Componenti', statTokens: 'Token di design', statComposables: 'Composables', statA11y: 'Accessibilità',
     eyebrowInstall: 'Installazione', installTitle: 'Inizia in due passi.', installSub: 'Aggiungi Byzantium a qualsiasi progetto Vue 3 / Nuxt 4.',
@@ -324,7 +324,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   pt: {
     navComponents: 'Componentes', navPatterns: 'Padrões', navGrid: 'Grelha', navChangelog: 'Registo', navForms: 'Formulários', navTypography: 'Tipografia', navBack: '← Voltar',
     lightMode: 'Claro', darkMode: 'Escuro',
-    heroEyebrow: 'Sistema de design · v0.5.0', heroTitle: 'Construído para durar.', heroSubtitle: 'Acessível por natureza. Uma fonte única de verdade para tudo o que é visual.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Construído para durar.', heroSubtitle: 'Acessível por natureza. Uma fonte única de verdade para tudo o que é visual.',
     heroCtaStart: 'Começar', heroCtaView: 'Ver componentes',
     statComponents: 'Componentes', statTokens: 'Tokens de design', statComposables: 'Composables', statA11y: 'Acessibilidade',
     eyebrowInstall: 'Instalação', installTitle: 'Começar em dois passos.', installSub: 'Adicione Byzantium a qualquer projeto Vue 3 / Nuxt 4.',
@@ -358,7 +358,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   pl: {
     navComponents: 'Komponenty', navPatterns: 'Wzorce', navGrid: 'Siatka', navChangelog: 'Zmiany', navForms: 'Formularze', navTypography: 'Typografia', navBack: '← Wstecz',
     lightMode: 'Jasny', darkMode: 'Ciemny',
-    heroEyebrow: 'System projektowania · v0.5.0', heroTitle: 'Zbudowany, by trwać.', heroSubtitle: 'Dostępny z natury. Jedno źródło prawdy dla wszystkiego, co wizualne.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Zbudowany, by trwać.', heroSubtitle: 'Dostępny z natury. Jedno źródło prawdy dla wszystkiego, co wizualne.',
     heroCtaStart: 'Zacznij', heroCtaView: 'Zobacz komponenty',
     statComponents: 'Komponenty', statTokens: 'Tokeny projektowe', statComposables: 'Composables', statA11y: 'Dostępność',
     eyebrowInstall: 'Instalacja', installTitle: 'Zacznij w dwóch krokach.', installSub: 'Dodaj Byzantium do dowolnego projektu Vue 3 / Nuxt 4.',
@@ -392,7 +392,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   ro: {
     navComponents: 'Componente', navPatterns: 'Tipare', navGrid: 'Grilă', navChangelog: 'Jurnal', navForms: 'Formulare', navTypography: 'Tipografie', navBack: '← Înapoi',
     lightMode: 'Luminos', darkMode: 'Întunecat',
-    heroEyebrow: 'Sistem de design · v0.5.0', heroTitle: 'Construit să dureze.', heroSubtitle: 'Accesibil prin natură. O singură sursă a adevărului pentru tot ce este vizual.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Construit să dureze.', heroSubtitle: 'Accesibil prin natură. O singură sursă a adevărului pentru tot ce este vizual.',
     heroCtaStart: 'Începe', heroCtaView: 'Vezi componentele',
     statComponents: 'Componente', statTokens: 'Tokeni de design', statComposables: 'Composables', statA11y: 'Accesibilitate',
     eyebrowInstall: 'Instalare', installTitle: 'Începe în doi pași.', installSub: 'Adaugă Byzantium la orice proiect Vue 3 / Nuxt 4.',
@@ -426,7 +426,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   hu: {
     navComponents: 'Komponensek', navPatterns: 'Minták', navGrid: 'Rács', navChangelog: 'Változások', navForms: 'Űrlapok', navTypography: 'Tipográfia', navBack: '← Vissza',
     lightMode: 'Világos', darkMode: 'Sötét',
-    heroEyebrow: 'Design rendszer · v0.5.0', heroTitle: 'Tartósságra tervezve.', heroSubtitle: 'Természetéből adódóan akadálymentes. Egyetlen igazságforrás minden vizuálishoz.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Tartósságra tervezve.', heroSubtitle: 'Természetéből adódóan akadálymentes. Egyetlen igazságforrás minden vizuálishoz.',
     heroCtaStart: 'Kezdés', heroCtaView: 'Komponensek megtekintése',
     statComponents: 'Komponensek', statTokens: 'Design tokenek', statComposables: 'Composables', statA11y: 'Akadálymentesség',
     eyebrowInstall: 'Telepítés', installTitle: 'Kezdj két lépésben.', installSub: 'Add a Byzantiumot bármely Vue 3 / Nuxt 4 projekthez.',
@@ -460,7 +460,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   cs: {
     navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mřížka', navChangelog: 'Změny', navForms: 'Formuláře', navTypography: 'Typografie', navBack: '← Zpět',
     lightMode: 'Světlý', darkMode: 'Tmavý',
-    heroEyebrow: 'Design systém · v0.5.0', heroTitle: 'Vytvořen pro vytrvalost.', heroSubtitle: 'Přístupný ze své podstaty. Jeden zdroj pravdy pro vše vizuální.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Vytvořen pro vytrvalost.', heroSubtitle: 'Přístupný ze své podstaty. Jeden zdroj pravdy pro vše vizuální.',
     heroCtaStart: 'Začít', heroCtaView: 'Zobrazit komponenty',
     statComponents: 'Komponenty', statTokens: 'Design tokeny', statComposables: 'Composables', statA11y: 'Přístupnost',
     eyebrowInstall: 'Instalace', installTitle: 'Začněte ve dvou krocích.', installSub: 'Přidejte Byzantium do libovolného projektu Vue 3 / Nuxt 4.',
@@ -494,7 +494,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   sk: {
     navComponents: 'Komponenty', navPatterns: 'Vzory', navGrid: 'Mriežka', navChangelog: 'Zmeny', navForms: 'Formuláre', navTypography: 'Typografia', navBack: '← Späť',
     lightMode: 'Svetlý', darkMode: 'Tmavý',
-    heroEyebrow: 'Dizajnový systém · v0.5.0', heroTitle: 'Vytvorený pre trvanlivosť.', heroSubtitle: 'Prístupný zo svojej podstaty. Jeden zdroj pravdy pre všetko vizuálne.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Vytvorený pre trvanlivosť.', heroSubtitle: 'Prístupný zo svojej podstaty. Jeden zdroj pravdy pre všetko vizuálne.',
     heroCtaStart: 'Začať', heroCtaView: 'Zobraziť komponenty',
     statComponents: 'Komponenty', statTokens: 'Dizajnové tokeny', statComposables: 'Composables', statA11y: 'Dostupnosť',
     eyebrowInstall: 'Inštalácia', installTitle: 'Začnite v dvoch krokoch.', installSub: 'Pridajte Byzantium do ľubovoľného projektu Vue 3 / Nuxt 4.',
@@ -528,7 +528,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   hr: {
     navComponents: 'Komponente', navPatterns: 'Obrasci', navGrid: 'Rešetka', navChangelog: 'Promjene', navForms: 'Obrasci', navTypography: 'Tipografija', navBack: '← Natrag',
     lightMode: 'Svijetlo', darkMode: 'Tamno',
-    heroEyebrow: 'Dizajn sustav · v0.5.0', heroTitle: 'Izgrađen za trajnost.', heroSubtitle: 'Pristupačan po prirodi. Jedan izvor istine za sve vizualno.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Izgrađen za trajnost.', heroSubtitle: 'Pristupačan po prirodi. Jedan izvor istine za sve vizualno.',
     heroCtaStart: 'Počni', heroCtaView: 'Pogledaj komponente',
     statComponents: 'Komponente', statTokens: 'Dizajn tokeni', statComposables: 'Composables', statA11y: 'Pristupačnost',
     eyebrowInstall: 'Instalacija', installTitle: 'Počni u dva koraka.', installSub: 'Dodajte Byzantium u bilo koji Vue 3 / Nuxt 4 projekt.',
@@ -562,7 +562,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   sl: {
     navComponents: 'Komponente', navPatterns: 'Vzorci', navGrid: 'Mreža', navChangelog: 'Spremembe', navForms: 'Obrazci', navTypography: 'Tipografija', navBack: '← Nazaj',
     lightMode: 'Svetlo', darkMode: 'Temno',
-    heroEyebrow: 'Oblikovalski sistem · v0.5.0', heroTitle: 'Zgrajen za vzdržljivost.', heroSubtitle: 'Dostopen po naravi. En vir resnice za vse vizualno.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Zgrajen za vzdržljivost.', heroSubtitle: 'Dostopen po naravi. En vir resnice za vse vizualno.',
     heroCtaStart: 'Začni', heroCtaView: 'Oglej si komponente',
     statComponents: 'Komponente', statTokens: 'Oblikovalski žetoni', statComposables: 'Composables', statA11y: 'Dostopnost',
     eyebrowInstall: 'Namestitev', installTitle: 'Začni v dveh korakih.', installSub: 'Dodajte Byzantium v kateri koli projekt Vue 3 / Nuxt 4.',
@@ -596,7 +596,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   sv: {
     navComponents: 'Komponenter', navPatterns: 'Mönster', navGrid: 'Grid', navChangelog: 'Ändringslogg', navForms: 'Formulär', navTypography: 'Typografi', navBack: '← Tillbaka',
     lightMode: 'Ljust', darkMode: 'Mörkt',
-    heroEyebrow: 'Designsystem · v0.5.0', heroTitle: 'Byggt för att bestå.', heroSubtitle: 'Tillgängligt av naturen. En enda sanningskälla för allt visuellt.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Byggt för att bestå.', heroSubtitle: 'Tillgängligt av naturen. En enda sanningskälla för allt visuellt.',
     heroCtaStart: 'Kom igång', heroCtaView: 'Se komponenter',
     statComponents: 'Komponenter', statTokens: 'Designtokens', statComposables: 'Composables', statA11y: 'Tillgänglighet',
     eyebrowInstall: 'Installation', installTitle: 'Kom igång i två steg.', installSub: 'Lägg till Byzantium i valfritt Vue 3 / Nuxt 4-projekt.',
@@ -630,7 +630,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   da: {
     navComponents: 'Komponenter', navPatterns: 'Mønstre', navGrid: 'Grid', navChangelog: 'Ændringslog', navForms: 'Formularer', navTypography: 'Typografi', navBack: '← Tilbage',
     lightMode: 'Lyst', darkMode: 'Mørkt',
-    heroEyebrow: 'Designsystem · v0.5.0', heroTitle: 'Bygget til at vare.', heroSubtitle: 'Tilgængeligt af natur. Én kilde til sandhed for alt visuelt.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Bygget til at vare.', heroSubtitle: 'Tilgængeligt af natur. Én kilde til sandhed for alt visuelt.',
     heroCtaStart: 'Kom i gang', heroCtaView: 'Se komponenter',
     statComponents: 'Komponenter', statTokens: 'Design-tokens', statComposables: 'Composables', statA11y: 'Tilgængelighed',
     eyebrowInstall: 'Installation', installTitle: 'Kom i gang i to trin.', installSub: 'Tilføj Byzantium til ethvert Vue 3 / Nuxt 4-projekt.',
@@ -664,7 +664,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   fi: {
     navComponents: 'Komponentit', navPatterns: 'Mallit', navGrid: 'Ruudukko', navChangelog: 'Muutosloki', navBack: '← Takaisin',
     lightMode: 'Vaalea', darkMode: 'Tumma',
-    heroEyebrow: 'Suunnittelujärjestelmä · v0.5.0', heroTitle: 'Rakennettu kestämään.', heroSubtitle: 'Saavutettava luonnostaan. Yksi totuuden lähde kaikelle visuaaliselle.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Rakennettu kestämään.', heroSubtitle: 'Saavutettava luonnostaan. Yksi totuuden lähde kaikelle visuaaliselle.',
     heroCtaStart: 'Aloita', heroCtaView: 'Näytä komponentit',
     statComponents: 'Komponentit', statTokens: 'Suunnittelutokenit', statComposables: 'Composables', statA11y: 'Saavutettavuus',
     eyebrowInstall: 'Asennus', installTitle: 'Aloita kahdessa vaiheessa.', installSub: 'Lisää Byzantium mihin tahansa Vue 3 / Nuxt 4 -projektiin.',
@@ -698,7 +698,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   no: {
     navComponents: 'Komponenter', navPatterns: 'Mønstre', navGrid: 'Rutenett', navChangelog: 'Endringslogg', navBack: '← Tilbake',
     lightMode: 'Lyst', darkMode: 'Mørkt',
-    heroEyebrow: 'Designsystem · v0.5.0', heroTitle: 'Bygget for å vare.', heroSubtitle: 'Tilgjengelig av natur. Én kilde til sannhet for alt visuelt.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Bygget for å vare.', heroSubtitle: 'Tilgjengelig av natur. Én kilde til sannhet for alt visuelt.',
     heroCtaStart: 'Kom i gang', heroCtaView: 'Se komponenter',
     statComponents: 'Komponenter', statTokens: 'Design-tokens', statComposables: 'Composables', statA11y: 'Tilgjengelighet',
     eyebrowInstall: 'Installasjon', installTitle: 'Kom i gang i to trinn.', installSub: 'Legg til Byzantium i et hvilket som helst Vue 3 / Nuxt 4-prosjekt.',
@@ -732,7 +732,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   el: {
     navComponents: 'Στοιχεία', navPatterns: 'Πρότυπα', navGrid: 'Πλέγμα', navChangelog: 'Αρχείο', navBack: '← Πίσω',
     lightMode: 'Φωτεινό', darkMode: 'Σκοτεινό',
-    heroEyebrow: 'Σύστημα σχεδίασης · v0.5.0', heroTitle: 'Φτιαγμένο για να αντέξει.', heroSubtitle: 'Προσβάσιμο από τη φύση του. Μία πηγή αλήθειας για όλα τα οπτικά.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Φτιαγμένο για να αντέξει.', heroSubtitle: 'Προσβάσιμο από τη φύση του. Μία πηγή αλήθειας για όλα τα οπτικά.',
     heroCtaStart: 'Ξεκινήστε', heroCtaView: 'Δείτε τα στοιχεία',
     statComponents: 'Στοιχεία', statTokens: 'Tokens σχεδίασης', statComposables: 'Composables', statA11y: 'Προσβασιμότητα',
     eyebrowInstall: 'Εγκατάσταση', installTitle: 'Ξεκινήστε σε δύο βήματα.', installSub: 'Προσθέστε το Byzantium σε οποιοδήποτε έργο Vue 3 / Nuxt 4.',
@@ -766,7 +766,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   bg: {
     navComponents: 'Компоненти', navPatterns: 'Шаблони', navGrid: 'Мрежа', navChangelog: 'Промени', navBack: '← Назад',
     lightMode: 'Светло', darkMode: 'Тъмно',
-    heroEyebrow: 'Дизайн система · v0.5.0', heroTitle: 'Изграден да издържи.', heroSubtitle: 'Достъпен по природа. Един източник на истина за всичко визуално.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Изграден да издържи.', heroSubtitle: 'Достъпен по природа. Един източник на истина за всичко визуално.',
     heroCtaStart: 'Начало', heroCtaView: 'Вижте компонентите',
     statComponents: 'Компоненти', statTokens: 'Дизайн токени', statComposables: 'Composables', statA11y: 'Достъпност',
     eyebrowInstall: 'Инсталиране', installTitle: 'Започнете в две стъпки.', installSub: 'Добавете Byzantium към всеки проект Vue 3 / Nuxt 4.',
@@ -800,7 +800,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   lt: {
     navComponents: 'Komponentai', navPatterns: 'Šablonai', navGrid: 'Tinklelis', navChangelog: 'Pakeitimai', navBack: '← Atgal',
     lightMode: 'Šviesus', darkMode: 'Tamsus',
-    heroEyebrow: 'Dizaino sistema · v0.5.0', heroTitle: 'Sukurta išlikti.', heroSubtitle: 'Prieinama iš prigimties. Vienas tiesos šaltinis visam vizualiniam.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Sukurta išlikti.', heroSubtitle: 'Prieinama iš prigimties. Vienas tiesos šaltinis visam vizualiniam.',
     heroCtaStart: 'Pradėti', heroCtaView: 'Peržiūrėti komponentus',
     statComponents: 'Komponentai', statTokens: 'Dizaino žetonai', statComposables: 'Composables', statA11y: 'Prieinamumas',
     eyebrowInstall: 'Diegimas', installTitle: 'Pradėkite dviem žingsniais.', installSub: 'Pridėkite Byzantium prie bet kurio Vue 3 / Nuxt 4 projekto.',
@@ -834,7 +834,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   lv: {
     navComponents: 'Komponenti', navPatterns: 'Veidnes', navGrid: 'Režģis', navChangelog: 'Izmaiņas', navBack: '← Atpakaļ',
     lightMode: 'Gaišs', darkMode: 'Tumšs',
-    heroEyebrow: 'Dizaina sistēma · v0.5.0', heroTitle: 'Veidots, lai ilgtu.', heroSubtitle: 'Pieejams pēc dabas. Viens patiesības avots visam vizuālajam.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Veidots, lai ilgtu.', heroSubtitle: 'Pieejams pēc dabas. Viens patiesības avots visam vizuālajam.',
     heroCtaStart: 'Sākt', heroCtaView: 'Skatīt komponentus',
     statComponents: 'Komponenti', statTokens: 'Dizaina žetoni', statComposables: 'Composables', statA11y: 'Pieejamība',
     eyebrowInstall: 'Instalācija', installTitle: 'Sāciet divos soļos.', installSub: 'Pievienojiet Byzantium jebkuram Vue 3 / Nuxt 4 projektam.',
@@ -868,7 +868,7 @@ const translations: Record<LocaleKey, PlaygroundStrings> = {
   et: {
     navComponents: 'Komponendid', navPatterns: 'Mustrid', navGrid: 'Ruudustik', navChangelog: 'Muudatused', navBack: '← Tagasi',
     lightMode: 'Hele', darkMode: 'Tume',
-    heroEyebrow: 'Disainisüsteem · v0.5.0', heroTitle: 'Ehitatud püsima.', heroSubtitle: 'Juurdepääsetav loomult. Üks tõeallikas kõigele visuaalsele.',
+    heroEyebrow: 'v1.0.0', heroTitle: 'Ehitatud püsima.', heroSubtitle: 'Juurdepääsetav loomult. Üks tõeallikas kõigele visuaalsele.',
     heroCtaStart: 'Alusta', heroCtaView: 'Vaata komponente',
     statComponents: 'Komponendid', statTokens: 'Disaini tokenid', statComposables: 'Composables', statA11y: 'Juurdepääsetavus',
     eyebrowInstall: 'Installeerimine', installTitle: 'Alusta kahes sammus.', installSub: 'Lisa Byzantium mis tahes Vue 3 / Nuxt 4 projektile.',
