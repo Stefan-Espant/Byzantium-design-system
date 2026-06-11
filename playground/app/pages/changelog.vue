@@ -9,7 +9,9 @@ const releases = [
     date: '2026-06-11',
     label: 'latest',
     changes: [
-      { type: 'feat', text: 'View Transitions API ingeschakeld — vloeiende fade + slide animatie bij paginanavigatie' },
+      { type: 'feat', text: 'View Transitions — vloeiende fade + slide animatie bij paginanavigatie, onderdeel van het design system' },
+      { type: 'feat', text: 'useViewTransition composable geëxporteerd vanuit @byzantium-design-system/core' },
+      { type: 'fix', text: 'Dark/light flicker bij paginaovergang opgelost via blocking inline script in <head>' },
     ],
   },
   {
