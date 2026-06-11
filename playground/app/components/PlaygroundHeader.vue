@@ -203,6 +203,7 @@ const groups = computed(() => [
     padding-bottom: var(--byz-space-1);
     font-size: var(--byz-text-sm);
     line-height: 1.5;
+    height: 2.25rem;
   }
 
   &__theme-btn {
