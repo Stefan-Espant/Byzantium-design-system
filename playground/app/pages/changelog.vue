@@ -5,9 +5,18 @@ const { p } = usePlaygroundLocale()
 
 const releases = [
   {
+    version: '1.0.0',
+    date: '2026-06-11',
+    label: 'latest',
+    changes: [
+      { type: 'feat', text: 'Stabiele v1.0.0 release — Byzantium Design System is production-ready' },
+      { type: 'feat', text: 'PlaygroundHeader toont drie primaire links (Components, Tokens, Changelog) direct in de navigatiebalk op desktop' },
+    ],
+  },
+  {
     version: '0.7.2',
     date: '2026-06-10',
-    label: 'latest',
+    label: null,
     changes: [
       { type: 'feat', text: 'PlaygroundHeader toont nu drie primaire links (Components, Tokens, Changelog) direct in de balk op desktop — minder klikken nodig' },
       { type: 'fix', text: 'Pakketnaam gecorrigeerd van @byzantium/core naar @byzantium-design-system/core in alle 84 bestanden — lost OIDC-mismatch op waardoor npm-publicatie mislukte' },
