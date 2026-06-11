@@ -9,6 +9,7 @@ dist
 .superpowers/
 .worktrees/
 docs/superpowers/
+!docs/superpowers/specs/
 .claude
 
 .env
