@@ -591,7 +591,7 @@ const drawerOpen = ref(false)
     <ByzFooter
       brand="Byzantium"
       :links="[{ label: 'GitHub', href: '#' }, { label: 'Changelog', href: '#' }]"
-      copyright="© 2026 Byzantium"
+      copyright="MIT · v1.0.0"
     />
 
   </div>

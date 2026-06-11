@@ -187,7 +187,7 @@ const sidebarCollapsed = ref(false)
               { label: 'Changelog',   href: '#' },
               { label: 'Licentie',    href: '#' },
             ]"
-            copyright="© 2026 Byzantium Design System"
+            copyright="MIT · v1.0.0"
           />
         </div>
       </section>

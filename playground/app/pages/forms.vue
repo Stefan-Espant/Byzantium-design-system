@@ -301,7 +301,7 @@ const form = useForm({
         { label: 'GitHub', href: 'https://github.com/byzantium-design-system/Byzantium-design-system' },
         { label: 'Changelog', href: '/changelog' },
       ]"
-      copyright="© 2026 Semantique Agency"
+      copyright="MIT · v1.0.0"
     />
   </div>
 </template>
