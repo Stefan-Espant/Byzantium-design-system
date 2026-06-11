@@ -39,6 +39,7 @@ function onChange(e: Event) {
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   min-width: 5.5rem;
+  height: 2.25rem;
 
   &:hover {
     background-color: var(--byz-color-surface-hover);
