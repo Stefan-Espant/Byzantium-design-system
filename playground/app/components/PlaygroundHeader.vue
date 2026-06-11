@@ -65,6 +65,7 @@ const groups = computed(() => [
       </div>
 
       <div class="ph__controls">
+        <LanguageSelector class="ph__lang" />
         <button
           class="ph__theme-btn"
           :aria-label="theme === 'dark' ? p('lightMode') : p('darkMode')"
@@ -331,6 +332,7 @@ const groups = computed(() => [
 @media (max-width: 640px) {
   .ph__menu-label { display: none; }
   .ph__primary-nav { display: none; }
+  .ph__lang { display: none; }
 
   .ph-mega__inner {
     grid-template-columns: repeat(2, 1fr);
