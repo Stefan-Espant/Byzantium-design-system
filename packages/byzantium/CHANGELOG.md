@@ -1,5 +1,11 @@
 # @byzantium-design-system/core
 
+## 1.0.0
+
+### Major Changes
+
+- 1dee700: v1.0.0 — stabiele release van het Byzantium Design System
+
 ## 0.7.2
 
 ### Patch Changes

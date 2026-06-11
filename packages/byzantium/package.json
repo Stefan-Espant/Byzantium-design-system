@@ -1,6 +1,6 @@
 {
   "name": "@byzantium-design-system/core",
-  "version": "0.7.2",
+  "version": "1.0.0",
   "description": "Byzantium design system — tokens, components and patterns",
   "license": "MIT",
   "type": "module",
