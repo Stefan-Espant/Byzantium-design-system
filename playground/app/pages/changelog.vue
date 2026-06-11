@@ -9,6 +9,7 @@ const releases = [
     date: '2026-06-10',
     label: 'latest',
     changes: [
+      { type: 'feat', text: 'PlaygroundHeader toont nu drie primaire links (Components, Tokens, Changelog) direct in de balk op desktop — minder klikken nodig' },
       { type: 'fix', text: 'Pakketnaam gecorrigeerd van @byzantium/core naar @byzantium-design-system/core in alle 84 bestanden — lost OIDC-mismatch op waardoor npm-publicatie mislukte' },
       { type: 'fix', text: 'MIT-licentieveld toegevoegd aan package.json (eerder zichtbaar als "none" op npmjs.com ondanks aanwezige LICENSE-file)' },
       { type: 'fix', text: 'Build-artefacten (dist 2/, dist 4/, tsconfig.tsbuildinfo) verwijderd uit git-history en .gitignore bijgewerkt' },

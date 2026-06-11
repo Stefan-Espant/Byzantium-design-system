@@ -57,6 +57,13 @@ const groups = computed(() => [
   <header class="ph">
     <nav class="ph__bar" aria-label="Hoofdnavigatie">
       <a href="/" class="ph__brand">Byzantium</a>
+
+      <div class="ph__primary-nav" aria-label="Primaire navigatie">
+        <a href="/components" class="ph__nav-link" :aria-current="route.path === '/components' ? 'page' : undefined">{{ p('navComponents') }}</a>
+        <a href="/tokens"     class="ph__nav-link" :aria-current="route.path === '/tokens'     ? 'page' : undefined">Tokens</a>
+        <a href="/changelog"  class="ph__nav-link" :aria-current="route.path === '/changelog'  ? 'page' : undefined">{{ p('navChangelog') }}</a>
+      </div>
+
       <div class="ph__controls">
         <button
           class="ph__theme-btn"
@@ -153,6 +160,35 @@ const groups = computed(() => [
     text-decoration: none;
     &:hover { color: var(--byz-brand-300); }
     &:focus-visible { outline: 2px solid var(--byz-brand-500); outline-offset: 3px; border-radius: 2px; }
+  }
+
+  &__primary-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--byz-space-1);
+    margin: 0 auto;
+  }
+
+  &__nav-link {
+    padding: var(--byz-space-1) var(--byz-space-3);
+    border-radius: 0.375rem;
+    font-size: var(--byz-text-sm);
+    font-weight: var(--byz-font-medium);
+    color: var(--byz-color-text-secondary);
+    text-decoration: none;
+    transition: color 0.12s, background 0.12s;
+
+    &:hover {
+      color: var(--byz-color-text-primary);
+      background: color-mix(in srgb, var(--byz-brand-500) 8%, transparent);
+    }
+
+    &[aria-current='page'] {
+      color: var(--byz-brand-400);
+      background: color-mix(in srgb, var(--byz-brand-500) 10%, transparent);
+    }
+
+    &:focus-visible { outline: 2px solid var(--byz-brand-500); outline-offset: 2px; }
   }
 
   &__controls {
@@ -294,6 +330,7 @@ const groups = computed(() => [
 
 @media (max-width: 640px) {
   .ph__menu-label { display: none; }
+  .ph__primary-nav { display: none; }
 
   .ph-mega__inner {
     grid-template-columns: repeat(2, 1fr);
