@@ -11,6 +11,10 @@ const releases = [
     changes: [
       { type: 'feat', text: 'Stabiele v1.0.0 release — Byzantium Design System is production-ready' },
       { type: 'feat', text: 'PlaygroundHeader toont drie primaire links (Components, Tokens, Changelog) direct in de navigatiebalk op desktop' },
+      { type: 'feat', text: 'Taalknop (LanguageSelector) zichtbaar in desktop header naast de thema- en menuknop' },
+      { type: 'fix', text: 'LanguageSelector hoogte gelijk aan thema- en menuknop (2.25rem) via box-sizing: border-box en geen verticale padding' },
+      { type: 'feat', text: 'Hero eyebrow bijgewerkt naar v1.0.0 in alle 23 talen' },
+      { type: 'feat', text: 'GitHub Release v1.0.0 aangemaakt' },
     ],
   },
   {
