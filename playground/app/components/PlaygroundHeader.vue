@@ -200,7 +200,7 @@ const groups = computed(() => [
 
   &__lang :deep(.lang-selector) {
     box-sizing: border-box;
-    height: 2rem;
+    height: 2.25rem;
     padding-top: 0;
     padding-bottom: 0;
     font-size: var(--byz-text-sm);
