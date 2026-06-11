@@ -1,20 +1,33 @@
 import type { Preview } from '@storybook/vue3'
-import { withThemeByDataAttribute } from '@storybook/addon-themes'
-import '../../packages/byzantium/src/styles/index.scss'
+import '../../packages/byzantium/dist/byzantium.css'
 
 const preview: Preview = {
+  globalTypes: {
+    theme: {
+      name: 'Theme',
+      defaultValue: 'dark',
+      toolbar: {
+        icon: 'circlehollow',
+        items: [
+          { value: 'dark',  title: 'Dark' },
+          { value: 'light', title: 'Light' },
+        ],
+        showName: true,
+      },
+    },
+  },
   parameters: {
     backgrounds: { disable: true },
     layout: 'centered',
   },
   decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        Dark: 'dark',
-        Light: 'light',
+    (story, context) => ({
+      components: { story },
+      setup() {
+        const theme = context.globals?.theme ?? 'dark'
+        document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : '')
       },
-      defaultTheme: 'dark',
-      attributeName: 'data-theme',
+      template: '<story />',
     }),
   ],
 }
