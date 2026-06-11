@@ -3,6 +3,13 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineNuxtConfig({
   app: {
     head: {
+      script: [
+        {
+          // Apply saved theme before first paint to prevent dark/light flicker
+          innerHTML: `(function(){try{var t=localStorage.getItem('byz-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          tagPosition: 'head',
+        },
+      ],
       title: 'Byzantium Design System',
       htmlAttrs: { lang: 'nl' },
       meta: [

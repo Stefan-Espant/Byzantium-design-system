@@ -11,6 +11,7 @@ export { useScrollLock }  from './composables/useScrollLock'
 export { useClipboard }   from './composables/useClipboard'
 export { useIntersection } from './composables/useIntersection'
 export { useForm }        from './composables/useForm'
+export { useViewTransition } from './composables/useViewTransition'
 export {
   useLocale,
   defaultLocale, englishLocale, germanLocale, frenchLocale,
