@@ -198,6 +198,13 @@ const groups = computed(() => [
     gap: var(--byz-space-2);
   }
 
+  &__lang :deep(.lang-selector) {
+    padding-top: var(--byz-space-1);
+    padding-bottom: var(--byz-space-1);
+    font-size: var(--byz-text-sm);
+    line-height: 1.5;
+  }
+
   &__theme-btn {
     background: none;
     border: 1px solid var(--byz-color-border);
