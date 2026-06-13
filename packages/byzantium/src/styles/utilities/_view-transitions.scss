@@ -8,6 +8,7 @@
 
 ::view-transition-old(root) {
   animation: 120ms ease both byz-vt-out;
+  -webkit-animation: 120ms ease both byz-vt-out;
 }
 
 ::view-transition-new(root) {
